@@ -1,0 +1,30 @@
+[
+  {
+    "id": "old-city-core",
+    "title": "Old City Core",
+    "era": "qutb-shahi",
+    "siteIds": ["charminar", "mecca-masjid", "badshahi-ashurkhana", "mahbub-chowk-clock-tower", "chowmahalla-palace", "purani-haveli"],
+    "notes": "~2 hrs on foot. Dense, shaded lanes; go early and end at Purani Haveli's Nizam's Museum."
+  },
+  {
+    "id": "golconda-and-tombs",
+    "title": "Golconda & the Tombs",
+    "era": "qutb-shahi",
+    "siteIds": ["golconda-fort", "qutb-shahi-tombs", "saidani-ma-tomb", "taramati-baradari"],
+    "notes": "Half a day. Little shade at the fort — carry water. The tombs reward a slow walk."
+  },
+  {
+    "id": "musi-riverfront-civic",
+    "title": "Musi Riverfront Civic",
+    "era": "nizam-civic",
+    "siteIds": ["telangana-high-court", "city-college-hyderabad", "state-central-library", "osmania-general-hospital", "moazzam-jahi-market", "afzal-gunj-bridge"],
+    "notes": "~1.5 hrs. Vincent Esch's Osmanian public buildings, best seen in morning light from the north bank."
+  },
+  {
+    "id": "secunderabad-cantonment",
+    "title": "Secunderabad Cantonment",
+    "era": "british-residency",
+    "siteIds": ["secunderabad-clock-tower", "st-johns-church-secunderabad", "all-saints-church", "spanish-mosque", "bansilalpet-stepwell"],
+    "notes": "~2 hrs, some legs need an auto. Garrison churches, the parade-ground clock tower and a restored baoli."
+  }
+]

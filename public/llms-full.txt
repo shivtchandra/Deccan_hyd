@@ -1,0 +1,705 @@
+# Deccan Heritage Map — Complete Knowledge Base
+
+## Charminar (charminar)
+- **Era**: qutb-shahi
+- **Built Year**: 1591
+- **Type**: gateway
+- **Area**: Charminar
+- **Coordinates**: 17.3616, 78.4747
+- **Protection Status**: asi-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Char Minar
+- **Summary**: The four-minaret monument built by Muhammad Quli Qutb Shah at the centre of his new city of Hyderabad. Persian and Indo-Islamic forms; an upper-floor mosque is the oldest in the structure.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Charminar
+- **Wikidata**: https://www.wikidata.org/wiki/Q747708
+- **Canonical URL**: https://deccanheritage.org/sites/charminar
+
+## Makkah Masjid (mecca-masjid)
+- **Era**: qutb-shahi
+- **Built Year**: 1617–1694
+- **Type**: mosque
+- **Area**: Charminar
+- **Coordinates**: 17.3604, 78.4736
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Alternate Names**: Mecca Masjid
+- **Summary**: One of the largest mosques in India, begun under Muhammad Quli Qutb Shah and finished by Aurangzeb. Bricks made with soil from Mecca are set over the central arch.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Makkah_Masjid,_Hyderabad
+- **Wikidata**: https://www.wikidata.org/wiki/Q1892668
+- **Canonical URL**: https://deccanheritage.org/sites/mecca-masjid
+
+## Golconda Fort (golconda-fort)
+- **Era**: qutb-shahi
+- **Built Year**: 16th century (earlier core 13th c.)
+- **Type**: fort
+- **Area**: Golconda
+- **Coordinates**: 17.3833, 78.4011
+- **Protection Status**: asi-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Golkonda
+- **Summary**: Capital of the Qutb Shahi kingdom before Hyderabad was founded. A granite hill fort famous for its acoustic system, the Fateh Rahben gun, and the diamond trade that passed through its markets.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Golconda_Fort
+- **Wikidata**: https://www.wikidata.org/wiki/Q1543848
+- **Canonical URL**: https://deccanheritage.org/sites/golconda-fort
+
+## Qutb Shahi Tombs (qutb-shahi-tombs)
+- **Era**: qutb-shahi
+- **Built Year**: 1543–1672
+- **Type**: tomb
+- **Area**: Ibrahim Bagh
+- **Coordinates**: 17.3949, 78.3963
+- **Protection Status**: asi-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Seven Tombs, Ibrahim Bagh
+- **Summary**: A walled necropolis of seven Qutb Shahi sultans and their families, set in gardens below Golconda. Under a long conservation programme by the Aga Khan Trust for Culture.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Qutb_Shahi_tombs
+- **Wikidata**: https://www.wikidata.org/wiki/Q2338524
+- **Canonical URL**: https://deccanheritage.org/sites/qutb-shahi-tombs
+
+## Chowmahalla Palace (chowmahalla-palace)
+- **Era**: asaf-jahi
+- **Built Year**: 1750s–1869
+- **Type**: palace
+- **Area**: Khilwat
+- **Coordinates**: 17.3578, 78.4717
+- **Protection Status**: intach-listed
+- **Access Policy**: ticketed
+- **Alternate Names**: Chow Mahalla
+- **Summary**: Seat of the Asaf Jahi Nizams and the setting for state ceremony. Four palaces around courtyards; the Khilwat Mubarak durbar hall holds a run of Belgian crystal chandeliers. UNESCO Asia-Pacific award for restoration.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Chowmahalla_Palace
+- **Wikidata**: https://www.wikidata.org/wiki/Q2962545
+- **Canonical URL**: https://deccanheritage.org/sites/chowmahalla-palace
+
+## Falaknuma Palace (falaknuma-palace)
+- **Era**: asaf-jahi
+- **Built Year**: 1893
+- **Type**: palace
+- **Area**: Falaknuma
+- **Coordinates**: 17.3306, 78.4672
+- **Protection Status**: intach-listed
+- **Access Policy**: restricted
+- **Alternate Names**: Mirror of the Sky
+- **Summary**: Built by Nawab Vikar-ul-Umra and later bought by the sixth Nizam. Scorpion-shaped plan, Italian marble, a 101-seat dining table. Now a Taj hotel; grounds are guest-only.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Falaknuma_Palace
+- **Wikidata**: https://www.wikidata.org/wiki/Q5432935
+- **Canonical URL**: https://deccanheritage.org/sites/falaknuma-palace
+
+## Purani Haveli (purani-haveli)
+- **Era**: asaf-jahi
+- **Built Year**: late 18th century
+- **Type**: palace
+- **Area**: Purani Haveli
+- **Coordinates**: 17.3639, 78.4783
+- **Protection Status**: intach-listed
+- **Access Policy**: restricted
+- **Alternate Names**: Haveli Khadeem
+- **Summary**: Official residence of the sixth Nizam, Mahbub Ali Khan, whose 240-foot walk-in wooden wardrobe survives. Now houses the Nizam's Museum and educational institutions.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Purani_Haveli
+- **Wikidata**: https://www.wikidata.org/wiki/Q7261305
+- **Canonical URL**: https://deccanheritage.org/sites/purani-haveli
+
+## King Kothi Palace (king-kothi-palace)
+- **Era**: asaf-jahi
+- **Built Year**: early 20th century
+- **Type**: palace
+- **Area**: King Koti
+- **Coordinates**: 17.4009, 78.4795
+- **Protection Status**: unprotected
+- **Access Policy**: restricted
+- **Alternate Names**: Kingkoti
+- **Summary**: Where the seventh and last Nizam, Osman Ali Khan, lived for most of his life and died in 1967. The monogram 'KK' of the original owner gave the area its name. Parts now a government hospital.
+- **Wikipedia**: https://en.wikipedia.org/wiki/King_Kothi_Palace
+- **Wikidata**: https://www.wikidata.org/wiki/Q6412640
+- **Canonical URL**: https://deccanheritage.org/sites/king-kothi-palace
+
+## Badshahi Ashurkhana (badshahi-ashurkhana)
+- **Era**: qutb-shahi
+- **Built Year**: 1595
+- **Type**: civic
+- **Area**: Charminar
+- **Coordinates**: 17.3625, 78.4783
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Summary**: A royal congregation hall for Muharram built soon after the city itself. The walls carry some of the finest surviving Qutb Shahi tile mosaic (naqqashi).
+- **Wikipedia**: https://en.wikipedia.org/wiki/Badshahi_Ashurkhana
+- **Wikidata**: https://www.wikidata.org/wiki/Q4837211
+- **Canonical URL**: https://deccanheritage.org/sites/badshahi-ashurkhana
+
+## Toli Masjid (toli-masjid)
+- **Era**: qutb-shahi
+- **Built Year**: 1671
+- **Type**: mosque
+- **Area**: Karwan
+- **Coordinates**: 17.3712, 78.4432
+- **Protection Status**: asi-protected
+- **Access Policy**: open
+- **Summary**: Built by Musa Khan, an architect at the Qutb Shahi court, on the road between the city and Golconda. Rich stucco work on the facade; sometimes called a smaller cousin of the Mecca Masjid.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Toli_Masjid
+- **Wikidata**: https://www.wikidata.org/wiki/Q7814256
+- **Canonical URL**: https://deccanheritage.org/sites/toli-masjid
+
+## Spanish Mosque (spanish-mosque)
+- **Era**: asaf-jahi
+- **Built Year**: 1906
+- **Type**: mosque
+- **Area**: Begumpet
+- **Coordinates**: 17.4416, 78.4664
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Alternate Names**: Masjid Iqbal Ud Daula, Aiwan-e-Begumpet
+- **Summary**: Commissioned by the Paigah noble Iqbal-ud-Daula after travels in Spain. Octagonal spires and Moorish arches modelled on Cordoba — the only mosque of this style in India.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Spanish_Mosque
+- **Wikidata**: https://www.wikidata.org/wiki/Q7574332
+- **Canonical URL**: https://deccanheritage.org/sites/spanish-mosque
+
+## Paigah Tombs (paigah-tombs)
+- **Era**: asaf-jahi
+- **Built Year**: 1780s onward
+- **Type**: tomb
+- **Area**: Pisal Banda
+- **Coordinates**: 17.3521, 78.5062
+- **Protection Status**: asi-protected
+- **Access Policy**: open
+- **Alternate Names**: Maqbara Shams al-Umara
+- **Summary**: Burial ground of the Paigah nobles, who served the Nizams as generals and in-laws. Carved lime-stucco screens (jali) of exceptional delicacy, no two alike.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Paigah_tombs
+- **Wikidata**: https://www.wikidata.org/wiki/Q7124881
+- **Canonical URL**: https://deccanheritage.org/sites/paigah-tombs
+
+## British Residency (british-residency)
+- **Era**: british-residency
+- **Built Year**: 1803–1806
+- **Type**: mansion
+- **Area**: Koti
+- **Coordinates**: 17.3808, 78.4822
+- **Protection Status**: at-risk
+- **Access Policy**: restricted
+- **Alternate Names**: Koti Residency, Osmania University College for Women
+- **Summary**: Palladian residence built for James Achilles Kirkpatrick, the East India Company Resident. Subject of the book 'White Mughals'. A World Monuments Fund project has stabilised the main block; outbuildings remain fragile.
+- **Wikipedia**: https://en.wikipedia.org/wiki/British_Residency,_Hyderabad
+- **Wikidata**: https://www.wikidata.org/wiki/Q7841835
+- **Canonical URL**: https://deccanheritage.org/sites/british-residency
+
+## Osmania General Hospital (osmania-general-hospital)
+- **Era**: nizam-civic
+- **Built Year**: 1919–1925
+- **Type**: civic
+- **Area**: Afzalgunj
+- **Coordinates**: 17.3732, 78.4757
+- **Protection Status**: at-risk
+- **Access Policy**: restricted
+- **Summary**: A vast Osmanian-style hospital block on the Musi riverfront, designed by Vincent Esch. Repeated demolition proposals after flood damage have been resisted by conservationists.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Osmania_General_Hospital
+- **Wikidata**: https://www.wikidata.org/wiki/Q7107517
+- **Canonical URL**: https://deccanheritage.org/sites/osmania-general-hospital
+
+## High Court of Telangana (telangana-high-court)
+- **Era**: nizam-civic
+- **Built Year**: 1915–1919
+- **Type**: civic
+- **Area**: Kali Kaman
+- **Coordinates**: 17.3743, 78.4745
+- **Protection Status**: state-protected
+- **Access Policy**: restricted
+- **Alternate Names**: Hyderabad High Court
+- **Summary**: Vincent Esch's riverfront masterpiece for the seventh Nizam: pink granite and local pink sandstone, Mughal domes on a modern plan, on the site of an older Qutb Shahi palace garden.
+- **Wikipedia**: https://en.wikipedia.org/wiki/High_Court_of_Telangana
+- **Wikidata**: https://www.wikidata.org/wiki/Q5756255
+- **Canonical URL**: https://deccanheritage.org/sites/telangana-high-court
+
+## City College (city-college-hyderabad)
+- **Era**: nizam-civic
+- **Built Year**: 1921
+- **Type**: civic
+- **Area**: Afzalgunj
+- **Coordinates**: 17.3729, 78.4772
+- **Protection Status**: state-protected
+- **Access Policy**: restricted
+- **Alternate Names**: Darul-ul-Uloom
+- **Summary**: Another Esch building on the Musi front, in the same Osmanian idiom as the High Court opposite. Began as an Islamic seminary and became a government college.
+- **Wikipedia**: https://en.wikipedia.org/wiki/City_College,_Hyderabad
+- **Canonical URL**: https://deccanheritage.org/sites/city-college-hyderabad
+
+## Kachiguda Railway Station (kachiguda-station)
+- **Era**: nizam-civic
+- **Built Year**: 1916
+- **Type**: civic
+- **Area**: Kachiguda
+- **Coordinates**: 17.3906, 78.499
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Summary**: Terminus built for the Nizam's Guaranteed State Railway in a domed Gothic-Mughal blend. Restored by South Central Railway with its cream-and-red colour scheme intact.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Kacheguda_railway_station
+- **Wikidata**: https://www.wikidata.org/wiki/Q6343060
+- **Canonical URL**: https://deccanheritage.org/sites/kachiguda-station
+
+## Hyderabad Deccan Station (nampally-station)
+- **Era**: nizam-civic
+- **Built Year**: 1874, rebuilt 1921
+- **Type**: civic
+- **Area**: Nampally
+- **Coordinates**: 17.3934, 78.464
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Alternate Names**: Nampally Station
+- **Summary**: The city's main railway station, its long arcaded frontage a familiar face of Hyderabad in film and photograph.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Hyderabad_Deccan_railway_station
+- **Wikidata**: https://www.wikidata.org/wiki/Q5958026
+- **Canonical URL**: https://deccanheritage.org/sites/nampally-station
+
+## State Central Library (state-central-library)
+- **Era**: nizam-civic
+- **Built Year**: 1891 (present building 1936)
+- **Type**: civic
+- **Area**: Afzalgunj
+- **Coordinates**: 17.3728, 78.4796
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Alternate Names**: Asafia Library
+- **Summary**: Founded as the Asafia Library, holding rare Arabic, Persian and Urdu manuscripts. The Indo-Saracenic building faces the Musi near the Afzal Gunj bridge.
+- **Wikipedia**: https://en.wikipedia.org/wiki/State_Central_Library,_Hyderabad
+- **Wikidata**: https://www.wikidata.org/wiki/Q7603649
+- **Canonical URL**: https://deccanheritage.org/sites/state-central-library
+
+## Telangana State Museum (telangana-archaeology-museum)
+- **Era**: nizam-civic
+- **Built Year**: 1930s
+- **Type**: civic
+- **Area**: Public Gardens
+- **Coordinates**: 17.4062, 78.4691
+- **Protection Status**: state-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Hyderabad Museum, State Archaeology Museum
+- **Summary**: Opened by the seventh Nizam in the Public Gardens; collections span Buddhist relics, Kakatiya bronzes, an Egyptian mummy and the Nizams' arms.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Telangana_State_Museum
+- **Wikidata**: https://www.wikidata.org/wiki/Q7698472
+- **Canonical URL**: https://deccanheritage.org/sites/telangana-archaeology-museum
+
+## Telangana Legislative Assembly (assembly-building)
+- **Era**: nizam-civic
+- **Built Year**: 1913
+- **Type**: civic
+- **Area**: Public Gardens
+- **Coordinates**: 17.4076, 78.4646
+- **Protection Status**: state-protected
+- **Access Policy**: restricted
+- **Alternate Names**: Town Hall, Saifabad Palace
+- **Summary**: Built as a town hall to mark the seventh Nizam's accession, in white stucco with wide Rajasthani-style eaves. Legislature of Hyderabad State and its successors ever since.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Telangana_Legislative_Assembly
+- **Wikidata**: https://www.wikidata.org/wiki/Q7698391
+- **Canonical URL**: https://deccanheritage.org/sites/assembly-building
+
+## Jubilee Hall (jubilee-hall)
+- **Era**: nizam-civic
+- **Built Year**: 1936
+- **Type**: civic
+- **Area**: Public Gardens
+- **Coordinates**: 17.4066, 78.4666
+- **Protection Status**: state-protected
+- **Access Policy**: restricted
+- **Summary**: A pillared assembly hall raised for the silver jubilee of Osman Ali Khan's reign, still used for state functions.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Jubilee_Hall,_Hyderabad
+- **Canonical URL**: https://deccanheritage.org/sites/jubilee-hall
+
+## Moazzam Jahi Market (moazzam-jahi-market)
+- **Era**: nizam-civic
+- **Built Year**: 1933–1935
+- **Type**: civic
+- **Area**: Abids
+- **Coordinates**: 17.3852, 78.474
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Alternate Names**: Mozamjahi Market
+- **Summary**: A curved granite market building with a clock tower, named for the seventh Nizam's second son. Restored in 2021; long known for its fruit, ice cream and flower trade.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Moazzam_Jahi_Market
+- **Wikidata**: https://www.wikidata.org/wiki/Q6889696
+- **Canonical URL**: https://deccanheritage.org/sites/moazzam-jahi-market
+
+## Errum Manzil (errum-manzil)
+- **Era**: asaf-jahi
+- **Built Year**: 1870s
+- **Type**: palace
+- **Area**: Erragadda / Khairatabad
+- **Coordinates**: 17.4166, 78.4548
+- **Protection Status**: at-risk
+- **Access Policy**: restricted
+- **Alternate Names**: Iram Manzil
+- **Summary**: A hilltop Indo-European palace of the Paigah noble Fakhrul Mulk, with some 150 rooms. A 2019 plan to demolish it for a new assembly building was stayed after public protest; its future is unsettled.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Errum_Manzil
+- **Wikidata**: https://www.wikidata.org/wiki/Q5385621
+- **Canonical URL**: https://deccanheritage.org/sites/errum-manzil
+
+## Raymond's Tomb (raymond-tomb)
+- **Era**: asaf-jahi
+- **Built Year**: c. 1798
+- **Type**: tomb
+- **Area**: Saroornagar Road
+- **Coordinates**: 17.3711, 78.5092
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Alternate Names**: Moosa Ram, Moosa Burj
+- **Summary**: A plain Grecian obelisk over the grave of Michel Joachim Marie Raymond, a French general in the second Nizam's service so respected that locals held an annual urs at his tomb.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Raymond%27s_Tomb
+- **Wikidata**: https://www.wikidata.org/wiki/Q7300223
+- **Canonical URL**: https://deccanheritage.org/sites/raymond-tomb
+
+## Taramati Baradari (taramati-baradari)
+- **Era**: qutb-shahi
+- **Built Year**: 17th century
+- **Type**: civic
+- **Area**: Ibrahim Bagh
+- **Coordinates**: 17.3762, 78.3861
+- **Protection Status**: state-protected
+- **Access Policy**: ticketed
+- **Summary**: A twelve-arched pleasure pavilion in the Ibrahim Bagh garden, tied by legend to a courtesan of Abdullah Qutb Shah's court. Now a state-run arts venue.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Taramati_Baradari
+- **Wikidata**: https://www.wikidata.org/wiki/Q7684554
+- **Canonical URL**: https://deccanheritage.org/sites/taramati-baradari
+
+## Hayat Bakshi Mosque (hayat-bakshi-mosque)
+- **Era**: qutb-shahi
+- **Built Year**: 1672
+- **Type**: mosque
+- **Area**: Hayathnagar
+- **Coordinates**: 17.3196, 78.6031
+- **Protection Status**: asi-protected
+- **Access Policy**: open
+- **Alternate Names**: Hayathnagar Mosque
+- **Summary**: Built by Hayat Bakshi Begum, daughter, wife and mother of Qutb Shahi sultans, on the old Machilipatnam road. A serai and step-well stood alongside for travellers.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Hayat_Bakshi_Mosque
+- **Canonical URL**: https://deccanheritage.org/sites/hayat-bakshi-mosque
+
+## Mahbub Chowk Clock Tower (mahbub-chowk-clock-tower)
+- **Era**: asaf-jahi
+- **Built Year**: 1892
+- **Type**: civic
+- **Area**: Charminar
+- **Coordinates**: 17.3592, 78.4705
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Alternate Names**: Mahboob Chowk
+- **Summary**: A Victorian clock tower beside the Jama Masjid and the old bird market west of Charminar, named for the sixth Nizam.
+- **Canonical URL**: https://deccanheritage.org/sites/mahbub-chowk-clock-tower
+
+## Sardar Mahal (sardar-mahal)
+- **Era**: asaf-jahi
+- **Built Year**: 1900
+- **Type**: palace
+- **Area**: Charminar
+- **Coordinates**: 17.3586, 78.4744
+- **Protection Status**: at-risk
+- **Access Policy**: restricted
+- **Summary**: A European-plan palace the sixth Nizam had built for a wife, Sardari Begum. Long used as municipal offices and now largely disused.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Sardar_Mahal
+- **Canonical URL**: https://deccanheritage.org/sites/sardar-mahal
+
+## Moula Ali Dargah (moula-ali-dargah)
+- **Era**: qutb-shahi
+- **Built Year**: 1578
+- **Type**: civic
+- **Area**: Moula Ali
+- **Coordinates**: 17.4623, 78.5561
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Alternate Names**: Dargah Hazrat Maula Ali
+- **Summary**: A hilltop shrine reached by about 500 steps, built after a Qutb Shahi courtier's vision. The annual urs draws large crowds; the hill also carries Qutb Shahi pavilions and tanks.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Maula_Ali
+- **Canonical URL**: https://deccanheritage.org/sites/moula-ali-dargah
+
+## Bansilalpet Stepwell (bansilalpet-stepwell)
+- **Era**: nizam-civic
+- **Built Year**: early 20th century
+- **Type**: baoli
+- **Area**: Secunderabad
+- **Coordinates**: 17.4432, 78.5008
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Alternate Names**: Bansilalpet Baoli
+- **Summary**: A large rectangular step-well cleared of decades of rubbish and restored in 2022 as a public space and performance venue — a model for the city's other buried baolis.
+- **Canonical URL**: https://deccanheritage.org/sites/bansilalpet-stepwell
+
+## Secunderabad Clock Tower (secunderabad-clock-tower)
+- **Era**: british-residency
+- **Built Year**: 1897
+- **Type**: civic
+- **Area**: Secunderabad
+- **Coordinates**: 17.4399, 78.4983
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Summary**: A 120-foot tower on the old parade ground of the Secunderabad cantonment, funded by public subscription and long the landmark of the twin city.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Secunderabad_Clock_Tower
+- **Wikidata**: https://www.wikidata.org/wiki/Q7444811
+- **Canonical URL**: https://deccanheritage.org/sites/secunderabad-clock-tower
+
+## St John's Church (st-johns-church-secunderabad)
+- **Era**: british-residency
+- **Built Year**: 1813
+- **Type**: church
+- **Area**: Secunderabad
+- **Coordinates**: 17.4519, 78.5024
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Summary**: One of the oldest churches in the Secunderabad cantonment, a plain Gothic hall with a battlemented tower and old regimental memorials inside.
+- **Wikipedia**: https://en.wikipedia.org/wiki/St._John%27s_Church,_Secunderabad
+- **Canonical URL**: https://deccanheritage.org/sites/st-johns-church-secunderabad
+
+## All Saints' Church (all-saints-church)
+- **Era**: british-residency
+- **Built Year**: 1860
+- **Type**: church
+- **Area**: Trimulgherry / Bowenpally
+- **Coordinates**: 17.4343, 78.5006
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Summary**: A cantonment church in coursed stone with a broach spire, its graveyard a record of garrison life in nineteenth-century Secunderabad.
+- **Canonical URL**: https://deccanheritage.org/sites/all-saints-church
+
+## Rashtrapati Nilayam (rashtrapati-nilayam)
+- **Era**: british-residency
+- **Built Year**: 1860
+- **Type**: palace
+- **Area**: Bolarum
+- **Coordinates**: 17.5088, 78.5043
+- **Protection Status**: state-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Bolarum Residency
+- **Summary**: The southern retreat of the President of India, built as the residence of the British Resident at Bolarum. Single-storey around a central durbar hall, in large gardens.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Rashtrapati_Nilayam
+- **Wikidata**: https://www.wikidata.org/wiki/Q3736823
+- **Canonical URL**: https://deccanheritage.org/sites/rashtrapati-nilayam
+
+## Mahbub Mansion (mahbub-mansion)
+- **Era**: asaf-jahi
+- **Built Year**: late 19th century
+- **Type**: palace
+- **Area**: Malakpet
+- **Coordinates**: 17.3735, 78.5015
+- **Protection Status**: at-risk
+- **Access Policy**: restricted
+- **Alternate Names**: Malakpet Palace
+- **Summary**: A garden palace of the sixth Nizam near the old Malakpet racecourse. Much has been lost to encroachment and neglect; a fragment and gateway remain.
+- **Canonical URL**: https://deccanheritage.org/sites/mahbub-mansion
+
+## Salar Jung Museum (salar-jung-museum)
+- **Era**: asaf-jahi
+- **Built Year**: collection assembled 19th–20th c.; present building 1968
+- **Type**: civic
+- **Area**: Darushifa
+- **Coordinates**: 17.3713, 78.4803
+- **Protection Status**: state-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Diwan Deodi
+- **Summary**: The one-man art collection of Mir Yousuf Ali Khan, Salar Jung III, a former prime minister to the Nizam — from the Veiled Rebecca to Mughal jade and a musical clock. The family's Diwan Deodi stood on the riverfront nearby.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Salar_Jung_Museum
+- **Wikidata**: https://www.wikidata.org/wiki/Q3421364
+- **Canonical URL**: https://deccanheritage.org/sites/salar-jung-museum
+
+## Asman Garh Palace (asman-garh-palace)
+- **Era**: asaf-jahi
+- **Built Year**: 1885
+- **Type**: palace
+- **Area**: Malakpet
+- **Coordinates**: 17.3562, 78.5331
+- **Protection Status**: unprotected
+- **Access Policy**: restricted
+- **Summary**: A castellated hilltop folly built by Sir Asman Jah, a Paigah noble and prime minister, overlooking the eastern approaches to the city.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Asman_Garh_Palace
+- **Canonical URL**: https://deccanheritage.org/sites/asman-garh-palace
+
+## Saidani Ma Tomb (saidani-ma-tomb)
+- **Era**: qutb-shahi
+- **Built Year**: 1883
+- **Type**: tomb
+- **Area**: Ibrahim Bagh
+- **Coordinates**: 17.3979, 78.3931
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Summary**: A domed tomb on a raised platform near the Qutb Shahi necropolis, built for the mother of a nineteenth-century noble; its scale and siting echo the older royal tombs.
+- **Canonical URL**: https://deccanheritage.org/sites/saidani-ma-tomb
+
+## Khairtabad Mosque (khairtabad-mosque)
+- **Era**: qutb-shahi
+- **Built Year**: 1626
+- **Type**: mosque
+- **Area**: Khairatabad
+- **Coordinates**: 17.4128, 78.46
+- **Protection Status**: asi-protected
+- **Access Policy**: open
+- **Alternate Names**: Hayat Bakshi Begum Mosque, Khairatabad
+- **Summary**: Built by the scholar Akkanna for Hayat Bakshi Begum, giving the locality its name (Khairat-abad). A large single-hall mosque with tall corner minarets.
+- **Canonical URL**: https://deccanheritage.org/sites/khairtabad-mosque
+
+## Dabirpura Darwaza (dabirpura-gate)
+- **Era**: qutb-shahi
+- **Built Year**: 17th century
+- **Type**: gateway
+- **Area**: Dabeerpura
+- **Coordinates**: 17.3618, 78.4906
+- **Protection Status**: unprotected
+- **Access Policy**: open
+- **Alternate Names**: Dabeerpura Gate
+- **Summary**: One of the few surviving gateways of the arc of city walls the Qutb Shahis and Asaf Jahis threw around Hyderabad; most of the rest were pulled down in the twentieth century.
+- **Canonical URL**: https://deccanheritage.org/sites/dabirpura-gate
+
+## Purana Pul (puranapul)
+- **Era**: qutb-shahi
+- **Built Year**: 1578
+- **Type**: civic
+- **Area**: Purana Pul
+- **Coordinates**: 17.3706, 78.4585
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Alternate Names**: Old Bridge
+- **Summary**: The first bridge over the Musi, a run of 22 masonry arches built by Ibrahim Quli Qutb Shah to link Golconda with the growing settlement that became Hyderabad.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Purana_Pul
+- **Canonical URL**: https://deccanheritage.org/sites/puranapul
+
+## Afzal Gunj Bridge (afzal-gunj-bridge)
+- **Era**: asaf-jahi
+- **Built Year**: 1858
+- **Type**: civic
+- **Area**: Afzalgunj
+- **Coordinates**: 17.3775, 78.4772
+- **Protection Status**: unprotected
+- **Access Policy**: open
+- **Alternate Names**: Naya Pul
+- **Summary**: The stone road bridge over the Musi built under Afzal-ud-Daula, the fifth Nizam, that opened up the northern bank for the civic quarter of the twentieth century.
+- **Canonical URL**: https://deccanheritage.org/sites/afzal-gunj-bridge
+
+## Bella Vista (bella-vista)
+- **Era**: asaf-jahi
+- **Built Year**: early 20th century
+- **Type**: mansion
+- **Area**: Khairatabad
+- **Coordinates**: 17.4258, 78.4562
+- **Protection Status**: intach-listed
+- **Access Policy**: restricted
+- **Alternate Names**: Administrative Staff College of India
+- **Summary**: A Paigah mansion later used by the seventh Nizam's family, set in terraced gardens above the Husain Sagar. Now the campus of the Administrative Staff College of India.
+- **Canonical URL**: https://deccanheritage.org/sites/bella-vista
+
+## Sir Ronald Ross Building (sir-ronald-ross-building)
+- **Era**: british-residency
+- **Built Year**: 1895
+- **Type**: civic
+- **Area**: Begumpet
+- **Coordinates**: 17.4469, 78.4665
+- **Protection Status**: state-protected
+- **Access Policy**: restricted
+- **Alternate Names**: Begumpet Officers' Mess
+- **Summary**: The hospital building where Ronald Ross, working in the Secunderabad garrison in 1897, proved the mosquito transmission of malaria. Restored and marked with a plaque.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Sir_Ronald_Ross_Institute_of_Parasitology
+- **Canonical URL**: https://deccanheritage.org/sites/sir-ronald-ross-building
+
+## Bhongir Fort (bhongir-fort)
+- **Era**: earlier
+- **Built Year**: 12th century
+- **Type**: fort
+- **Area**: Yadadri (48 km)
+- **Coordinates**: 17.5097, 78.8878
+- **Protection Status**: state-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Bhuvanagiri Fort
+- **Summary**: A massive 12th-century monolithic rock fort built by Western Chalukya ruler Tribhuvanamalla Vikramaditya VI on an isolated 500-ft granite monolith. Features moat defense, subterranean chambers, and expansive Deccan views.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Bhongir_Fort
+- **Wikidata**: https://www.wikidata.org/wiki/Q4901977
+- **Canonical URL**: https://deccanheritage.org/sites/bhongir-fort
+
+## Bidar Fort (bidar-fort)
+- **Era**: qutb-shahi
+- **Built Year**: 1427 AD
+- **Type**: fort
+- **Area**: Bidar (140 km)
+- **Coordinates**: 17.9174, 77.5306
+- **Protection Status**: asi-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Bahmani Capital Fort
+- **Summary**: The grand medieval capital of the Bahmani Sultanate and Barid Shahi kings. Holds over 30 majestic structures including Rangeen Mahal, Solah Khamba Mosque, and the Mahmud Gawan Madrasa.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Bidar_Fort
+- **Wikidata**: https://www.wikidata.org/wiki/Q4904018
+- **Canonical URL**: https://deccanheritage.org/sites/bidar-fort
+
+## Warangal Fort & Kala Thoranam (warangal-fort)
+- **Era**: earlier
+- **Built Year**: 13th century
+- **Type**: fort
+- **Area**: Warangal (145 km)
+- **Coordinates**: 17.9542, 79.6174
+- **Protection Status**: asi-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Kakatiya Fort
+- **Summary**: The stone capital of the Kakatiya Dynasty built by King Ganapatideva and Queen Rudrama Devi. Famous for its iconic carved stone gateways (Kala Thoranam) and triple concentric fortifications.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Warangal_Fort
+- **Wikidata**: https://www.wikidata.org/wiki/Q7968846
+- **Canonical URL**: https://deccanheritage.org/sites/warangal-fort
+
+## Ramappa Temple (UNESCO) (ramappa-temple)
+- **Era**: earlier
+- **Built Year**: 1213 AD
+- **Type**: temple
+- **Area**: Mulugu (200 km)
+- **Coordinates**: 18.2575, 79.9406
+- **Protection Status**: asi-protected
+- **Access Policy**: ticketed
+- **Alternate Names**: Rudreshwara Temple
+- **Summary**: UNESCO World Heritage Site named after its chief sculptor Ramappa. Constructed using lightweight floating bricks, sandbox anti-seismic technology, and masterfully carved black basalt pillars.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Ramappa_Temple
+- **Wikidata**: https://www.wikidata.org/wiki/Q7289201
+- **Canonical URL**: https://deccanheritage.org/sites/ramappa-temple
+
+## Medak Fort (medak-fort)
+- **Era**: earlier
+- **Built Year**: 12th–17th century
+- **Type**: fort
+- **Area**: Medak (95 km)
+- **Coordinates**: 18.0483, 78.2612
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Alternate Names**: Methuku Durgam
+- **Summary**: A colossal hill fort originally raised by Kakatiya ruler Prataparudra and expanded by Qutb Shahi governors. Known for its three grand gateways, Gaja Dwatam sculpture, and 17th-century bronze cannon.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Medak_Fort
+- **Wikidata**: https://www.wikidata.org/wiki/Q6805096
+- **Canonical URL**: https://deccanheritage.org/sites/medak-fort
+
+## Rachakonda Fort (rachakonda-fort)
+- **Era**: earlier
+- **Built Year**: 14th century
+- **Type**: fort
+- **Area**: Rachakonda (60 km)
+- **Coordinates**: 17.1812, 78.8016
+- **Protection Status**: unprotected
+- **Access Policy**: open
+- **Alternate Names**: Rajakonda
+- **Summary**: A 14th-century mountain citadel of the Recherla Nayaka kings built across two hill ranges without mortar. Features cyclopean stone walls, monolith arches, and scenic trekking routes.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Rachakonda_Fort
+- **Wikidata**: https://www.wikidata.org/wiki/Q7279313
+- **Canonical URL**: https://deccanheritage.org/sites/rachakonda-fort
+
+## Ananthagiri Hills & Temple (ananthagiri-hills)
+- **Era**: earlier
+- **Built Year**: Ancient
+- **Type**: temple
+- **Area**: Vikarabad (75 km)
+- **Coordinates**: 17.3115, 77.8643
+- **Protection Status**: intach-listed
+- **Access Policy**: open
+- **Alternate Names**: Vikarabad Hills
+- **Summary**: The green lungs of the Deccan and source of the Musi River. Holds the ancient Sri Anantha Padmanabha Swamy temple embedded in dense forests, cave structures, and eco-trail views.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Ananthagiri_Hills
+- **Wikidata**: https://www.wikidata.org/wiki/Q4751478
+- **Canonical URL**: https://deccanheritage.org/sites/ananthagiri-hills
+
+## Osman Sagar (Gandipet) (gandipet-lake)
+- **Era**: nizam-civic
+- **Built Year**: 1920
+- **Type**: tank
+- **Area**: Gandipet (25 km)
+- **Coordinates**: 17.3824, 78.2981
+- **Protection Status**: state-protected
+- **Access Policy**: open
+- **Alternate Names**: Gandipet Lake
+- **Summary**: A massive artificial reservoir created by the 7th Nizam Mir Osman Ali Khan in 1920 to protect Hyderabad from Musi floods. Features an iconic masonry bund, royal guest pavilion, and sunset gardens.
+- **Wikipedia**: https://en.wikipedia.org/wiki/Osman_Sagar
+- **Wikidata**: https://www.wikidata.org/wiki/Q3351980
+- **Canonical URL**: https://deccanheritage.org/sites/gandipet-lake
+

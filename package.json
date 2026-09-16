@@ -1,0 +1,32 @@
+{
+  "name": "deccan-heritage-map",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/build-static.mjs && next dev",
+    "clean": "node -e \"fs.rmSync('.next', {recursive: true, force: true})\"",
+    "prebuild": "node scripts/build-static.mjs",
+    "build": "next build",
+    "start": "next start",
+    "static": "node scripts/build-static.mjs",
+    "seed:osm": "node scripts/seed-osm.mjs",
+    "seed:wikidata": "node scripts/enrich-wikidata.mjs",
+    "seed:photos": "node scripts/fetch-commons-photos.mjs",
+    "seed:merge": "node scripts/merge-sites.mjs",
+    "seed:csv": "node scripts/export-csv.mjs",
+    "seed:all": "node scripts/seed-osm.mjs && node scripts/enrich-wikidata.mjs && node scripts/fetch-commons-photos.mjs && node scripts/build-static.mjs"
+  },
+  "dependencies": {
+    "firebase": "^12.18.0",
+    "firebase-admin": "^14.3.0",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
+    "next": "^14.2.0",
+    "pixi.js": "^8.20.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.6.1"
+  }
+}

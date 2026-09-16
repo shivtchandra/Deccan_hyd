@@ -1,0 +1,13 @@
+haidarabad-berar-1894.jpg
+  Title: Haidarabad, and Berar
+  Authors: W. & A.K. Johnston / W.W. Hunter
+  Date: 1894
+  Source: David Rumsey Historical Map Collection
+  Record: https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~291650~90063175
+  File obtained via Internet Archive mirror of the same Rumsey item:
+  https://archive.org/details/dr_haidarabad-and-berar-w--a-k-johnston-edinburgh--london-to-accompa-11297014
+  License: CC BY-NC-SA 3.0 — credit “David Rumsey Map Collection, David Rumsey Map Center, Stanford Libraries.”
+
+hyderabad-baedeker-1914.jpg
+  Local cache of Wikimedia Commons File:Hyderabad_map_1914.jpg (public domain).
+  App overlay uses the Wikimedia Special:FilePath URL, not this local file.

@@ -1,0 +1,828 @@
+{
+  "historical_periods": [
+    {
+      "id": "1591-foundation",
+      "name": "Foundation of Hyderabad",
+      "start_year": 1591,
+      "end_year": 1686,
+      "short_title": "Qutb Shahi Golden Age",
+      "description": "Founded in 1591 by Muhammad Quli Qutb Shah as a planned garden city centered around the Charminar. Characterized by Persianate Indo-Islamic architecture, stucco craftsmanship, wide radial thoroughfares, and grand royal necropolises.",
+      "accent_color": "#2a9d8f",
+      "featured_sites": [
+        "charminar",
+        "mecca-masjid",
+        "badshahi-ashurkhana",
+        "qutb-shahi-tombs",
+        "golconda-fort",
+        "taramati-baradari",
+        "puranapul",
+        "toli-masjid"
+      ],
+      "capital": "Golconda / Hyderabad",
+      "ruler_dynasty": "Qutb Shahi Dynasty"
+    },
+    {
+      "id": "1687-mughal",
+      "name": "Mughal Siege & Subah",
+      "start_year": 1687,
+      "end_year": 1723,
+      "short_title": "Imperial Province",
+      "description": "Following Aurangzeb's eight-month siege of Golconda in 1687, the Qutb Shahi sultanate ended and the Deccan became a Mughal Subah. Hyderabad served as the administrative headquarters with fortified city gates and military garrisons.",
+      "accent_color": "#e76f51",
+      "featured_sites": [
+        "golconda-fort",
+        "mecca-masjid",
+        "dabirpura-gate"
+      ],
+      "capital": "Aurangabad / Hyderabad",
+      "ruler_dynasty": "Mughal Empire"
+    },
+    {
+      "id": "1724-asaf-jahi-early",
+      "name": "Early Asaf Jahi Dynasty",
+      "start_year": 1724,
+      "end_year": 1797,
+      "short_title": "The Nizams Establish the State",
+      "description": "Mir Qamar-ud-din Khan (Nizam-ul-Mulk) established an autonomous Deccan state. Nizam Ali Khan (Asaf Jah II) shifted the capital back to Hyderabad in 1763, erecting the city walls, grand deodis, and Chowmahalla Palace.",
+      "accent_color": "#d4a373",
+      "featured_sites": [
+        "chowmahalla-palace",
+        "purani-haveli",
+        "paigah-tombs",
+        "moula-ali-dargah"
+      ],
+      "capital": "Hyderabad",
+      "ruler_dynasty": "Asaf Jahi (Nizams)"
+    },
+    {
+      "id": "1798-treaty-residency",
+      "name": "Residency & Cantonment Era",
+      "start_year": 1798,
+      "end_year": 1868,
+      "short_title": "British Alliance & Secunderabad",
+      "description": "The Subsidiary Alliance of 1798 led to the establishment of the British Residency in Koti and the twin cantonment of Secunderabad. Marked by Palladian neoclassical mansions, garrison churches, and clock towers.",
+      "accent_color": "#c2603a",
+      "featured_sites": [
+        "british-residency",
+        "secunderabad-clock-tower",
+        "st-johns-church-secunderabad",
+        "all-saints-church",
+        "raymond-tomb"
+      ],
+      "capital": "Hyderabad / Secunderabad",
+      "ruler_dynasty": "Nizam & British East India Company"
+    },
+    {
+      "id": "1869-late-nizam-reform",
+      "name": "Late Victorian & Paigah Splendour",
+      "start_year": 1869,
+      "end_year": 1907,
+      "short_title": "Railways & Aristocratic Palaces",
+      "description": "Under Prime Minister Salar Jung I and Mahbub Ali Khan (Asaf Jah VI), modern railways (Nizam's Guaranteed State Railway), hospitals, public parks, and lavish European-style palaces like Falaknuma and Errum Manzil were built.",
+      "accent_color": "#8d99ae",
+      "featured_sites": [
+        "falaknuma-palace",
+        "errum-manzil",
+        "king-kothi-palace",
+        "mahbub-chowk-clock-tower",
+        "kachiguda-station",
+        "nampally-station",
+        "asman-garh-palace"
+      ],
+      "capital": "Hyderabad",
+      "ruler_dynasty": "Nizam VI Mahbub Ali Khan"
+    },
+    {
+      "id": "1908-modern-civic",
+      "name": "Osmanian Modernity & City Improvement",
+      "start_year": 1908,
+      "end_year": 1947,
+      "short_title": "City Improvement Board (CIB)",
+      "description": "After the devastating 1908 Musi River flood, Nizam VII Mir Osman Ali Khan founded the City Improvement Board (CIB). Architect Vincent Esch pioneered the majestic Indo-Saracenic 'Osmanian' civic style along the Musi riverfront.",
+      "accent_color": "#40916c",
+      "featured_sites": [
+        "telangana-high-court",
+        "osmania-general-hospital",
+        "city-college-hyderabad",
+        "state-central-library",
+        "moazzam-jahi-market",
+        "jubilee-hall",
+        "assembly-building",
+        "sardar-mahal",
+        "spanish-mosque",
+        "bansilalpet-stepwell"
+      ],
+      "capital": "Hyderabad",
+      "ruler_dynasty": "Nizam VII Mir Osman Ali Khan"
+    },
+    {
+      "id": "1948-post-integration",
+      "name": "Integration & Statehood Transition",
+      "start_year": 1948,
+      "end_year": 1955,
+      "short_title": "Operation Polo & Hyderabad State",
+      "description": "In September 1948, Hyderabad State integrated into the Indian Union following Operation Polo. Historic palaces were repurposed as public institutions, museums, and hospitals while princely estates transitioned into public heritage.",
+      "accent_color": "#457b9d",
+      "featured_sites": [
+        "salar-jung-museum",
+        "rashtrapati-nilayam",
+        "telangana-archaeology-museum",
+        "bella-vista"
+      ],
+      "capital": "Hyderabad State (Part B)",
+      "ruler_dynasty": "Government of India / Military Administration"
+    },
+    {
+      "id": "1956-andhra-pradesh",
+      "name": "Capital of Andhra Pradesh",
+      "start_year": 1956,
+      "end_year": 2013,
+      "short_title": "Linguistic Reorganisation & Growth",
+      "description": "Hyderabad was designated the capital of united Andhra Pradesh under the States Reorganisation Act. The city expanded across Hussain Sagar into Secunderabad and Banjara Hills, establishing major universities and research institutions.",
+      "accent_color": "#588157",
+      "featured_sites": [
+        "sir-ronald-ross-building",
+        "assembly-building",
+        "gandipet-lake"
+      ],
+      "capital": "Hyderabad (AP)",
+      "ruler_dynasty": "State of Andhra Pradesh"
+    },
+    {
+      "id": "2014-present-day",
+      "name": "Telangana Statehood & Conservation",
+      "start_year": 2014,
+      "end_year": 2026,
+      "short_title": "A Reclaimed Heritage Identity",
+      "description": "Formation of Telangana state in 2014 catalysed major restorations (Qutb Shahi Necropolis by Aga Khan Trust for Culture, Bansilalpet Stepwell, Moazzam Jahi Market, British Residency), alongside documentation of vanishing deodis.",
+      "accent_color": "#c98a2b",
+      "featured_sites": [
+        "qutb-shahi-tombs",
+        "bansilalpet-stepwell",
+        "moazzam-jahi-market",
+        "british-residency"
+      ],
+      "capital": "Hyderabad (Telangana)",
+      "ruler_dynasty": "State of Telangana, India"
+    }
+  ],
+  "vanished_places": [
+    {
+      "id": "afzal-darwaza",
+      "name": "Afzal Darwaza (Northern City Gate)",
+      "former_name": "Afzal Gate / Darwaza-e-Afzal",
+      "current_location": "Afzal Gunj / Musi North Approach, Old City",
+      "start_year": 1861,
+      "end_year": 1954,
+      "lat": 17.3685,
+      "lng": 78.4764,
+      "what_existed": "A massive two-storeyed arched stone ceremonial gateway constructed by Nizam V Afzal-ud-Daulah in 1861 to connect the walled city with the new Afzal Gunj suburb over the Musi.",
+      "what_exists_now": "A bustling 4-lane roadway and traffic intersection on Afzal Gunj Main Road leading directly onto the Nayapul bridge.",
+      "reason_for_change": "Demolished in 1954 by municipal road widening authorities to facilitate vehicular bus traffic crossing the Musi river.",
+      "historical_image": "/photos/afzal-gunj-bridge.jpg",
+      "current_image": "/photos/afzal-gunj-bridge.jpg",
+      "description": "Afzal Darwaza was the northernmost of the 13 monumental city gates (Darwazas) in the stone fortified wall surrounding Hyderabad. It was topped with battlements and guard quarters.",
+      "sources": [
+        {
+          "title": "Landmarks of the Deccan",
+          "author": "Ali Asghar Bilgrami",
+          "year": 1927,
+          "source_type": "Book",
+          "url": "https://archive.org/details/landmarksofthede00bilguoft"
+        },
+        {
+          "title": "INTACH Hyderabad Chapter — Lost Gates Survey",
+          "author": "INTACH Hyderabad",
+          "year": 2018,
+          "source_type": "Heritage Organization",
+          "url": "http://intachhyderabad.org"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "puranapul-darwaza-gate",
+      "name": "Puranapul Darwaza (Western River Gate)",
+      "former_name": "Darwaza Puranapul",
+      "current_location": "Puranapul South Bridgehead, Jinsi, Old City",
+      "start_year": 1578,
+      "end_year": 1908,
+      "lat": 17.3638,
+      "lng": 78.4592,
+      "what_existed": "A fortified gateway structure directly terminating the 1578 stone bridge over the Musi, built by Ibrahim Qutb Shah with bastions and custom check-posts.",
+      "what_exists_now": "Puranapul vegetable wholesale market approach road and modern river revetment walls.",
+      "reason_for_change": "Damaged during the Great Musi Flood of 1908 and later removed for post-flood CIB bridgehead reconstruction.",
+      "historical_image": "/photos/puranapul.jpg",
+      "current_image": "/photos/puranapul.jpg",
+      "description": "The gate greeted travelers entering Hyderabad from Golconda fort across the Old Bridge. It was the premier defensive entrance to the capital for over 300 years.",
+      "sources": [
+        {
+          "title": "Historic City of Hyderabad: Its Architectural Heritage",
+          "author": "M. A. Nayeem",
+          "year": 2006,
+          "source_type": "Academic Book",
+          "url": "https://books.google.com"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "sagar-talkies",
+      "name": "Sagar Talkies / Plaza Theatre Row",
+      "former_name": "Sagar Cinema & Troop Bazaar Entertainment Row",
+      "current_location": "Troop Bazaar / Abids, Hyderabad",
+      "start_year": 1938,
+      "end_year": 2005,
+      "lat": 17.3872,
+      "lng": 78.4795,
+      "what_existed": "An iconic single-screen Art Deco cinema hall featuring a curved streamline facade, neon marquees, and grand marble foyer, hosting golden-age Hyderabadi cinema.",
+      "what_exists_now": "Commercial multi-storey electronics and stationery retail complex.",
+      "reason_for_change": "Redevelopment in the mid-2000s following the decline of single-screen theatres across the Abids commercial district.",
+      "historical_image": "/photos/moazzam-jahi-market.jpg",
+      "current_image": "/photos/moazzam-jahi-market.jpg",
+      "description": "Abids and Troop Bazaar constituted Hyderabad's legendary theatre strip. Sagar Talkies stood as an example of 1930s Deccani Art Deco cinema culture.",
+      "sources": [
+        {
+          "title": "Hyderabad: A Biography",
+          "author": "Narendra Luther",
+          "year": 2006,
+          "source_type": "Book",
+          "url": "https://books.google.com"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "fateh-maidan-pavilion",
+      "name": "Fateh Maidan Royal Tent Ground & Pavilion",
+      "former_name": "Fateh Maidan ('Victory Field')",
+      "current_location": "Lal Bahadur Shastri (LBS) Stadium, Bashir Bagh",
+      "start_year": 1687,
+      "end_year": 1967,
+      "lat": 17.4005,
+      "lng": 78.4735,
+      "what_existed": "A historic polo ground, Mughal victory campsite (where Aurangzeb pitched his imperial tents in 1687), and Asaf Jahi ceremonial military parade ground with ornate stone grandstands.",
+      "what_exists_now": "Lal Bahadur Shastri Concrete Multi-Purpose Stadium and floodlit sports complex.",
+      "reason_for_change": "Transformed into a modern municipal cricket and football stadium in the 1960s with concrete tier seating.",
+      "historical_image": "/photos/assembly-building.jpg",
+      "current_image": "/photos/assembly-building.jpg",
+      "description": "Fateh Maidan commemorated the final Mughal conquest of Golconda in 1687 and later became the center of polo, military parades, and coronation celebrations in Asaf Jahi Hyderabad.",
+      "sources": [
+        {
+          "title": "The Chronicle of Asaf Jahi Dynasty",
+          "author": "Deccan Historical Society",
+          "year": 1960,
+          "source_type": "Archive",
+          "url": "https://deccanhistory.org"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "deodi-moti-mahal",
+      "name": "Deodi Moti Mahal (Aristocratic Palace)",
+      "former_name": "Moti Mahal Deodi of Nawab Khurshid Jah",
+      "current_location": "Shalibanda, South of Charminar",
+      "start_year": 1885,
+      "end_year": 1980,
+      "lat": 17.3541,
+      "lng": 78.4718,
+      "what_existed": "A sprawling Paigah aristocratic deodi palace complex featuring high European Corinthian porticos, internal fountains, Belgian glass crystal chandeliers, and zenana courtyards.",
+      "what_exists_now": "Fragmented residential tenements and neighborhood shops, with only an ornamental gateway arch remaining.",
+      "reason_for_change": "Subdivided and dismantled among heirs following the abolition of Jagirs and urban densification in the Old City.",
+      "historical_image": "/photos/paigah-tombs.jpg",
+      "current_image": "/photos/paigah-tombs.jpg",
+      "description": "The deodis of Hyderabad were sprawling aristocratic mansions that housed entire communities of artisans, guards, and noble households, representing a unique Hyderabadi feudal urbanism.",
+      "sources": [
+        {
+          "title": "Glimpses of the Nizam's Dominions",
+          "author": "A. Claude Campbell",
+          "year": 1898,
+          "source_type": "Photograph Archive",
+          "url": "https://archive.org/details/glimpsesofnizams00camp"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "chadarghat-old-wooden-bridge",
+      "name": "Oliphant's Chadarghat Bridge (Original 1831 Span)",
+      "former_name": "Oliphant Bridge",
+      "current_location": "Chaderghat / Rang Mahal, Musi River",
+      "start_year": 1831,
+      "end_year": 1908,
+      "lat": 17.3776,
+      "lng": 78.4905,
+      "what_existed": "A pioneer iron-trussed and timber roadway bridge constructed by British Residency engineer Major James Oliphant in 1831 to span the Musi between the Residency and Chadarghat.",
+      "what_exists_now": "Modern reinforced concrete causeway and flyover connecting Koti to Malakpet.",
+      "reason_for_change": "Completely swept away by the catastrophic 1908 flood when the Musi river rose over 20 feet above its banks.",
+      "historical_image": "/photos/british-residency.jpg",
+      "current_image": "/photos/british-residency.jpg",
+      "description": "Oliphant's bridge was an engineering marvel of the early 19th-century Deccan, allowing trade to move smoothly between Secunderabad Cantonment and the southern banks.",
+      "sources": [
+        {
+          "title": "Hyderabad: A Record of the Musi Flood of 1908",
+          "author": "Chief Engineer M. Visvesvaraya Report",
+          "year": 1909,
+          "source_type": "Government Archive",
+          "url": "https://archives.telangana.gov.in"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "sher-darwaza",
+      "name": "Sher Darwaza (Tiger Gate)",
+      "former_name": "Darwaza-e-Sher / Sher Gate",
+      "current_location": "Sher-e-Bangla Road, near Afzal Gunj, Old City",
+      "start_year": 1687,
+      "end_year": 1932,
+      "lat": 17.367,
+      "lng": 78.4742,
+      "what_existed": "One of the original thirteen fortified gateways of the walled city of Hyderabad, built during the Mughal-era consolidation. A two-storeyed arched gateway flanked by octagonal bastions with a chamber for guards and a portcullis mechanism.",
+      "what_exists_now": "A busy road junction and bus stop. A small plaque erected in 2015 marks the approximate location.",
+      "reason_for_change": "Demolished in 1932 during road-widening works to accommodate motorised transport into the Afzal Gunj commercial quarter.",
+      "historical_image": "/photos/charminar.jpg",
+      "current_image": "/photos/charminar.jpg",
+      "description": "The Tiger Gate was named for the Mughal imperial symbol. It controlled movement from the new northern commercial district into the walled old city, and its loss in the 1930s accelerated the erosion of the old city's spatial identity.",
+      "sources": [
+        {
+          "title": "INTACH Hyderabad Chapter — Lost Gates Survey",
+          "author": "INTACH Hyderabad",
+          "year": 2018,
+          "source_type": "Heritage Organization",
+          "url": "http://intachhyderabad.org"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "golconda-diamond-bazaar",
+      "name": "Golconda Diamond Bazaar",
+      "former_name": "Naya Bazaar / Petla Burj Market",
+      "current_location": "Petla Burj area, near Golconda Fort outer wall",
+      "start_year": 1550,
+      "end_year": 1700,
+      "lat": 17.383,
+      "lng": 78.405,
+      "what_existed": "A walled market precinct at the base of Golconda fort where diamond merchants from across the world — Portuguese, Dutch, English, Persian, and Indian traders — negotiated the sale of stones mined in the Kollur and Paritala mines of the Deccan. Covered stalls, weighing houses, and storage vaults formed a self-contained trading complex.",
+      "what_exists_now": "Open scrub land and informal settlement at the outer wall of the fort. No physical trace of the bazaar remains.",
+      "reason_for_change": "The bazaar declined after the Mughal conquest of 1687 rerouted diamond trade through Surat and Bombay. By 1700 the market had effectively ceased to function.",
+      "historical_image": "/photos/golconda-fort.jpg",
+      "current_image": "/photos/golconda-fort.jpg",
+      "description": "The Koh-i-Noor, the Hope Diamond, and the Regent Diamond all passed through Golconda's markets before dispersal to European royal collections. The bazaar was the most important diamond trading point in the pre-modern world for over 150 years.",
+      "sources": [
+        {
+          "title": "The Diamond History of Golconda",
+          "author": "Dirk Bhattacharya",
+          "year": 2001,
+          "source_type": "Academic Article",
+          "url": "https://www.jstor.org"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "diwan-deodi",
+      "name": "Diwan Deodi of Salar Jung",
+      "former_name": "Salar Jung Family Palace",
+      "current_location": "Musi Riverfront, Dar-ul-Shifa, near Salar Jung Museum",
+      "start_year": 1810,
+      "end_year": 1955,
+      "lat": 17.3703,
+      "lng": 78.48,
+      "what_existed": "A sprawling riverfront palace complex of the Salar Jung family — Prime Ministers of Hyderabad for three generations. The deodi included residential wings, audience halls, a private library, zenana quarters, and formal gardens running down to the Musi.",
+      "what_exists_now": "The site was cleared and the present Salar Jung Museum building was constructed here in 1968. The museum holds the family's art collection but the palace itself is gone.",
+      "reason_for_change": "Demolished in the 1950s to make way for the purpose-built Salar Jung Museum, which opened in 1968.",
+      "historical_image": "/photos/salar-jung-museum.jpg",
+      "current_image": "/photos/salar-jung-museum.jpg",
+      "description": "The deodi was among the grandest aristocratic palaces on the Musi riverfront. Its demolition for the museum that holds the family's collection is one of heritage's great ironies — the objects were preserved, the building that housed them was not.",
+      "sources": [
+        {
+          "title": "Salar Jung Museum Official History",
+          "author": "Salar Jung Museum",
+          "year": 2010,
+          "source_type": "Museum Publication",
+          "url": "https://www.salarjungmuseum.in"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "nayapul-iron-bridge",
+      "name": "Nayapul Iron Bridge (1874)",
+      "former_name": "New Bridge / Nizam's Railway Bridge",
+      "current_location": "Nayapul / Chadarghat crossing, Musi River",
+      "start_year": 1874,
+      "end_year": 1908,
+      "lat": 17.3776,
+      "lng": 78.485,
+      "what_existed": "A Victorian iron-truss railway and road bridge over the Musi, constructed by the Nizam's Guaranteed State Railway in 1874. Latticed iron superstructure on stone piers, designed by British engineers for the Secunderabad-Hyderabad rail connection.",
+      "what_exists_now": "The modern Chadarghat bridge and connecting roads. The stone piers of the original bridge may survive below the current structure.",
+      "reason_for_change": "The bridge was severely damaged and its iron superstructure destroyed in the catastrophic 1908 Musi flood, when water rose over 20 feet above normal levels.",
+      "historical_image": "/photos/afzal-gunj-bridge.jpg",
+      "current_image": "/photos/afzal-gunj-bridge.jpg",
+      "description": "The 1874 iron bridge was a symbol of Hyderabad's modernisation under the Nizam's Guaranteed State Railway — one of the first iron bridges in the Deccan. Its destruction in the 1908 flood was part of the same catastrophe that prompted the entire city-rebuilding programme.",
+      "sources": [
+        {
+          "title": "Hyderabad: A Record of the Musi Flood of 1908",
+          "author": "M. Visvesvaraya",
+          "year": 1909,
+          "source_type": "Government Archive",
+          "url": "https://archives.telangana.gov.in"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "ibrahim-bagh-palace",
+      "name": "Ibrahim Bagh Palace & Gardens",
+      "former_name": "Ibrahim Bagh Royal Garden Palace",
+      "current_location": "Ibrahim Bagh area, south of Golconda Fort",
+      "start_year": 1626,
+      "end_year": 1750,
+      "lat": 17.362,
+      "lng": 78.403,
+      "what_existed": "A formal pleasure garden palace of the later Qutb Shahi sultans, featuring terraced garden beds in the Persian char-bagh tradition, pavilions, fountains, reservoirs, and a central palace building. The Taramati Baradari was part of this complex.",
+      "what_exists_now": "The Taramati Baradari pavilion survives as a state cultural venue. The palace and garden infrastructure — reservoirs, paths, fountains, garden beds — are entirely gone, replaced by informal settlement and undeveloped land.",
+      "reason_for_change": "The palace fell into disuse after the Mughal conquest of 1687 and was gradually dismantled and stripped. The garden's water infrastructure silted up over the following century.",
+      "historical_image": "/photos/taramati-baradari.jpg",
+      "current_image": "/photos/taramati-baradari.jpg",
+      "description": "Ibrahim Bagh was one of the great pleasure gardens of the Qutb Shahi court — a world of formal waterways, fragrant plantings, and musical performances. The Taramati Baradari pavilion is a fragment of what was a much larger designed landscape.",
+      "sources": [
+        {
+          "title": "Gardens of the Deccan Sultanates",
+          "author": "D. Fairchild Ruggles",
+          "year": 2008,
+          "source_type": "Academic Book",
+          "url": "https://books.google.com"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "abids-art-deco-row",
+      "name": "Abids Art Deco Cinema & Commercial Row",
+      "former_name": "Abids Main Street Commercial Frontage (1930s–1960s)",
+      "current_location": "Abids Circle and Abids Main Road, Hyderabad",
+      "start_year": 1935,
+      "end_year": 1995,
+      "lat": 17.3899,
+      "lng": 78.4741,
+      "what_existed": "A continuous Art Deco commercial frontage along Abids Main Road: single-screen cinemas (Sagar Talkies, Plaza, Regal), air-conditioned restaurants with neon signage, jewellery showrooms, and bookshops behind streamline facades with curved corners, glass bricks, and geometric grilles. The whole streetscape represented 1940s–50s modern Hyderabad.",
+      "what_exists_now": "Mixed-use multi-storey commercial blocks with no consistent architectural character. Most original facades have been demolished or substantially altered.",
+      "reason_for_change": "Incremental demolition and replacement from the 1980s onward as single-screen cinemas closed and commercial rents pushed for higher-floor development.",
+      "historical_image": "/photos/moazzam-jahi-market.jpg",
+      "current_image": "/photos/moazzam-jahi-market.jpg",
+      "description": "Abids was Hyderabad's most cosmopolitan commercial street through the 1940s and 1950s — a place where the city's Hindu, Muslim, and Christian communities mixed as shoppers, cinema-goers, and diners. Its loss represents the erasure of mid-20th-century urban Hyderabad.",
+      "sources": [
+        {
+          "title": "Hyderabad: A Biography",
+          "author": "Narendra Luther",
+          "year": 2006,
+          "source_type": "Book",
+          "url": "https://books.google.com"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "charminar-original-bazaar-quarter",
+      "name": "Char Kaman Original Bazaar Quarter",
+      "former_name": "Char Kaman Market Area (16th century)",
+      "current_location": "Around Charminar, Old City",
+      "start_year": 1591,
+      "end_year": 1860,
+      "lat": 17.3618,
+      "lng": 78.4748,
+      "what_existed": "The original planned bazaar quarter radiating from Charminar: four great market streets (Charminar Bazaar, Pather Gatti, Laad Bazaar, Pathergatti) bounded by the four kaman (arched gateways) — only three of which survive today. The fourth kaman, the northernmost, was demolished in the 19th century. The streets were lined with covered arcaded shops in a continuous market sequence planned by Muhammad Quli Qutb Shah.",
+      "what_exists_now": "The three surviving kamans (Kali Kaman, Machli Kaman, Char Kaman) remain. Laad Bazaar continues as a bangle market. The fourth kaman is gone; the original continuous arcaded shop fronts have been replaced by non-continuous modern buildings.",
+      "reason_for_change": "The fourth kaman was demolished in the 1860s for road widening. The original planned arcaded shop fronts were replaced incrementally from the 19th century onward.",
+      "historical_image": "/photos/charminar.jpg",
+      "current_image": "/photos/charminar.jpg",
+      "description": "The Char Kaman (four arches) were the symbolic gateways of the market quarter around Charminar — marking the transition from open city to concentrated market. Their loss has eroded the spatial logic that Muhammad Quli Qutb Shah built into the city's founding plan.",
+      "sources": [
+        {
+          "title": "Historic City of Hyderabad: Its Architectural Heritage",
+          "author": "M. A. Nayeem",
+          "year": 2006,
+          "source_type": "Academic Book",
+          "url": "https://books.google.com"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "musi-flood-quarter-1908",
+      "name": "Pre-1908 Musi Flood Neighbourhood (Nayapul)",
+      "former_name": "Nayapul Riverside Settlement",
+      "current_location": "Nayapul, along the north bank of the Musi",
+      "start_year": 1724,
+      "end_year": 1908,
+      "lat": 17.375,
+      "lng": 78.48,
+      "what_existed": "Dense residential and commercial neighbourhoods lining the north bank of the Musi between Afzal Gunj and Chadarghat: two- and three-storey courtyard houses, textile shops, grain warehouses, and small mosques. The riverfront was an active commercial edge rather than a civic boulevard.",
+      "what_exists_now": "The City Improvement Board's post-1908 civic rebuilding replaced the destroyed neighbourhood with the present Osmanian public buildings — the High Court, City College, Osmania General Hospital, and State Central Library.",
+      "reason_for_change": "The catastrophic 1908 Musi flood destroyed most of this riverfront. The City Improvement Board used the cleared land to build the civic quarter rather than rebuilding housing.",
+      "historical_image": "/photos/high-court.jpg",
+      "current_image": "/photos/high-court.jpg",
+      "description": "The 1908 flood effectively erased an entire residential district and allowed a deliberate civic rebuilding to take its place. The great Osmanian public buildings we see today stand on land that was a densely inhabited neighbourhood the year before.",
+      "sources": [
+        {
+          "title": "Hyderabad: A Record of the Musi Flood of 1908",
+          "author": "M. Visvesvaraya",
+          "year": 1909,
+          "source_type": "Government Archive",
+          "url": "https://archives.telangana.gov.in"
+        }
+      ],
+      "published": true
+    }
+  ],
+  "historical_maps": [
+    {
+      "id": "map-1894-haidarabad-berar",
+      "title": "Haidarabad & Berar",
+      "year": 1894,
+      "period_id": "1869-late-nizam-reform",
+      "description": "Atlas sheet “Haidarabad, and Berar” from Atlas of India (W. & A.K. Johnston / Sir W.W. Hunter, 1894). State-scale administrative map (approx. 1:3,225,000), not a Hyderabad city plan. Raster stored locally from the David Rumsey Historical Map Collection scan (via Internet Archive mirror of the same item).",
+      "bounds": null,
+      "calibration_available": false,
+      "image_url": "/historical-maps/haidarabad-berar-1894.jpg",
+      "overlay_type": "raster",
+      "opacity": 0.85,
+      "source_archive": "David Rumsey Historical Map Collection",
+      "source_url": "https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~291650~90063175",
+      "license": "CC BY-NC-SA 3.0 (David Rumsey Map Collection / Stanford Libraries)",
+      "credit": "W. & A.K. Johnston / W.W. Hunter (1894); David Rumsey Map Collection",
+      "published": false
+    },
+    {
+      "id": "map-1914-baedeker",
+      "title": "Hyderabad on the Deccan",
+      "year": 1914,
+      "period_id": "1908-modern-civic",
+      "description": "City map of Hyderabad published by Karl Baedeker (Leipzig, 1914), from Baedeker’s Indien handbook. Public-domain scan via Wikimedia Commons (University of Texas historical map collection).",
+      "bounds": [
+        [
+          17.2806213,
+          78.2490734
+        ],
+        [
+          17.4917159,
+          78.5257907
+        ]
+      ],
+      "calibration_available": true,
+      "calibration_source": "Wikimedia Commons Map template latitude/longitude for File:Hyderabad_map_1914.jpg",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hyderabad_map_1914.jpg",
+      "overlay_type": "raster",
+      "opacity": 0.8,
+      "source_archive": "Wikimedia Commons / Karl Baedeker",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Hyderabad_map_1914.jpg",
+      "license": "Public Domain",
+      "credit": "Karl Baedeker (1914); University of Texas PCL Map Collection",
+      "published": true
+    },
+    {
+      "id": "map-1913-municipal-survey",
+      "title": "Hyderabad Municipal Survey",
+      "year": 1913,
+      "period_id": "1908-modern-civic",
+      "description": "Hyderabad Municipal Survey sheets (Leonard Munn, A.F. Chinoy, A.T. Mackenzie; c. 1912–1915), held by Kalakriti Archives and presented on Google Arts & Culture. No legally reusable direct raster URL was verified for overlay use, so this record remains unavailable.",
+      "bounds": null,
+      "calibration_available": false,
+      "image_url": null,
+      "overlay_type": "raster",
+      "opacity": 0.8,
+      "source_archive": "Kalakriti Archives / Google Arts & Culture",
+      "source_url": null,
+      "license": "Rights not cleared for reuse",
+      "credit": "Leonard Munn, A.F. Chinoy, A.T. Mackenzie — Hyderabad Municipal Survey (1912–1915)",
+      "published": false
+    },
+    {
+      "id": "map-1772-walled-city",
+      "title": "Walled City of Hyderabad",
+      "year": 1772,
+      "period_id": "1724-asaf-jahi-early",
+      "description": "Documented as the oldest incomplete city map of Hyderabad’s walled fortifications, held by Idara Adabiyat-i-Urdu (Panjagutta). No verified reusable digital scan is available for overlay; this record remains unavailable.",
+      "bounds": null,
+      "calibration_available": false,
+      "image_url": null,
+      "overlay_type": "raster",
+      "opacity": 0.75,
+      "source_archive": "Idara Adabiyat-i-Urdu",
+      "source_url": null,
+      "license": "Not cleared — physical archive holding",
+      "credit": "Idara Adabiyat-i-Urdu (1772 cloth map)",
+      "published": false
+    }
+  ],
+  "heritage_trails": [
+    {
+      "id": "founding-of-hyderabad",
+      "title": "The Founding of Hyderabad",
+      "slug": "founding-of-hyderabad",
+      "subtitle": "From Golconda Citadel to Muhammad Quli's River Metropolis (1591)",
+      "description": "Trace the seminal journey of Hyderabad's birth — from the formidable granite ramparts of Golconda and the royal tombs across the Ibrahim Bagh, over the 1578 Puranapul bridge to the grid centre of the city at Charminar.",
+      "period_id": "1591-foundation",
+      "hero_image": "/photos/charminar.jpg",
+      "distance_km": 8.4,
+      "estimated_duration_min": 180,
+      "difficulty": "Moderate walk & short auto legs",
+      "stops": [
+        {
+          "site_id": "golconda-fort",
+          "order": 1,
+          "title": "The Granite Citadel",
+          "narrative": "Begin where the story began. Built atop a 120-metre granite hill, Golconda was the fortified capital of the Qutb Shahi kingdom before overcrowding and disease prompted the sultan to design a new garden city on the Musi."
+        },
+        {
+          "site_id": "qutb-shahi-tombs",
+          "order": 2,
+          "title": "The Sultan's Necropolis",
+          "narrative": "The grand necropolis where seven sultans and their queens rest beneath monumental onion domes, surrounded by landscaped Persian charbagh gardens."
+        },
+        {
+          "site_id": "taramati-baradari",
+          "order": 3,
+          "title": "Acoustic Pavilions on the Ridge",
+          "narrative": "A semi-circular 12-door music pavilion perched on an open hill, engineered with acoustic curvature so court performances carried to Golconda's royal balconies."
+        },
+        {
+          "site_id": "puranapul",
+          "order": 4,
+          "title": "The Old Bridge (1578)",
+          "narrative": "The earliest permanent bridge across the Musi, built by Ibrahim Qutb Shah so prince Muhammad Quli could safely ride across to visit Bhagmati."
+        },
+        {
+          "site_id": "charminar",
+          "order": 5,
+          "title": "The Geometric Heart (1591)",
+          "narrative": "The triumph of urban design: four majestic 48-metre minarets marking the intersection of the empire's four trade highways, commemorating the containment of the plague."
+        },
+        {
+          "site_id": "mecca-masjid",
+          "order": 6,
+          "title": "The Great Congregational Mosque",
+          "narrative": "Directly south of Charminar, this mammoth granite mosque took over 75 years to build, with soil from Mecca baked into the bricks above its central prayer mihrab."
+        }
+      ],
+      "sources": [
+        {
+          "title": "History of the Qutb Shahi Dynasty",
+          "author": "H. K. Sherwani",
+          "year": 1974,
+          "url": "https://books.google.com"
+        }
+      ],
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "nizam-civic-and-musi",
+      "title": "The Osmanian Riverfront & Civic Renaissance",
+      "slug": "nizam-civic-and-musi",
+      "subtitle": "Indo-Saracenic Monuments of the Musi Riverfront (1908–1940)",
+      "description": "Discover the golden era of civic architecture engineered after the 1908 flood. Follow British architect Vincent Esch's majestic pink-granite domes, Mughal-inspired chattris, and public institutions along the river.",
+      "period_id": "1908-modern-civic",
+      "hero_image": "/photos/telangana-high-court.jpg",
+      "distance_km": 3.8,
+      "estimated_duration_min": 110,
+      "difficulty": "Easy walking",
+      "stops": [
+        {
+          "site_id": "telangana-high-court",
+          "order": 1,
+          "title": "Palace of Justice (1919)",
+          "narrative": "Designed by Vincent Esch in rose-red sandstone and white marble chattris, this grand High Court reflects Mughal-Saracenic mastery along the Musi's north bank."
+        },
+        {
+          "site_id": "osmania-general-hospital",
+          "order": 2,
+          "title": "Healing by the River (1925)",
+          "narrative": "A colossal public hospital featuring a majestic dome and central court, built to provide modern healthcare to all citizens of the Nizam's dominions."
+        },
+        {
+          "site_id": "city-college-hyderabad",
+          "order": 3,
+          "title": "The Academy of the Riverfront",
+          "narrative": "Built on the southern bank facing the High Court, its soaring corner minarets and stone jaali screens established Hyderabad as an educational capital."
+        },
+        {
+          "site_id": "state-central-library",
+          "order": 4,
+          "title": "Asafia State Central Library (1936)",
+          "narrative": "Surrounded by lush Afzal Gunj gardens, housing over 500,000 rare manuscripts in Arabic, Persian, Urdu, and Telugu under its monumental vaulted ceiling."
+        },
+        {
+          "site_id": "moazzam-jahi-market",
+          "order": 5,
+          "title": "The Circular Bazaar (1935)",
+          "narrative": "A triangular granite masterpiece topped by a central clock tower, built for fresh fruit, perfume, and ice-cream vendors, meticulously restored to its stone brilliance."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Architecture of the Asaf Jahi Dynasty",
+          "author": "Pushkar Sohoni",
+          "year": 2017,
+          "url": "https://books.google.com"
+        }
+      ],
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "palaces-and-deodis",
+      "title": "Royal Courts & Princely Deodis",
+      "slug": "palaces-and-deodis",
+      "subtitle": "From Chowmahalla to Falaknuma: The Nizam's Living Palaces",
+      "description": "Step inside the private worlds of the Asaf Jahi monarchs and Paigah nobles, featuring Persian chandeliers, neoclassic ballrooms, horse-drawn carriages, and jade archives.",
+      "period_id": "1724-asaf-jahi-early",
+      "hero_image": "/photos/chowmahalla-palace.jpg",
+      "distance_km": 6.2,
+      "estimated_duration_min": 150,
+      "difficulty": "Easy to moderate",
+      "stops": [
+        {
+          "site_id": "chowmahalla-palace",
+          "order": 1,
+          "title": "Four Palaces of Asaf Jah",
+          "narrative": "The seat of the Nizams modelled on the Shah of Iran's palace in Isfahan. Explore the grand Khilwat Mubarak durbar hall adorned with 19 crystal chandeliers."
+        },
+        {
+          "site_id": "purani-haveli",
+          "order": 2,
+          "title": "The Old Palace & 240-Foot Wardrobe",
+          "narrative": "The birthplace of Nizam VI Mahbub Ali Khan, housing the world's longest hand-cranked two-tier Burmese teak wardrobe and personal gold artefacts."
+        },
+        {
+          "site_id": "paigah-tombs",
+          "order": 3,
+          "title": "Lace in Marble & Lime Plaster",
+          "narrative": "The private resting ground of the aristocratic Paigah nobles, famous for their breathtaking geometric jaali screens and inlaid marble cenotaphs."
+        },
+        {
+          "site_id": "falaknuma-palace",
+          "order": 4,
+          "title": "Mirror of the Sky (1893)",
+          "narrative": "Perched 2,000 feet high on a hill overlooking the city, designed by Italian architect William Ward Marret in white marble with a 101-seat rosewood dining table."
+        }
+      ],
+      "sources": [
+        {
+          "title": "The Days of the Beloved",
+          "author": "Harriet Ronken Lynton",
+          "year": 1974,
+          "url": "https://books.google.com"
+        }
+      ],
+      "published": true,
+      "featured": true
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-asi",
+      "title": "Archaeological Survey of India (ASI) Hyderabad Circle Records",
+      "publisher": "Ministry of Culture, Government of India",
+      "url": "https://asihyderabadcircle.in",
+      "source_type": "Government Archive",
+      "notes": "Centrally protected monuments register and structural conservation documentation."
+    },
+    {
+      "id": "src-intach",
+      "title": "INTACH Hyderabad Chapter Heritage Directory",
+      "publisher": "Indian National Trust for Art and Cultural Heritage",
+      "url": "http://intachhyderabad.org",
+      "source_type": "Heritage Organization",
+      "notes": "Comprehensive survey of 150+ listed heritage structures in the Hyderabad Metropolitan Area."
+    },
+    {
+      "id": "src-deccan-archive",
+      "title": "The Deccan Archive Research Repository",
+      "publisher": "The Deccan Archive",
+      "url": "https://www.thedeccanarchive.com",
+      "source_type": "Archive",
+      "notes": "Photographic collection and historical oral histories of vanishing Asaf Jahi deodis."
+    },
+    {
+      "id": "src-telangana-archives",
+      "title": "Telangana State Archives and Research Institute",
+      "publisher": "Government of Telangana",
+      "url": "https://archives.telangana.gov.in",
+      "source_type": "Government Archive",
+      "notes": "Official court firmans, City Improvement Board (CIB) blueprints, and Asaf Jahi records."
+    },
+    {
+      "id": "src-british-library",
+      "title": "British Library Endangered Archives & India Office Records",
+      "publisher": "The British Library",
+      "url": "https://www.bl.uk",
+      "source_type": "Archive",
+      "notes": "19th-century albumin prints, Deen Dayal photographic plates, and Hyderabad Residency papers."
+    }
+  ]
+}

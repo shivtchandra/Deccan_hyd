@@ -1,0 +1,74 @@
+# Deccan Heritage Map
+
+> Every monument, tomb, stepwell, palace, Nizam-era building in Hyderabad and heritage weekend getaway near the city — plotted on one map by historical era, with walking routes and complete archival metadata.
+
+## Core Heritage Eras
+- Pre-Qutb Shahi (Kakatiya / early Golconda, before 1518)
+- Qutb Shahi Dynasty (1518–1687)
+- Asaf Jahi Nizams (1724–1948)
+- British Residency & Cantonment (1798–1947)
+- Nizam-era Civic Architecture (~1880–1948)
+
+## Key Heritage Destinations & Getaways
+- [Charminar](https://deccanheritage.org/sites/charminar): qutb-shahi era gateway in Charminar. Status: asi-protected.
+- [Makkah Masjid](https://deccanheritage.org/sites/mecca-masjid): qutb-shahi era mosque in Charminar. Status: state-protected.
+- [Golconda Fort](https://deccanheritage.org/sites/golconda-fort): qutb-shahi era fort in Golconda. Status: asi-protected.
+- [Qutb Shahi Tombs](https://deccanheritage.org/sites/qutb-shahi-tombs): qutb-shahi era tomb in Ibrahim Bagh. Status: asi-protected.
+- [Chowmahalla Palace](https://deccanheritage.org/sites/chowmahalla-palace): asaf-jahi era palace in Khilwat. Status: intach-listed.
+- [Falaknuma Palace](https://deccanheritage.org/sites/falaknuma-palace): asaf-jahi era palace in Falaknuma. Status: intach-listed.
+- [Purani Haveli](https://deccanheritage.org/sites/purani-haveli): asaf-jahi era palace in Purani Haveli. Status: intach-listed.
+- [King Kothi Palace](https://deccanheritage.org/sites/king-kothi-palace): asaf-jahi era palace in King Koti. Status: unprotected.
+- [Badshahi Ashurkhana](https://deccanheritage.org/sites/badshahi-ashurkhana): qutb-shahi era civic in Charminar. Status: state-protected.
+- [Toli Masjid](https://deccanheritage.org/sites/toli-masjid): qutb-shahi era mosque in Karwan. Status: asi-protected.
+- [Spanish Mosque](https://deccanheritage.org/sites/spanish-mosque): asaf-jahi era mosque in Begumpet. Status: intach-listed.
+- [Paigah Tombs](https://deccanheritage.org/sites/paigah-tombs): asaf-jahi era tomb in Pisal Banda. Status: asi-protected.
+- [British Residency](https://deccanheritage.org/sites/british-residency): british-residency era mansion in Koti. Status: at-risk.
+- [Osmania General Hospital](https://deccanheritage.org/sites/osmania-general-hospital): nizam-civic era civic in Afzalgunj. Status: at-risk.
+- [High Court of Telangana](https://deccanheritage.org/sites/telangana-high-court): nizam-civic era civic in Kali Kaman. Status: state-protected.
+- [City College](https://deccanheritage.org/sites/city-college-hyderabad): nizam-civic era civic in Afzalgunj. Status: state-protected.
+- [Kachiguda Railway Station](https://deccanheritage.org/sites/kachiguda-station): nizam-civic era civic in Kachiguda. Status: intach-listed.
+- [Hyderabad Deccan Station](https://deccanheritage.org/sites/nampally-station): nizam-civic era civic in Nampally. Status: intach-listed.
+- [State Central Library](https://deccanheritage.org/sites/state-central-library): nizam-civic era civic in Afzalgunj. Status: state-protected.
+- [Telangana State Museum](https://deccanheritage.org/sites/telangana-archaeology-museum): nizam-civic era civic in Public Gardens. Status: state-protected.
+- [Telangana Legislative Assembly](https://deccanheritage.org/sites/assembly-building): nizam-civic era civic in Public Gardens. Status: state-protected.
+- [Jubilee Hall](https://deccanheritage.org/sites/jubilee-hall): nizam-civic era civic in Public Gardens. Status: state-protected.
+- [Moazzam Jahi Market](https://deccanheritage.org/sites/moazzam-jahi-market): nizam-civic era civic in Abids. Status: state-protected.
+- [Errum Manzil](https://deccanheritage.org/sites/errum-manzil): asaf-jahi era palace in Erragadda / Khairatabad. Status: at-risk.
+- [Raymond's Tomb](https://deccanheritage.org/sites/raymond-tomb): asaf-jahi era tomb in Saroornagar Road. Status: state-protected.
+- [Taramati Baradari](https://deccanheritage.org/sites/taramati-baradari): qutb-shahi era civic in Ibrahim Bagh. Status: state-protected.
+- [Hayat Bakshi Mosque](https://deccanheritage.org/sites/hayat-bakshi-mosque): qutb-shahi era mosque in Hayathnagar. Status: asi-protected.
+- [Mahbub Chowk Clock Tower](https://deccanheritage.org/sites/mahbub-chowk-clock-tower): asaf-jahi era civic in Charminar. Status: intach-listed.
+- [Sardar Mahal](https://deccanheritage.org/sites/sardar-mahal): asaf-jahi era palace in Charminar. Status: at-risk.
+- [Moula Ali Dargah](https://deccanheritage.org/sites/moula-ali-dargah): qutb-shahi era civic in Moula Ali. Status: state-protected.
+- [Bansilalpet Stepwell](https://deccanheritage.org/sites/bansilalpet-stepwell): nizam-civic era baoli in Secunderabad. Status: intach-listed.
+- [Secunderabad Clock Tower](https://deccanheritage.org/sites/secunderabad-clock-tower): british-residency era civic in Secunderabad. Status: intach-listed.
+- [St John's Church](https://deccanheritage.org/sites/st-johns-church-secunderabad): british-residency era church in Secunderabad. Status: intach-listed.
+- [All Saints' Church](https://deccanheritage.org/sites/all-saints-church): british-residency era church in Trimulgherry / Bowenpally. Status: intach-listed.
+- [Rashtrapati Nilayam](https://deccanheritage.org/sites/rashtrapati-nilayam): british-residency era palace in Bolarum. Status: state-protected.
+- [Mahbub Mansion](https://deccanheritage.org/sites/mahbub-mansion): asaf-jahi era palace in Malakpet. Status: at-risk.
+- [Salar Jung Museum](https://deccanheritage.org/sites/salar-jung-museum): asaf-jahi era civic in Darushifa. Status: state-protected.
+- [Asman Garh Palace](https://deccanheritage.org/sites/asman-garh-palace): asaf-jahi era palace in Malakpet. Status: unprotected.
+- [Saidani Ma Tomb](https://deccanheritage.org/sites/saidani-ma-tomb): qutb-shahi era tomb in Ibrahim Bagh. Status: state-protected.
+- [Khairtabad Mosque](https://deccanheritage.org/sites/khairtabad-mosque): qutb-shahi era mosque in Khairatabad. Status: asi-protected.
+- [Dabirpura Darwaza](https://deccanheritage.org/sites/dabirpura-gate): qutb-shahi era gateway in Dabeerpura. Status: unprotected.
+- [Purana Pul](https://deccanheritage.org/sites/puranapul): qutb-shahi era civic in Purana Pul. Status: state-protected.
+- [Afzal Gunj Bridge](https://deccanheritage.org/sites/afzal-gunj-bridge): asaf-jahi era civic in Afzalgunj. Status: unprotected.
+- [Bella Vista](https://deccanheritage.org/sites/bella-vista): asaf-jahi era mansion in Khairatabad. Status: intach-listed.
+- [Sir Ronald Ross Building](https://deccanheritage.org/sites/sir-ronald-ross-building): british-residency era civic in Begumpet. Status: state-protected.
+- [Bhongir Fort](https://deccanheritage.org/sites/bhongir-fort): earlier era fort in Yadadri (48 km). Status: state-protected.
+- [Bidar Fort](https://deccanheritage.org/sites/bidar-fort): qutb-shahi era fort in Bidar (140 km). Status: asi-protected.
+- [Warangal Fort & Kala Thoranam](https://deccanheritage.org/sites/warangal-fort): earlier era fort in Warangal (145 km). Status: asi-protected.
+- [Ramappa Temple (UNESCO)](https://deccanheritage.org/sites/ramappa-temple): earlier era temple in Mulugu (200 km). Status: asi-protected.
+- [Medak Fort](https://deccanheritage.org/sites/medak-fort): earlier era fort in Medak (95 km). Status: state-protected.
+- [Rachakonda Fort](https://deccanheritage.org/sites/rachakonda-fort): earlier era fort in Rachakonda (60 km). Status: unprotected.
+- [Ananthagiri Hills & Temple](https://deccanheritage.org/sites/ananthagiri-hills): earlier era temple in Vikarabad (75 km). Status: intach-listed.
+- [Osman Sagar (Gandipet)](https://deccanheritage.org/sites/gandipet-lake): nizam-civic era tank in Gandipet (25 km). Status: state-protected.
+
+## Dynamic Routes & Itineraries
+- Qutb Shahi Royal Walk: Charminar -> Makkah Masjid -> Badshahi Ashurkhana -> Chowmahalla Palace
+- Musi Riverfront Civic Heritage: High Court of Telangana -> Osmania General Hospital -> City College -> State Central Library
+- Secunderabad Colonial Cantonment: Secunderabad Clock Tower -> St John's Church -> All Saints' Church -> Rashtrapati Nilayam
+- Deccan Heritage Getaways: Bhongir Fort -> Warangal Fort -> Ramappa UNESCO Temple -> Bidar Fort -> Medak Fort
+
+## Complete Database Access
+- [Full LLM Knowledgebase](https://deccanheritage.org/llms-full.txt): Complete structured text export of all 53 heritage sites.
