@@ -861,7 +861,7 @@ export default function Page() {
           <div className="dhm-map-overlay-panel material" style={{ zIndex: 500 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span style={{ fontSize: 12, fontWeight: 700, color: "var(--ink)" }}>HISTORICAL MAP OVERLAY</span>
-              <button onClick={() => setOverlayPanelOpen(false)} style={{ color: "var(--ink-soft)", fontSize: 13 }}>✕</button>
+              <button onClick={() => setOverlayPanelOpen(false)} aria-label="Close historical map overlay" style={{ color: "var(--ink-soft)", fontSize: 13 }}>✕</button>
             </div>
             <div style={{ fontSize: 11, color: "var(--ink-soft)", marginBottom: 8 }}>
               {activePeriod ? `${activePeriod.name}` : "Current city"}
@@ -956,7 +956,7 @@ export default function Page() {
                     <h4 className="tt-place-title">{selectedVanished.name}</h4>
                     <div style={{ fontSize: 11, color: "var(--muted)" }}>{selectedVanished.current_location}</div>
                   </div>
-                  <button onClick={() => dispatch({ type: "SELECT_VANISHED", vanishedId: null })} style={{ background: "none", border: "none", color: "var(--ink-soft)", fontSize: 16, cursor: "pointer" }}>✕</button>
+                  <button onClick={() => dispatch({ type: "SELECT_VANISHED", vanishedId: null })} aria-label="Close vanished place details" style={{ background: "none", border: "none", color: "var(--ink-soft)", fontSize: 16, cursor: "pointer" }}>✕</button>
                 </div>
                 <div style={{ fontSize: 12, color: "var(--ink)", marginTop: 6, lineHeight: 1.35 }}>
                   <b>Then:</b> {selectedVanished.what_existed}
@@ -976,7 +976,7 @@ export default function Page() {
                       <h4 className="tt-place-title">{currentSite.name}</h4>
                       <div style={{ fontSize: 11, color: "var(--muted)" }}>{currentSite.area || "Hyderabad"}</div>
                     </div>
-                    <button onClick={() => dispatch({ type: "SELECT_SITE", siteId: null })} style={{ background: "none", border: "none", color: "var(--ink-soft)", fontSize: 16, cursor: "pointer" }}>✕</button>
+                    <button onClick={() => dispatch({ type: "SELECT_SITE", siteId: null })} aria-label="Close place details" style={{ background: "none", border: "none", color: "var(--ink-soft)", fontSize: 16, cursor: "pointer" }}>✕</button>
                   </div>
                   <div style={{ fontSize: 12, color: "var(--ink-soft)", marginTop: 6, lineHeight: 1.35 }}>
                     {currentSite.summary}
@@ -1022,7 +1022,7 @@ export default function Page() {
                 <h3 style={{ margin: "2px 0 0 0", fontSize: 18, color: "var(--ink)" }}>{selectedVanished.name}</h3>
                 <div style={{ fontSize: 12, color: "var(--muted)" }}>{selectedVanished.current_location}</div>
               </div>
-              <button onClick={() => dispatch({ type: "SELECT_VANISHED", vanishedId: null })} style={{ color: "var(--ink-soft)", fontSize: 16 }}>✕</button>
+              <button onClick={() => dispatch({ type: "SELECT_VANISHED", vanishedId: null })} aria-label="Close vanished place details" style={{ color: "var(--ink-soft)", fontSize: 16 }}>✕</button>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, background: "var(--cream-hi)", padding: 10, borderRadius: 8, border: "1px solid var(--line)" }}>

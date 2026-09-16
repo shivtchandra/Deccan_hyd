@@ -22,6 +22,7 @@ export default function BottomNav({ tab, onTab, visitedCount = 0, variant = "flo
               key={t.id}
               className={`dhm-sidebar-tab pressable-sm${active ? " active" : ""}`}
               onClick={() => onTab(t.id)}
+              aria-label={t.label}
               aria-current={active ? "page" : undefined}
             >
               <Icon name={t.icon} size={18} width={1.9} color={active ? "var(--accent-deep)" : "var(--ink-soft)"} />
@@ -57,6 +58,7 @@ export default function BottomNav({ tab, onTab, visitedCount = 0, variant = "flo
               className={`dhm-tab pressable-sm${active ? " active" : ""}`}
               data-on={active}
               onClick={() => onTab(t.id)}
+              aria-label={t.label}
               aria-current={active ? "page" : undefined}
             >
               <span className="dhm-tab-ic">

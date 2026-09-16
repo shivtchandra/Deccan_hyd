@@ -60,7 +60,7 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
             >
               <div className="dhm-card-list-thumb">
                 {s.hasPhoto ? (
-                  <img src={thumbUrl(s.id)} width="54" height="50" alt={s.name} loading="lazy" />
+                  <img src={thumbUrl(s.id)} width="52" height="52" alt={s.name} loading="lazy" style={{ width: 52, height: 52, objectFit: "cover", aspectRatio: "1 / 1" }} />
                 ) : (
                   <TypeIcon type={s.type} size={22} width={1.4} color="rgba(255,255,255,0.9)" />
                 )}
