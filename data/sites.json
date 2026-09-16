@@ -60,9 +60,9 @@
     "photos": [
       {
         "url": "/photos/charminar.jpg",
-        "credit": "DidierTais",
-        "licence": "CC BY-SA 3.0",
-        "source": "https://commons.wikimedia.org/wiki/File:Charminar_Hyderabad_1.jpg"
+        "credit": "Wikimedia Commons",
+        "licence": "CC BY-SA",
+        "source": "https://en.wikipedia.org/wiki/Charminar"
       }
     ]
   },
@@ -355,7 +355,7 @@
         "url": "/photos/chowmahalla-palace.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Chowmahalla_Palace"
       }
     ]
   },
@@ -430,7 +430,7 @@
         "url": "/photos/falaknuma-palace.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Falaknuma_Palace"
       }
     ]
   },
@@ -496,7 +496,7 @@
         "url": "/photos/purani-haveli.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Purani_Haveli"
       }
     ]
   },
@@ -561,7 +561,7 @@
         "url": "/photos/king-kothi-palace.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/King_Kothi_Palace"
       }
     ]
   },
@@ -623,7 +623,7 @@
         "url": "/photos/badshahi-ashurkhana.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Badshahi_Ashurkhana"
       }
     ]
   },
@@ -683,7 +683,7 @@
         "url": "/photos/toli-masjid.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Toli_Masjid"
       }
     ]
   },
@@ -813,7 +813,7 @@
         "url": "/photos/paigah-tombs.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Paigah_Tombs"
       }
     ]
   },
@@ -888,7 +888,7 @@
         "url": "/photos/british-residency.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/British_Residency,_Hyderabad"
       }
     ]
   },
@@ -963,7 +963,7 @@
         "url": "/photos/osmania-general-hospital.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Osmania_General_Hospital"
       }
     ]
   },
@@ -1524,7 +1524,7 @@
         "url": "/photos/moazzam-jahi-market.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Moazzam_Jahi_Market"
       }
     ]
   },
@@ -2327,7 +2327,7 @@
         "url": "/photos/salar-jung-museum.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Salar_Jung_Museum"
       }
     ]
   },
@@ -2835,7 +2835,7 @@
         "url": "/photos/husain-sagar.jpg",
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA",
-        "source": "https://commons.wikimedia.org"
+        "source": "https://en.wikipedia.org/wiki/Hussain_Sagar"
       }
     ]
   },
@@ -3077,9 +3077,9 @@
     "photos": [
       {
         "url": "/photos/hitec-city-cyber-towers.jpg",
-        "credit": "Field Documentation",
-        "licence": "CC BY-SA 4.0",
-        "source": "https://commons.wikimedia.org"
+        "credit": "Wikimedia Commons",
+        "licence": "CC BY-SA",
+        "source": "https://en.wikipedia.org/wiki/HITEC_City"
       }
     ]
   },
@@ -3140,8 +3140,8 @@
       {
         "url": "/photos/buddha-statue-hussain-sagar.jpg",
         "credit": "Wikimedia Commons",
-        "licence": "CC BY-SA 4.0",
-        "source": "https://commons.wikimedia.org"
+        "licence": "CC BY-SA",
+        "source": "https://en.wikipedia.org/wiki/Buddha_Statue_of_Hyderabad"
       }
     ]
   },
@@ -3201,8 +3201,8 @@
       {
         "url": "/photos/salar-jung-museum.jpg",
         "credit": "Wikimedia Commons",
-        "licence": "CC BY-SA 4.0",
-        "source": "https://commons.wikimedia.org"
+        "licence": "CC BY-SA",
+        "source": "https://en.wikipedia.org/wiki/Salar_Jung_Museum"
       }
     ]
   },
@@ -3253,9 +3253,9 @@
     "photos": [
       {
         "url": "/photos/ravindra-bharathi.jpg",
-        "credit": "Field Documentation",
-        "licence": "CC BY-SA 4.0",
-        "source": "https://commons.wikimedia.org"
+        "credit": "Wikimedia Commons",
+        "licence": "CC BY-SA",
+        "source": "https://en.wikipedia.org/wiki/Ravindra_Bharathi"
       }
     ]
   },
@@ -3307,8 +3307,8 @@
       {
         "url": "/photos/birla-mandir.jpg",
         "credit": "Wikimedia Commons",
-        "licence": "CC BY-SA 4.0",
-        "source": "https://commons.wikimedia.org"
+        "licence": "CC BY-SA",
+        "source": "https://en.wikipedia.org/wiki/Birla_Mandir,_Hyderabad"
       }
     ]
   },

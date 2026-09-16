@@ -16,12 +16,17 @@ export default function HeritageSearch({
   const inputRef = useRef(null);
 
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
+      window.addEventListener("keydown", handleKeyDown);
     } else {
       setQuery("");
     }
-  }, [isOpen]);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
