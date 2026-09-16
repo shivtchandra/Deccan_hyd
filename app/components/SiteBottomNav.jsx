@@ -13,7 +13,7 @@ const TABS = [
 
 export default function SiteBottomNav({ accentColor }) {
   return (
-    <div style={{
+    <div className="dhm-mobile-only" style={{
       position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 620,
       display: "flex", flexDirection: "column", alignItems: "center",
       padding: `0 14px calc(8px + env(safe-area-inset-bottom, 0px))`,

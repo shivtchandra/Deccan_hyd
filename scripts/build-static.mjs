@@ -5,7 +5,7 @@
 //
 // Runs on `npm run dev` and `prebuild`. No network, no keys.
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, statSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -35,7 +35,7 @@ const index = sites.map((s) => ({
   status: s.status,
   access: s.access,
   area: s.area || "",
-  hasPhoto: existsSync(join(photosDir, `${s.id}.jpg`)),
+  hasPhoto: existsSync(join(photosDir, `${s.id}.jpg`)) && statSync(join(photosDir, `${s.id}.jpg`)).size > 0,
   needsReview: !!s.needsReview,
 }));
 

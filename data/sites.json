@@ -3146,67 +3146,6 @@
     ]
   },
   {
-    "id": "salar-jung-museum",
-    "name": "Salar Jung Museum",
-    "altNames": [
-      "Salar Jung Collection"
-    ],
-    "lat": 17.3713,
-    "lng": 78.4804,
-    "era": "post-independence",
-    "yearBuilt": "1951",
-    "startYear": 1951,
-    "type": "civic",
-    "status": "state-protected",
-    "access": "ticketed",
-    "area": "Dar-ul-Shifa / Musi South Bank",
-    "summary": "One of India's three National Museums, housing the vast art, antique, and manuscript collection of Nawab Mir Yousuf Ali Khan (Salar Jung III).",
-    "story": "Inaugurated at Dewan Devdi in 1951 by Prime Minister Jawaharlal Nehru and later transferred to its present Indo-Saracenic museum complex on the Musi south bank in 1968. Contains over 43,000 artifacts including the famous Veiled Rebecca marble statue and the 19th-century musical bracket clock.",
-    "people": [
-      {
-        "name": "Salar Jung III Mir Yousuf Ali Khan",
-        "role": "connoisseur who assembled the world-famous collection"
-      },
-      {
-        "name": "Jawaharlal Nehru",
-        "role": "Prime Minister who inaugurated the museum in 1951"
-      }
-    ],
-    "events": [
-      {
-        "year": 1951,
-        "description": "Opened to the public at Diwan Deodi"
-      },
-      {
-        "year": 1968,
-        "description": "Moved to present museum complex on the Musi riverfront"
-      }
-    ],
-    "connections": [
-      "purani-haveli",
-      "mecca-masjid"
-    ],
-    "sources": [
-      {
-        "label": "Salar Jung Museum Official",
-        "url": "https://salarjungmuseum.in/"
-      }
-    ],
-    "wikidata": "Q3348128",
-    "wikipedia": "https://en.wikipedia.org/wiki/Salar_Jung_Museum",
-    "addedBy": "seed",
-    "verifiedAt": "2026-09-15",
-    "needsReview": false,
-    "photos": [
-      {
-        "url": "/photos/salar-jung-museum.jpg",
-        "credit": "Wikimedia Commons",
-        "licence": "CC BY-SA",
-        "source": "https://en.wikipedia.org/wiki/Salar_Jung_Museum"
-      }
-    ]
-  },
-  {
     "id": "ravindra-bharathi",
     "name": "Ravindra Bharathi Cultural Complex",
     "altNames": [

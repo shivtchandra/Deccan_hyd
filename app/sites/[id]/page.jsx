@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ERAS, TYPES, STATUS, eraLabel, typeLabel, statusLabel, eraColor, photoUrl } from "../../../lib/heritage.js";
 import SiteBottomNav from "../../components/SiteBottomNav.jsx";
 import { Icon } from "../../components/Icons.jsx";
+import DeccanPatternBg from "../../components/DeccanPatternBg.jsx";
 
 // Load sites helper
 function getSitesIndex() {
@@ -277,71 +278,98 @@ export default async function SitePage({ params }) {
     .slice(0, 6);
 
   return (
-    <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)" }}>
+    <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)", position: "relative" }}>
+      <DeccanPatternBg opacity={0.08} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* ── Header — matches app's dark top bar ── */}
-      <header style={{ background: "var(--ink)", borderBottom: `3px solid ${color}`, padding: "0 20px", position: "sticky", top: 0, zIndex: 50 }}>
-        <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
-          <Link href="/" style={{ fontFamily: "Fraunces, serif", fontSize: 17, fontWeight: 700, textDecoration: "none", color: "var(--cream)", letterSpacing: "-0.3px", display: "flex", alignItems: "center", gap: 8 }}>
-            <Icon name="monument" size={18} color="var(--cream)" /> Deccan Heritage Map
+      {/* ── Header ── */}
+      <header style={{ background: "var(--cream-hi)", borderBottom: "1px solid var(--line)", padding: "0 20px", position: "sticky", top: 0, zIndex: 100, boxShadow: "0 2px 10px rgba(43,33,25,0.06)" }}>
+        <div style={{ maxWidth: 920, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
+          <Link href="/" style={{ fontFamily: "Fraunces, serif", fontSize: 17, fontWeight: 700, textDecoration: "none", color: "var(--ink)", letterSpacing: "-0.3px", display: "flex", alignItems: "center", gap: 8 }}>
+            <Icon name="monument" size={18} color="var(--ink)" /> Deccan Heritage Map
           </Link>
-          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <Link href="/" style={{ color: "var(--cream)", opacity: 0.7, fontSize: 13, textDecoration: "none", fontWeight: 500 }}>
+          <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+            <Link href="/" style={{ color: "var(--ink-soft)", fontSize: 13, textDecoration: "none", fontWeight: 600 }}>
               ← All Sites
             </Link>
-            <Link href={`/?site=${site.id}`} className="pressable-sm" style={{ background: color, color: "#fff", padding: "7px 15px", borderRadius: 999, fontWeight: 700, textDecoration: "none", fontSize: 13, whiteSpace: "nowrap" }}>
+            <Link href={`/?site=${site.id}`} className="pressable-sm" style={{ background: color, color: "#fff", padding: "7px 16px", borderRadius: 999, fontWeight: 700, textDecoration: "none", fontSize: 13, whiteSpace: "nowrap", boxShadow: "var(--e1)" }}>
               Open on Map
             </Link>
           </div>
         </div>
       </header>
 
-      {/* ── Era colour stripe ── */}
-      <div style={{ height: 4, background: color }} />
+      <main style={{ maxWidth: 920, margin: "0 auto", padding: "32px 20px 140px" }}>
+        {/* ── Title & Meta Header ── */}
+        <div style={{ marginBottom: 16 }}>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 10 }}>
+            <span style={{ background: color, color: "#fff", padding: "4px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700, letterSpacing: "0.4px" }}>
+              {eraLabel(site.era)}
+            </span>
+            <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--ink-soft)", padding: "3px 11px", borderRadius: 999, fontSize: 11, fontWeight: 600 }}>
+              {typeLabel(site.type)}
+            </span>
+            <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--muted)", padding: "3px 11px", borderRadius: 999, fontSize: 11, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 4 }}>
+              <Icon name="pin" size={12} color="var(--muted)" /> {site.area}
+            </span>
+          </div>
+          <h1 style={{ fontFamily: "Fraunces, serif", fontSize: "clamp(30px, 4.5vw, 44px)", fontWeight: 700, color: "var(--ink)", margin: "0 0 6px", lineHeight: 1.15 }}>
+            {site.name}
+          </h1>
+          {site.altNames?.length > 0 && (
+            <p style={{ margin: 0, color: "var(--muted)", fontSize: 14 }}>
+              Also known as: {site.altNames.join(", ")}
+            </p>
+          )}
+        </div>
 
-      {/* ── Hero Photo ── */}
-      <div style={{ position: "relative", width: "100%", maxHeight: 480, overflow: "hidden", background: color }}>
-        {photo ? (
-          <>
-            <img src={photo.url} alt={site.name} style={{ width: "100%", maxHeight: 480, objectFit: "cover", display: "block" }} />
-            <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, ${color}dd 0%, transparent 55%)` }} />
+        {/* ── Framed Monument Photo (Preserves Natural Proportions) ── */}
+        {photo && (
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              aspectRatio: "16 / 10",
+              minHeight: 280,
+              maxHeight: 520,
+              borderRadius: "var(--r-lg)",
+              overflow: "hidden",
+              border: "1px solid var(--line)",
+              boxShadow: "var(--e2)",
+              marginBottom: 32,
+              background: "var(--paper)",
+            }}
+          >
+            <img
+              src={photo.url}
+              alt={site.name}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 20%",
+                display: "block",
+              }}
+            />
             {photo.credit && (
-              <div style={{ position: "absolute", right: 12, top: 12, background: "rgba(0,0,0,0.55)", color: "#fff", fontSize: 10, padding: "3px 8px", borderRadius: 4 }}>
+              <div
+                style={{
+                  position: "absolute",
+                  right: 12,
+                  bottom: 12,
+                  background: "rgba(20, 16, 13, 0.72)",
+                  backdropFilter: "blur(6px)",
+                  color: "#fff",
+                  fontSize: 11,
+                  padding: "4px 10px",
+                  borderRadius: "var(--r-pill)",
+                }}
+              >
                 {photo.credit} · {photo.licence}
               </div>
             )}
-          </>
-        ) : (
-          <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.35 }}><Icon name="monument" size={64} color="#fff" /></div>
-        )}
-        {/* Title overlaid on photo */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "28px 28px 24px" }}>
-          <div style={{ maxWidth: 900, margin: "0 auto" }}>
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-              <span style={{ background: color, color: "#fff", padding: "4px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700, letterSpacing: "0.5px" }}>
-                {eraLabel(site.era)}
-              </span>
-              <span style={{ background: "rgba(255,255,255,0.18)", color: "#fff", padding: "4px 12px", borderRadius: 999, fontSize: 11, fontWeight: 600, backdropFilter: "blur(6px)" }}>
-                {typeLabel(site.type)}
-              </span>
-              <span style={{ background: "rgba(255,255,255,0.18)", color: "#fff", padding: "4px 12px", borderRadius: 999, fontSize: 11, fontWeight: 600, backdropFilter: "blur(6px)", display: "inline-flex", alignItems: "center", gap: 4 }}>
-                <Icon name="pin" size={12} /> {site.area}
-              </span>
-            </div>
-            <h1 style={{ fontFamily: "Fraunces, serif", fontSize: "clamp(26px, 5vw, 44px)", fontWeight: 800, color: "#fff", margin: "0 0 6px", lineHeight: 1.1, textShadow: "0 2px 12px rgba(0,0,0,0.45)" }}>
-              {site.name}
-            </h1>
-            {site.altNames?.length > 0 && (
-              <p style={{ margin: 0, color: "rgba(255,255,255,0.75)", fontSize: 14 }}>
-                Also known as: {site.altNames.join(", ")}
-              </p>
-            )}
           </div>
-        </div>
-      </div>
-
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: "32px 20px 140px" }}>
+        )}
 
         {/* ── Quick facts strip ── */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 0, background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", overflow: "hidden", marginBottom: 36, boxShadow: "var(--e1)" }}>
@@ -352,22 +380,21 @@ export default async function SitePage({ params }) {
             { label: "Area", value: site.area },
           ].map(({ label, value }, i) => (
             <div key={i} style={{ flex: "1 1 140px", padding: "14px 18px", borderRight: i < 3 ? "1px solid var(--line)" : "none" }}>
-              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1px", color: color, textTransform: "uppercase", marginBottom: 4 }}>{label}</div>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1px", color: "var(--muted)", textTransform: "uppercase", marginBottom: 4 }}>{label}</div>
               <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>{value}</div>
             </div>
           ))}
         </div>
 
         {/* ── Summary lead ── */}
-        <p style={{ fontSize: 18, lineHeight: 1.65, color: "var(--ink)", fontWeight: 500, margin: "0 0 36px", borderLeft: `4px solid ${color}`, paddingLeft: 18 }}>
+        <p style={{ fontFamily: "Fraunces, serif", fontSize: 18, lineHeight: 1.65, color: "var(--ink)", fontWeight: 500, margin: "0 0 36px" }}>
           {site.summary}
         </p>
 
         {/* ── Full Story ── */}
         {site.story && (
           <section style={{ marginBottom: 44 }}>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)", display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ display: "inline-block", width: 4, height: 24, background: color, borderRadius: 2 }} />
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
               History &amp; Story
             </h2>
             <div style={{ fontSize: 15, lineHeight: 1.8, color: "var(--ink-soft)" }}>
@@ -381,8 +408,7 @@ export default async function SitePage({ params }) {
         {/* ── Key Events Timeline ── */}
         {site.events?.length > 0 && (
           <section style={{ marginBottom: 44 }}>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 20px", color: "var(--ink)", display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ display: "inline-block", width: 4, height: 24, background: color, borderRadius: 2 }} />
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 20px", color: "var(--ink)" }}>
               Key Events
             </h2>
             <div style={{ position: "relative", paddingLeft: 28 }}>
@@ -401,8 +427,7 @@ export default async function SitePage({ params }) {
         {/* ── People ── */}
         {site.people?.length > 0 && (
           <section style={{ marginBottom: 44 }}>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 20px", color: "var(--ink)", display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ display: "inline-block", width: 4, height: 24, background: color, borderRadius: 2 }} />
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 20px", color: "var(--ink)" }}>
               Key People
             </h2>
             <div>
@@ -421,8 +446,7 @@ export default async function SitePage({ params }) {
 
         {/* ── Location & Access ── */}
         <section style={{ marginBottom: 44 }}>
-          <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)", display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ display: "inline-block", width: 4, height: 24, background: color, borderRadius: 2 }} />
+          <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
             Location &amp; Getting There
           </h2>
           <div style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", padding: "18px 20px", display: "flex", flexWrap: "wrap", gap: 24, alignItems: "flex-start" }}>
@@ -442,20 +466,25 @@ export default async function SitePage({ params }) {
         {/* ── Connected Heritage Sites ── */}
         {connectedSites.length > 0 && (
           <section style={{ marginBottom: 44 }}>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)", display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ display: "inline-block", width: 4, height: 24, background: color, borderRadius: 2 }} />
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
               Connected Heritage
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
-              {connectedSites.map((s) => (
-                <Link key={s.id} href={`/sites/${s.id}`} style={{ textDecoration: "none", color: "inherit" }} className="pressable-sm">
-                  <div style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", padding: "12px 14px", borderTop: `3px solid ${eraColor(s.era)}` }}>
-                    <div style={{ fontSize: 11, color: eraColor(s.era), fontWeight: 700, marginBottom: 4 }}>{eraLabel(s.era)}</div>
-                    <div style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 14, lineHeight: 1.25, marginBottom: 4 }}>{s.name}</div>
-                    <div style={{ fontSize: 12, color: "var(--muted)" }}>{s.area}</div>
-                  </div>
-                </Link>
-              ))}
+              {connectedSites.map((s) => {
+                const sColor = eraColor(s.era);
+                return (
+                  <Link key={s.id} href={`/sites/${s.id}`} style={{ textDecoration: "none", color: "inherit" }} className="pressable-sm">
+                    <div style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", padding: "14px 16px", boxShadow: "var(--e1)" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+                        <span style={{ width: 8, height: 8, borderRadius: "50%", background: sColor, display: "inline-block", flexShrink: 0 }} />
+                        <span style={{ fontSize: 11, color: "var(--ink-soft)", fontWeight: 700 }}>{eraLabel(s.era)}</span>
+                      </div>
+                      <div style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 14.5, lineHeight: 1.25, marginBottom: 4, color: "var(--ink)" }}>{s.name}</div>
+                      <div style={{ fontSize: 12, color: "var(--muted)" }}>{s.area}</div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}
@@ -463,8 +492,7 @@ export default async function SitePage({ params }) {
         {/* ── Sources & Further Reading ── */}
         {(site.sources?.length > 0 || site.wikipedia || site.wikidata) && (
           <section style={{ marginBottom: 44 }}>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)", display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ display: "inline-block", width: 4, height: 24, background: color, borderRadius: 2 }} />
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
               Sources &amp; Further Reading
             </h2>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
@@ -496,20 +524,25 @@ export default async function SitePage({ params }) {
         {/* ── Nearby Sites ── */}
         {nearby.length > 0 && (
           <section>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)", display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ display: "inline-block", width: 4, height: 24, background: color, borderRadius: 2 }} />
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
               Explore Nearby Heritage
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
-              {nearby.map((s) => (
-                <Link key={s.id} href={`/sites/${s.id}`} style={{ textDecoration: "none", color: "inherit" }} className="pressable-sm">
-                  <div style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", padding: "12px 14px", borderTop: `3px solid ${eraColor(s.era)}` }}>
-                    <div style={{ fontSize: 11, color: eraColor(s.era), fontWeight: 700, marginBottom: 4 }}>{eraLabel(s.era)}</div>
-                    <div style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 14, lineHeight: 1.25, marginBottom: 4 }}>{s.name}</div>
-                    <div style={{ fontSize: 12, color: "var(--muted)" }}>{s.area}</div>
-                  </div>
-                </Link>
-              ))}
+              {nearby.map((s) => {
+                const sColor = eraColor(s.era);
+                return (
+                  <Link key={s.id} href={`/sites/${s.id}`} style={{ textDecoration: "none", color: "inherit" }} className="pressable-sm">
+                    <div style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", padding: "14px 16px", boxShadow: "var(--e1)" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+                        <span style={{ width: 8, height: 8, borderRadius: "50%", background: sColor, display: "inline-block", flexShrink: 0 }} />
+                        <span style={{ fontSize: 11, color: "var(--ink-soft)", fontWeight: 700 }}>{eraLabel(s.era)}</span>
+                      </div>
+                      <div style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 14.5, lineHeight: 1.25, marginBottom: 4, color: "var(--ink)" }}>{s.name}</div>
+                      <div style={{ fontSize: 12, color: "var(--muted)" }}>{s.area}</div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}

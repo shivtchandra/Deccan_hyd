@@ -11,8 +11,18 @@ import { ORIGINS_BY_ID } from "../../lib/culturalOrigins.js";
 
 const MEDAL = { 1: "#d9a53a", 2: "#b9bcc4", 3: "#c58a54" };
 
-export default function LeaderboardPanel({ onChapterChange }) {
-  const [activeTab, setActiveTab] = useState("origins");
+export default function LeaderboardPanel({
+  activeTab: controlledActiveTab,
+  onTabChange,
+  selectedOriginId,
+  onSelectOriginId,
+  onChapterChange,
+  onExplorerStateReady,
+}) {
+  const [internalActiveTab, setInternalActiveTab] = useState("origins");
+  const activeTab = controlledActiveTab !== undefined ? controlledActiveTab : internalActiveTab;
+  const setActiveTab = onTabChange || setInternalActiveTab;
+
   const [selectedOrigin, setSelectedOrigin] = useState(null);
   const [rows, setRows] = useState([]);
   const [status, setStatus] = useState("loading");
@@ -21,15 +31,49 @@ export default function LeaderboardPanel({ onChapterChange }) {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    setNameState(getName());
-    getUid().then(setUid);
-    fetchExplorers(50).then((r) => {
-      setRows(r);
-      setStatus(r.length ? "ready" : "empty");
+    const n = getName();
+    setNameState(n);
+    getUid().then((u) => {
+      setUid(u);
+      fetchExplorers(50).then((r) => {
+        setRows(r);
+        const s = r.length ? "ready" : "empty";
+        setStatus(s);
+        onExplorerStateReady?.({
+          rows: r,
+          status: s,
+          uid: u,
+          name: n,
+          setNameState,
+          editing: false,
+          setEditing,
+          saveMyName: () => { saveName(n); setEditing(false); },
+        });
+      });
     });
   }, []);
 
-  const saveMyName = () => { saveName(name); setEditing(false); };
+  const saveMyName = () => {
+    saveName(name);
+    setEditing(false);
+    onExplorerStateReady?.({
+      rows,
+      status,
+      uid,
+      name,
+      setNameState,
+      editing: false,
+      setEditing,
+      saveMyName,
+    });
+  };
+
+  useEffect(() => {
+    if (selectedOriginId && ORIGINS_BY_ID[selectedOriginId]) {
+      // Don't auto-open modal chapter immediately on select, but make it available
+    }
+  }, [selectedOriginId]);
+
   const top3 = rows.slice(0, 3);
   const rest = rows.slice(3);
   const podium = [top3[1], top3[0], top3[2]]; // 2nd, 1st, 3rd
@@ -42,13 +86,19 @@ export default function LeaderboardPanel({ onChapterChange }) {
       {selectedOrigin && (
         <OriginsChapter
           item={selectedOrigin}
-          onClose={() => setSelectedOrigin(null)}
-          onNavigate={(newItem) => setSelectedOrigin(newItem)}
+          onClose={() => {
+            setSelectedOrigin(null);
+            onChapterChange?.(false);
+          }}
+          onNavigate={(newItem) => {
+            setSelectedOrigin(newItem);
+            onSelectOriginId?.(newItem.id);
+          }}
         />
       )}
 
-      {/* Tab toggle header */}
-      <div className="og-tab-header">
+      {/* Tab toggle header (mobile only; desktop sidebar has this) */}
+      <div className="og-tab-header dhm-mobile-only">
         {[
           ["origins", "Origins", "compass", "Trace where Hyderabad came from"],
           ["leaderboard", "Explorers", "trophy", "Discover the people & places that shaped it"],
@@ -73,8 +123,13 @@ export default function LeaderboardPanel({ onChapterChange }) {
       {activeTab === "origins" && (
         <div style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }}>
           <OriginsMap
+            selectedId={selectedOriginId}
+            onSelectId={onSelectOriginId}
             onDetailChange={onChapterChange}
-            onSelect={(id) => setSelectedOrigin(ORIGINS_BY_ID[id])}
+            onSelect={(id) => {
+              setSelectedOrigin(ORIGINS_BY_ID[id]);
+              onChapterChange?.(true);
+            }}
           />
         </div>
       )}

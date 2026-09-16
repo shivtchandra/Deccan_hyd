@@ -22,6 +22,7 @@ import { planRoute, encodeRoute, decodeRoute } from "../lib/routing.js";
 import { VANISHED_PLACES, HISTORICAL_MAPS, HISTORICAL_PERIODS, HERITAGE_TRAILS, parseStartYear, isSiteActiveInYear } from "../lib/heritageData.js";
 import YearScrubber from "./components/YearScrubber.jsx";
 import TimeTravelSidebar from "./components/TimeTravelSidebar.jsx";
+import ExploreSidebar from "./components/ExploreSidebar.jsx";
 import EraGuide from "./components/EraGuide.jsx";
 import EraTransition from "./components/EraTransition.jsx";
 // import IsometricDiorama from "./components/IsometricDiorama.jsx";
@@ -184,6 +185,9 @@ export default function Page() {
   const [eraTransition, setEraTransition] = useState(null);
   const prevEraKeyRef = useRef(null);
   const [activeDiorama, setActiveDiorama] = useState(null);
+  const [exploreSubTab, setExploreSubTab] = useState("origins");
+  const [selectedOriginId, setSelectedOriginId] = useState(null);
+  const [explorersData, setExplorersData] = useState(null);
 
   // Central Heritage State using reducer
   const [heritageState, dispatch] = useReducer(heritageReducer, initialHeritageState);
@@ -525,6 +529,11 @@ export default function Page() {
 
   const handleTabChange = (nextTab) => {
     if (nextTab !== "explore") setOriginChapterOpen(false);
+    if (nextTab !== "map") {
+      setSheetOpen(false);
+      dispatch({ type: "SELECT_SITE", siteId: null });
+      dispatch({ type: "SELECT_VANISHED", vanishedId: null });
+    }
     setTab(nextTab);
   };
 
@@ -682,7 +691,7 @@ export default function Page() {
         )}
       </div>
 
-      {/* Desktop sidebar: Time Travel documentary companion rail OR standard filter list */}
+      {/* Desktop sidebar: Time Travel companion rail, Origins/Explorers rail, OR standard monument list */}
       <div className="dhm-sidebar">
         {selectedYear !== null ? (
           <TimeTravelSidebar
@@ -692,6 +701,17 @@ export default function Page() {
             sites={sites}
             selectedId={selectedId}
             onSelectSite={handleSelect}
+          />
+        ) : tab === "explore" ? (
+          <ExploreSidebar
+            activeTab={exploreSubTab}
+            onTabChange={setExploreSubTab}
+            selectedOriginId={selectedOriginId}
+            onSelectOrigin={(id) => setSelectedOriginId(id)}
+            tab={tab}
+            onNavTabChange={handleTabChange}
+            visitedCount={visitedCount}
+            explorersData={explorersData}
           />
         ) : (
           <>
@@ -1026,7 +1046,7 @@ export default function Page() {
         {pickMode && <div className="map-hint">Tap the map where the building stands</div>}
 
         {/* Detail Sheet with Then ↔ Now Slider */}
-        {sheetOpen && selectedId && (
+        {tab === "map" && sheetOpen && selectedId && (
           <DetailSheet
             site={currentSite}
             pending={detailPending}
@@ -1035,7 +1055,10 @@ export default function Page() {
             onToggleSaved={onToggleSaved}
             onCheckIn={onCheckIn}
             onAddToRoute={addToRoute}
-            onClose={() => setSheetOpen(false)}
+            onClose={() => {
+              setSheetOpen(false);
+              dispatch({ type: "SELECT_SITE", siteId: null });
+            }}
             userLoc={userLoc}
             onOpenDiorama={(id) => setActiveDiorama(id)}
           />
@@ -1068,8 +1091,17 @@ export default function Page() {
           />
         )}
 
-        {/* Explore Tab (Leaderboard & Spotlight) */}
-        {tab === "explore" && <LeaderboardPanel onChapterChange={setOriginChapterOpen} />}
+        {/* Explore Tab (Origins & Explorers) */}
+        {tab === "explore" && (
+          <LeaderboardPanel
+            activeTab={exploreSubTab}
+            onTabChange={setExploreSubTab}
+            selectedOriginId={selectedOriginId}
+            onSelectOriginId={setSelectedOriginId}
+            onChapterChange={setOriginChapterOpen}
+            onExplorerStateReady={setExplorersData}
+          />
+        )}
 
         {/* Passport Tab */}
         {tab === "passport" && (
@@ -1151,8 +1183,8 @@ export default function Page() {
         </div>
       )}
 
-      {/* Floating Bottom Nav — mobile only, hidden when detail sheet, site preview card, or active trail is open */}
-      <div className="dhm-mobile-only" style={{ opacity: (sheetOpen || selectedId || selectedVanished || originChapterOpen || activeTrail || tab === "submit") ? 0 : 1, pointerEvents: (sheetOpen || selectedId || selectedVanished || originChapterOpen || activeTrail || tab === "submit") ? "none" : "auto", transition: "opacity 200ms" }}>
+      {/* Floating Bottom Nav — mobile only, hidden when modal sheets/panels are open */}
+      <div className="dhm-mobile-only" style={{ opacity: (sheetOpen || selectedVanished || originChapterOpen || activeTrail || tab === "submit") ? 0 : 1, pointerEvents: (sheetOpen || selectedVanished || originChapterOpen || activeTrail || tab === "submit") ? "none" : "auto", transition: "opacity 200ms" }}>
         <BottomNav tab={tab} onTab={handleTabChange} visitedCount={visitedCount} />
       </div>
 

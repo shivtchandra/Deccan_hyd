@@ -247,15 +247,26 @@ function paintRoutes(map, svg, selectedId) {
 }
 
 /* ── Component ──────────────────────────────────────────────────────────── */
-export default function OriginsMap({ onSelect, onDetailChange }) {
+export default function OriginsMap({
+  selectedId: controlledSelectedId,
+  onSelectId: controlledOnSelectId,
+  onSelect,
+  onDetailChange,
+}) {
   const mapElRef   = useRef(null);
   const mapRef     = useRef(null);
   const svgRef     = useRef(null);
   const markersRef = useRef({});
 
-  const [mapReady,   setMapReady]   = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
-  const [sheet,      setSheet]      = useState("list"); // Show option cards by default!
+  const [mapReady,           setMapReady]           = useState(false);
+  const [internalSelectedId, setInternalSelectedId] = useState(null);
+  const [sheet,              setSheet]              = useState("list"); // Show option cards by default on mobile!
+
+  const selectedId = controlledSelectedId !== undefined ? controlledSelectedId : internalSelectedId;
+  const setSelectedId = (id) => {
+    if (controlledOnSelectId) controlledOnSelectId(id);
+    else setInternalSelectedId(id);
+  };
 
   /* ── Init Leaflet ─── */
   useEffect(() => {
@@ -446,7 +457,49 @@ export default function OriginsMap({ onSelect, onDetailChange }) {
         </div>
       </div>
 
-      {/* Bottom sheet with pull-up gesture & expansion states */}
+      {/* Desktop Floating Origin Highlight Preview */}
+      {selItem && (
+        <div className="og-desktop-card material" role="dialog" aria-label={selItem.name}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span className="og-item-dot" style={{ background: DIR_COLOR[selItem.direction] }} />
+              <span style={{ fontSize: 10.5, fontWeight: 800, color: DIR_COLOR[selItem.direction], textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                {DIR_LABEL[selItem.direction]}
+              </span>
+              <span style={{ fontSize: 10.5, color: "var(--muted)" }}>· {selItem.eraLabel}</span>
+            </div>
+            <button
+              onClick={() => setSelectedId(null)}
+              style={{ background: "none", border: "none", color: "var(--ink-soft)", cursor: "pointer", fontSize: 15, padding: "0 2px" }}
+              aria-label="Close highlight"
+            >
+              ✕
+            </button>
+          </div>
+          <h3 style={{ fontFamily: "Fraunces, serif", fontSize: 18, fontWeight: 700, margin: "6px 0 3px", color: "var(--ink)" }}>
+            {selItem.name}
+          </h3>
+          {selGeo && (
+            <div style={{ fontSize: 11.5, color: "var(--ink-soft)", display: "flex", alignItems: "center", gap: 5, marginBottom: 8 }}>
+              <span style={{ fontWeight: 600 }}>{selGeo.label}</span>
+              <span style={{ color: DIR_COLOR[selItem.direction] }}>➔</span>
+              <span style={{ fontWeight: 600 }}>{selItem.direction === "outward" ? "Europe" : "Hyderabad"}</span>
+            </div>
+          )}
+          <p style={{ fontSize: 12.5, color: "var(--ink)", lineHeight: 1.45, margin: "0 0 12px" }}>
+            {selItem.summary}
+          </p>
+          <button
+            className="og-explore-btn pressable"
+            style={{ background: DIR_COLOR[selItem.direction], padding: "8px 12px", fontSize: 12, borderRadius: "var(--r-sm)", cursor: "pointer", border: "none", color: "#fff", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}
+            onClick={() => onSelect && onSelect(selItem.id)}
+          >
+            Read Full Story & Photos →
+          </button>
+        </div>
+      )}
+
+      {/* Bottom sheet with pull-up gesture & expansion states (mobile only) */}
       <div className={`og-sheet og-sheet--${sheet}`} role="complementary" aria-label="Cultural influences">
         <div
           className="og-handle-area"

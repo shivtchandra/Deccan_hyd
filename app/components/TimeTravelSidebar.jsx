@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { photoUrl } from "../../lib/heritage.js";
+import { thumbUrl } from "../../lib/heritage.js";
 import { Icon } from "./Icons.jsx";
 
 export const DOCUMENTARY_CHAPTERS = [
@@ -93,7 +93,7 @@ export default function TimeTravelSidebar({
             >
               <div className="dhm-tt-site-thumb">
                 {s.hasPhoto ? (
-                  <img src={photoUrl(s.id)} alt={s.name} loading="lazy" />
+                  <img src={thumbUrl(s.id)} width="50" height="50" alt={s.name} loading="lazy" />
                 ) : (
                   <div className="dhm-tt-site-nophoto"><Icon name="monument" size={18} color="var(--ink-soft)" /></div>
                 )}

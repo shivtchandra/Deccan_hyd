@@ -88,7 +88,7 @@ export default function RoutePanel({
                     >
                       {t.hero_image && (
                         <div style={{ width: 56, height: 56, borderRadius: "var(--r-sm)", overflow: "hidden", flexShrink: 0 }}>
-                          <img src={t.hero_image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                          <img src={t.hero_image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
                         </div>
                       )}
                       <div style={{ flex: 1, minWidth: 0 }}>

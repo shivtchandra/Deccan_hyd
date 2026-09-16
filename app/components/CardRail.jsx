@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { eraLabel, typeLabel, statusLabel, eraColor, photoUrl, haversineKm, distanceLabel } from "../../lib/heritage.js";
+import { eraLabel, typeLabel, statusLabel, eraColor, photoUrl, thumbUrl, haversineKm, distanceLabel } from "../../lib/heritage.js";
 import { TypeIcon } from "./Icons.jsx";
 
 export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc, layout = "rail" }) {
@@ -60,33 +60,40 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
             >
               <div className="dhm-card-list-thumb">
                 {s.hasPhoto ? (
-                  <img src={photoUrl(s.id)} alt="" loading="lazy" />
+                  <img src={thumbUrl(s.id)} width="54" height="50" alt={s.name} loading="lazy" />
                 ) : (
-                  <TypeIcon type={s.type} size={20} width={1.4} color="rgba(255,255,255,0.9)" />
+                  <TypeIcon type={s.type} size={22} width={1.4} color="rgba(255,255,255,0.9)" />
                 )}
               </div>
               <div className="dhm-card-list-body">
                 <div className="dhm-card-list-name">
-                  {s.name}
+                  <span>{s.name}</span>
                   {s.id === "charminar" && (
-                    <span style={{ marginLeft: 6, fontSize: 10, fontWeight: 800, color: "var(--accent-deep)", background: "var(--accent-wash)", padding: "1px 6px", borderRadius: 999 }}>
+                    <span className="dhm-badge-3d">
                       🏰 2.5D
                     </span>
                   )}
                 </div>
                 <div className="dhm-card-list-meta">
-                  <span style={{ color }}>{eraLabel(s.era)}</span>
-                  <span>·</span>
-                  <span>{typeLabel(s.type)}</span>
-                  {risk && <span style={{ color: "var(--danger)" }}>· {statusLabel(s.status)}</span>}
+                  <span className="dhm-pill-era" style={{ color: color, background: `color-mix(in srgb, ${color} 12%, transparent)` }}>
+                    {eraLabel(s.era)}
+                  </span>
+                  <span className="dhm-pill-type">
+                    {typeLabel(s.type)}
+                  </span>
+                  {risk && (
+                    <span className="dhm-pill-risk">
+                      {statusLabel(s.status)}
+                    </span>
+                  )}
                   {userLoc && (
-                    <span style={{ color: "var(--era-qutb-shahi)", fontWeight: 700 }}>
-                      · {distanceLabel(haversineKm(userLoc, s))}
+                    <span className="dhm-pill-dist">
+                      📍 {distanceLabel(haversineKm(userLoc, s))}
                     </span>
                   )}
                 </div>
               </div>
-              {sel && <span className="dhm-card-list-chevron">›</span>}
+              <span className="dhm-card-list-chevron" aria-hidden="true">›</span>
             </button>
           );
         })}
@@ -122,7 +129,7 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
               else onSelect(s.id);
             }}
             style={{
-              flex: "0 0 auto", width: 220, scrollSnapAlign: "center", textAlign: "left",
+              flex: "0 0 auto", width: 224, scrollSnapAlign: "center", textAlign: "left",
               background: "var(--cream-hi)",
               border: sel ? `2px solid ${color}` : "1px solid var(--line)",
               borderRadius: "var(--r-md)", overflow: "hidden",
@@ -132,25 +139,32 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
               transition: "border-color 0.2s, box-shadow 0.2s, transform 0.15s",
             }}
           >
-            <div style={{ height: 92, background: color, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+            <div style={{ height: 96, background: color, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
               {s.hasPhoto ? (
-                <img src={photoUrl(s.id)} alt="" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "saturate(1.05) contrast(1.02)" }} />
+                <img src={thumbUrl(s.id)} width="224" height="96" alt={s.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%", filter: "saturate(1.05) contrast(1.02)" }} />
               ) : (
                 <TypeIcon type={s.type} size={40} width={1.4} color="rgba(255,255,255,0.9)" />
               )}
             </div>
-            <div style={{ padding: "9px 11px 11px" }}>
-              <div style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 15, lineHeight: 1.2, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            <div style={{ padding: "10px 12px 12px" }}>
+              <div style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 14.5, lineHeight: 1.25, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 {s.name}
               </div>
-              <div style={{ fontSize: 11, color: "var(--muted)", marginTop: 3, display: "flex", gap: 6, flexWrap: "wrap" }}>
-                <span style={{ color, fontWeight: 700 }}>{eraLabel(s.era)}</span>
-                <span>·</span>
-                <span>{typeLabel(s.type)}</span>
-                {risk && <span style={{ color: "var(--danger)" }}>· {statusLabel(s.status)}</span>}
+              <div style={{ marginTop: 6, display: "flex", gap: 5, flexWrap: "wrap", alignItems: "center" }}>
+                <span className="dhm-pill-era" style={{ color: color, background: `color-mix(in srgb, ${color} 12%, transparent)` }}>
+                  {eraLabel(s.era)}
+                </span>
+                <span className="dhm-pill-type">
+                  {typeLabel(s.type)}
+                </span>
+                {risk && (
+                  <span className="dhm-pill-risk">
+                    {statusLabel(s.status)}
+                  </span>
+                )}
               </div>
               {userLoc && (
-                <div style={{ fontSize: 11, fontWeight: 700, color: "var(--era-qutb-shahi)", marginTop: 5, display: "flex", alignItems: "center", gap: 4 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "var(--era-qutb-shahi)", marginTop: 6, display: "flex", alignItems: "center", gap: 4 }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--era-qutb-shahi)" }} />
                   {distanceLabel(haversineKm(userLoc, s))} away
                 </div>

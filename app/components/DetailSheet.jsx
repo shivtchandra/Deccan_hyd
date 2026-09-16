@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { ERAS, eraLabel, eraColor, typeLabel, statusLabel, ACCESS, photoUrl, haversineKm, distanceLabel } from "../../lib/heritage.js";
 import { Icon, TypeIcon } from "./Icons.jsx";
 import { enrichSiteRecord } from "../../lib/heritageData.js";
+import DeccanPatternBg from "./DeccanPatternBg.jsx";
 
 // Draggable bottom sheet with three snaps. Photo hero / Then ↔ Now slider,
 // era/type/status badges, summary, significance, facts, sources, and actions.
@@ -27,9 +28,21 @@ export default function DetailSheet({
   const sliderRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const [ttsPlaying, setTtsPlaying] = useState(false);
+  const [lightboxUrl, setLightboxUrl] = useState(null);
   const uttRef = useRef(null);
 
   const site = rawSite ? enrichSiteRecord(rawSite) : null;
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        if (lightboxUrl) setLightboxUrl(null);
+        else onClose?.();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxUrl, onClose]);
 
   useEffect(() => {
     if (!sliderRef.current) return;
@@ -45,6 +58,7 @@ export default function DetailSheet({
   useEffect(() => {
     window.speechSynthesis?.cancel();
     setTtsPlaying(false);
+    setLightboxUrl(null);
   }, [rawSite?.id]);
 
   useEffect(() => {
@@ -112,6 +126,16 @@ export default function DetailSheet({
         role="dialog"
         aria-label={site?.name || "Site"}
       >
+        <DeccanPatternBg opacity={0.05} />
+        <button
+          className="dhm-sheet-close-btn"
+          onClick={onClose}
+          aria-label="Close place details"
+          title="Close (Esc)"
+        >
+          ✕
+        </button>
+
         <div
           className="grip"
           onMouseDown={onDown}
@@ -146,8 +170,8 @@ export default function DetailSheet({
                     <img
                       src={thenPhoto.url}
                       alt={`Archival view of ${site.name}`}
+                      style={{ objectPosition: "center 20%" }}
                       onError={(e) => {
-                        // Show missing image placeholder instead of fake Charminar fallback
                         e.target.style.display = 'none';
                         e.target.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:12px;padding:20px;text-align:center;">Historical image unavailable</div>';
                       }}
@@ -160,9 +184,9 @@ export default function DetailSheet({
                       style={{
                         width: containerWidth ? `${containerWidth}px` : "100%",
                         maxWidth: "none",
+                        objectPosition: "center 20%",
                       }}
                       onError={(e) => {
-                        // Show missing image placeholder instead of fake Charminar fallback
                         e.target.style.display = 'none';
                         e.target.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:12px;padding:20px;text-align:center;">Current image unavailable</div>';
                       }}
@@ -177,29 +201,49 @@ export default function DetailSheet({
               ) : (
                 <div
                   className="dhm-hero"
-                  onClick={() => setSnap((s) => (s === "full" ? "half" : "full"))}
+                  onClick={() => site.photos?.[0]?.url && setLightboxUrl(site.photos[0].url)}
                   style={{
-                    height: 220,
-                    margin: "0 -18px 18px",
                     position: "relative",
-                    cursor: "pointer",
+                    width: "100%",
+                    aspectRatio: "16 / 10",
+                    minHeight: 200,
+                    maxHeight: 280,
+                    borderRadius: "var(--r-md)",
+                    border: "1px solid var(--line)",
+                    boxShadow: "var(--e1)",
+                    margin: "0 0 16px",
+                    cursor: site.photos?.[0]?.url ? "pointer" : "default",
                     background: eraColor(site.era),
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     overflow: "hidden",
                   }}
+                  title={site.photos?.[0]?.url ? "Click to view full uncropped photo" : undefined}
                 >
                   {site.photos?.[0]?.url ? (
                     <img
                       src={site.photos[0].url}
                       alt={site.name}
-                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "saturate(1.08) contrast(1.03)" }}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "center 20%",
+                        filter: "saturate(1.08) contrast(1.03)",
+                      }}
                     />
                   ) : (
                     <TypeIcon type={site.type} size={56} width={1.3} color="rgba(255,255,255,0.9)" />
                   )}
                   <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%)`, pointerEvents: "none" }} />
+                  {site.photos?.[0]?.url && (
+                    <div className="dhm-hero-expand-badge">
+                      <span>⛶ Full photo</span>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -456,6 +500,35 @@ export default function DetailSheet({
           )}
         </div>
       </div>
+
+      {/* Lightbox Modal for Uncropped Full Photo View */}
+      {lightboxUrl && site && (
+        <div
+          className="dhm-lightbox-modal"
+          onClick={() => setLightboxUrl(null)}
+          role="dialog"
+          aria-label="Full size photo view"
+        >
+          <div className="dhm-lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="dhm-lightbox-close"
+              onClick={() => setLightboxUrl(null)}
+              aria-label="Close photo view"
+            >
+              ✕
+            </button>
+            <img src={lightboxUrl} alt={site.name} className="dhm-lightbox-img" />
+            <div className="dhm-lightbox-caption">
+              <div style={{ fontWeight: 700, fontSize: 14 }}>{site.name}</div>
+              {site.photos?.[0]?.credit && (
+                <div style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>
+                  Credit: {site.photos[0].credit}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

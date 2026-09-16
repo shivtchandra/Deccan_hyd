@@ -3,6 +3,7 @@ import path from "path";
 import Link from "next/link";
 import { eraLabel, eraColor } from "../../lib/heritage.js";
 import { Icon } from "../components/Icons.jsx";
+import DeccanPatternBg from "../components/DeccanPatternBg.jsx";
 
 export const metadata = {
   title: "Top Heritage Weekend Getaways from Hyderabad (40km–200km) | Deccan Heritage",
@@ -54,7 +55,8 @@ export default function GetawaysPage() {
   };
 
   return (
-    <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)", paddingBottom: 60 }}>
+    <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)", paddingBottom: 60, position: "relative" }}>
+      <DeccanPatternBg opacity={0.08} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
