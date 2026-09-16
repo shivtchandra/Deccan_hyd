@@ -383,13 +383,14 @@ body::after {
 
 /* Then ↔ Now Slider inside DetailSheet */
 .dhm-then-now-wrap {
-  position: relative; width: 100%; height: 210px; border-radius: var(--r-md);
+  position: relative; width: 100%; height: 250px; border-radius: var(--r-md);
   overflow: hidden; user-select: none; touch-action: none; cursor: ew-resize;
   background: var(--paper); border: 1px solid var(--line); margin: 0 0 12px;
 }
 .dhm-then-img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.dhm-then-img img, .dhm-now-img img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
-.dhm-now-img { position: absolute; inset: 0; height: 100%; overflow: hidden; border-right: 2px solid var(--cream-hi); }
+.dhm-then-img img { width: 100%; height: 100%; object-fit: cover; }
+.dhm-now-img { position: absolute; inset: 0; height: 100%; overflow: hidden; border-right: 2px solid var(--cream-hi); z-index: 2; }
+.dhm-now-img img { height: 100%; object-fit: cover; max-width: none; }
 .dhm-slider-bar {
   position: absolute; top: 0; bottom: 0; width: 2px; background: var(--cream-hi);
   transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 8px rgba(0,0,0,0.4);
@@ -646,6 +647,20 @@ body::after {
     display: flex; gap: 4px; flex-wrap: wrap; align-items: center;
   }
   .dhm-card-list-chevron { color: var(--muted); font-size: 18px; flex-shrink: 0; }
+  .sheet {
+    width: 92%;
+    max-width: 760px;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+    box-shadow: 0 -10px 40px rgba(43,33,25,0.2);
+  }
+  .dhm-then-now-wrap, .dhm-hero {
+    height: 280px !important;
+  }
 }
 
 /* Search bar header */

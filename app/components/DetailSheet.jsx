@@ -25,10 +25,22 @@ export default function DetailSheet({
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const sliderRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0);
   const [ttsPlaying, setTtsPlaying] = useState(false);
   const uttRef = useRef(null);
 
   const site = rawSite ? enrichSiteRecord(rawSite) : null;
+
+  useEffect(() => {
+    if (!sliderRef.current) return;
+    const updateWidth = () => {
+      if (sliderRef.current) setContainerWidth(sliderRef.current.clientWidth);
+    };
+    updateWidth();
+    const ro = new ResizeObserver(updateWidth);
+    ro.observe(sliderRef.current);
+    return () => ro.disconnect();
+  }, [rawSite?.id]);
 
   useEffect(() => {
     window.speechSynthesis?.cancel();
@@ -146,7 +158,7 @@ export default function DetailSheet({
                       src={nowPhoto.url}
                       alt={`Present view of ${site.name}`}
                       style={{
-                        width: sliderRef.current ? `${sliderRef.current.clientWidth}px` : "100%",
+                        width: containerWidth ? `${containerWidth}px` : "100%",
                         maxWidth: "none",
                       }}
                       onError={(e) => {
