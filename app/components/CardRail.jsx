@@ -22,7 +22,21 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
     }
   }, [selectedId, layout]);
 
-  if (!sites.length) return null;
+  if (!sites.length) {
+    if (layout === "list") {
+      return (
+        <div className="dhm-card-list-wrap" style={{ padding: "24px 16px", textAlign: "center" }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>
+            No heritage sites match
+          </div>
+          <div style={{ fontSize: 11.5, color: "var(--muted)" }}>
+            Try selecting another period or clearing filters.
+          </div>
+        </div>
+      );
+    }
+    return null;
+  }
 
   if (layout === "list") {
     return (
