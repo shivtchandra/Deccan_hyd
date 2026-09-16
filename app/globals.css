@@ -1930,6 +1930,17 @@ body::after {
 .og-sub-tab-desc { font-family: "Outfit", sans-serif; font-size: 9.5px; color: var(--ink-soft); font-weight: 500; }
 .og-sub-tab.active .og-sub-tab-desc { color: var(--accent-deep); }
 
+@media (min-width: 900px) {
+  .og-tab-header {
+    justify-content: center;
+    max-width: 620px;
+    margin: 10px auto 4px;
+    border-radius: var(--r-md);
+    border: 1px solid var(--line);
+    box-shadow: var(--e1);
+  }
+}
+
 /* Bottom Sheet & List Items */
 .og-sheet {
   position: absolute; bottom: 0; left: 0; right: 0; z-index: 600;
@@ -1945,6 +1956,23 @@ body::after {
 .og-sheet--list      { max-height: 42%; }
 .og-sheet--expanded  { max-height: 84%; }
 .og-sheet--detail    { max-height: 58%; }
+
+@media (min-width: 900px) {
+  .og-sheet {
+    width: 92%;
+    max-width: 760px;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    box-shadow: 0 -8px 30px rgba(43,33,25,0.15);
+  }
+  .og-sheet--list     { max-height: 48%; }
+  .og-sheet--expanded { max-height: 85%; }
+  .og-sheet--detail   { max-height: 65%; }
+}
 
 .og-handle-area {
   flex-shrink: 0; width: 100%; padding: 8px 16px 6px;
@@ -2012,7 +2040,11 @@ body::after {
 .og-item-chev { color: var(--muted); display: flex; align-items: center; flex-shrink: 0; }
 
 /* Detail Story View */
-.og-detail-body { padding: 4px 18px 90px; }
+.og-detail-body {
+  padding: 4px 18px 90px;
+  max-width: 680px;
+  margin: 0 auto;
+}
 .og-back-pill {
   background: var(--accent-wash); border: 1px solid rgba(194, 96, 58, 0.25);
   border-radius: var(--r-pill); color: var(--accent);
