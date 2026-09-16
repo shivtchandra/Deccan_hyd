@@ -9,6 +9,7 @@ const SPAN = {
   "asaf-jahi": "1724–1948",
   "british-residency": "1798–1947",
   "nizam-civic": "1880s–1948",
+  "post-independence": "1948–present",
 };
 
 export default function EraTimeline({ filter, setFilter, counts = {}, layout = "strip", onTimeTravelOpen }) {
