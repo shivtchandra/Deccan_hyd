@@ -8,7 +8,7 @@ export const viewport = {
 };
 
 export const metadata = {
-  metadataBase: new URL("https://deccanheritage.org"),
+  metadataBase: new URL("https://heritage.mapmyhyd.com"),
   title: {
     default: "Best Places to Visit in Hyderabad — Deccan Heritage Map",
     template: "%s | Deccan Heritage Map",
@@ -38,7 +38,7 @@ export const metadata = {
     title: "Best Places to Visit in Hyderabad — Charminar, Golconda Fort & More",
     description:
       "Discover the best places to visit in Hyderabad. Interactive heritage map covering Charminar, Golconda Fort, Falaknuma Palace, Salar Jung Museum and every major monument by era.",
-    url: "https://deccanheritage.org",
+    url: "https://heritage.mapmyhyd.com",
     siteName: "Deccan Heritage Map",
     locale: "en_IN",
     type: "website",
@@ -80,18 +80,18 @@ export default function RootLayout({ children }) {
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://deccanheritage.org/#website",
-        "url": "https://deccanheritage.org",
+        "@id": "https://heritage.mapmyhyd.com/#website",
+        "url": "https://heritage.mapmyhyd.com",
         "name": "Deccan Heritage Map",
         "description": "Interactive map of Hyderabad's built heritage, monuments, and weekend getaways.",
         "inLanguage": "en-IN",
       },
       {
         "@type": "Organization",
-        "@id": "https://deccanheritage.org/#organization",
+        "@id": "https://heritage.mapmyhyd.com/#organization",
         "name": "Deccan Heritage Map",
-        "url": "https://deccanheritage.org",
-        "logo": "https://deccanheritage.org/photos/charminar.jpg",
+        "url": "https://heritage.mapmyhyd.com",
+        "logo": "https://heritage.mapmyhyd.com/photos/charminar.jpg",
       },
     ],
   };

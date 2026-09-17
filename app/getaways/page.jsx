@@ -12,13 +12,13 @@ export const metadata = {
   keywords:
     "weekend getaways from Hyderabad, heritage day trips near Hyderabad, Bhongir Fort, Bidar Fort, Warangal Fort, Ramappa Temple UNESCO, Medak Fort, Ananthagiri Hills",
   alternates: {
-    canonical: "https://deccanheritage.org/getaways",
+    canonical: "https://heritage.mapmyhyd.com/getaways",
   },
   openGraph: {
     title: "Top Heritage Weekend Getaways from Hyderabad | Deccan Heritage Map",
     description:
       "Explore historic forts, ancient temples, and sultanate citadels within 200 km of Hyderabad.",
-    url: "https://deccanheritage.org/getaways",
+    url: "https://heritage.mapmyhyd.com/getaways",
     siteName: "Deccan Heritage Map",
   },
 };
@@ -43,7 +43,7 @@ export default function GetawaysPage() {
       "item": {
         "@type": ["TouristAttraction", "HistoricSite"],
         "name": s.name,
-        "url": `https://deccanheritage.org/sites/${s.id}`,
+        "url": `https://heritage.mapmyhyd.com/sites/${s.id}`,
         "address": {
           "@type": "PostalAddress",
           "addressLocality": s.area,

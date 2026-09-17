@@ -1,5 +1,5 @@
 export default function robots() {
-  const baseUrl = "https://deccanheritage.org";
+  const baseUrl = "https://heritage.mapmyhyd.com";
 
   return {
     rules: [

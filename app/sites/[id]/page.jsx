@@ -150,7 +150,7 @@ export async function generateMetadata({ params }) {
   const type = typeLabel(site.type);
   const title = `${site.name} — ${era} ${type} in ${site.area} | Deccan Heritage Map`;
   const description = `${site.summary} Discover history, photos, era details, and walking routes for ${site.name} in ${site.area}.`;
-  const canonical = `https://deccanheritage.org/sites/${site.id}`;
+  const canonical = `https://heritage.mapmyhyd.com/sites/${site.id}`;
   const image = site.photos?.[0]?.url || photoUrl(site.id);
 
   return {
@@ -218,11 +218,11 @@ export default async function SitePage({ params }) {
     "@graph": [
       {
         "@type": ["TouristAttraction", "HistoricSite", "Place"],
-        "@id": `https://deccanheritage.org/sites/${site.id}#place`,
+        "@id": `https://heritage.mapmyhyd.com/sites/${site.id}#place`,
         "name": site.name,
         "alternateName": site.altNames || [],
         "description": site.summary,
-        "url": `https://deccanheritage.org/sites/${site.id}`,
+        "url": `https://heritage.mapmyhyd.com/sites/${site.id}`,
         "geo": {
           "@type": "GeoCoordinates",
           "latitude": site.lat,
@@ -234,7 +234,7 @@ export default async function SitePage({ params }) {
           "addressRegion": "Telangana",
           "addressCountry": "IN",
         },
-        "image": photo ? `https://deccanheritage.org${photo.url}` : undefined,
+        "image": photo ? `https://heritage.mapmyhyd.com${photo.url}` : undefined,
         "sameAs": [
           site.wikipedia,
           site.wikidata ? `https://www.wikidata.org/wiki/${site.wikidata}` : null,
@@ -242,7 +242,7 @@ export default async function SitePage({ params }) {
         "isPartOf": {
           "@type": "WebSite",
           "name": "Deccan Heritage Map",
-          "url": "https://deccanheritage.org",
+          "url": "https://heritage.mapmyhyd.com",
         },
       },
       {
@@ -252,19 +252,19 @@ export default async function SitePage({ params }) {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://deccanheritage.org",
+            "item": "https://heritage.mapmyhyd.com",
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": site.isGetaway ? "Weekend Getaways" : "Heritage Sites",
-            "item": site.isGetaway ? "https://deccanheritage.org/getaways" : "https://deccanheritage.org",
+            "item": site.isGetaway ? "https://heritage.mapmyhyd.com/getaways" : "https://heritage.mapmyhyd.com",
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": site.name,
-            "item": `https://deccanheritage.org/sites/${site.id}`,
+            "item": `https://heritage.mapmyhyd.com/sites/${site.id}`,
           },
         ],
       },

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 export default function sitemap() {
-  const baseUrl = "https://deccanheritage.org";
+  const baseUrl = "https://heritage.mapmyhyd.com";
 
   const file = path.join(process.cwd(), "public", "sites-index.json");
   const sites = JSON.parse(fs.readFileSync(file, "utf8"));
