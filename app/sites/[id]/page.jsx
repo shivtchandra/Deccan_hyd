@@ -206,10 +206,54 @@ export default async function SitePage({ params }) {
   const color = eraColor(site.era);
   const photo = site.photos?.[0] || (site.hasPhoto ? { url: photoUrl(site.id) } : null);
 
-  // Find nearby sites for internal SEO linking
-  const nearby = allSites
-    .filter((s) => s.id !== site.id && (s.era === site.era || s.area === site.area))
-    .slice(0, 4);
+  // Deduplicated related sites (combining curated connections and nearby sites with 0 duplicates)
+  const relatedSiteIds = new Set([site.id]);
+  const relatedSites = [];
+
+  for (const cid of site.connections || []) {
+    const s = allSites.find((item) => item.id === cid);
+    if (s && !relatedSiteIds.has(s.id)) {
+      relatedSiteIds.add(s.id);
+      relatedSites.push(s);
+    }
+  }
+
+  for (const s of allSites) {
+    if (relatedSites.length >= 6) break;
+    if (!relatedSiteIds.has(s.id) && (s.area === site.area || s.era === site.era)) {
+      relatedSiteIds.add(s.id);
+      relatedSites.push(s);
+    }
+  }
+
+  // Deduplicate sources by URL
+  const seenUrls = new Set();
+  const allSources = [];
+
+  for (const src of site.sources || []) {
+    const u = src.url || "";
+    if (u) {
+      if (!seenUrls.has(u)) {
+        seenUrls.add(u);
+        allSources.push({ label: src.label || src.title || "Source", url: u });
+      }
+    } else if (src.label || src.title) {
+      allSources.push({ label: src.label || src.title, url: null });
+    }
+  }
+
+  if (site.wikipedia && !seenUrls.has(site.wikipedia)) {
+    seenUrls.add(site.wikipedia);
+    allSources.push({ label: "Wikipedia", url: site.wikipedia });
+  }
+
+  if (site.wikidata) {
+    const wUrl = `https://www.wikidata.org/wiki/${site.wikidata}`;
+    if (!seenUrls.has(wUrl)) {
+      seenUrls.add(wUrl);
+      allSources.push({ label: "Wikidata", url: wUrl });
+    }
+  }
 
   // Schema.org JSON-LD Structured Data
   const jsonLd = {
@@ -270,11 +314,6 @@ export default async function SitePage({ params }) {
     ],
   };
 
-  // Build connection site objects from index
-  const connectedSites = (site.connections || [])
-    .map((cid) => allSites.find((s) => s.id === cid))
-    .filter(Boolean)
-    .slice(0, 6);
 
   return (
     <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)" }}>
@@ -466,14 +505,14 @@ export default async function SitePage({ params }) {
           </div>
         </section>
 
-        {/* ── Connected Heritage Sites ── */}
-        {connectedSites.length > 0 && (
+        {/* ── Related Heritage Sites (Deduplicated) ── */}
+        {relatedSites.length > 0 && (
           <section style={{ marginBottom: 44 }}>
             <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
-              Connected Heritage
+              Explore Related Heritage
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
-              {connectedSites.map((s) => {
+              {relatedSites.map((s) => {
                 const sColor = eraColor(s.era);
                 return (
                   <Link key={s.id} href={`/sites/${s.id}`} style={{ textDecoration: "none", color: "inherit" }} className="pressable-sm">
@@ -492,60 +531,24 @@ export default async function SitePage({ params }) {
           </section>
         )}
 
-        {/* ── Sources & Further Reading ── */}
-        {(site.sources?.length > 0 || site.wikipedia || site.wikidata) && (
+        {/* ── Sources & Further Reading (Deduplicated) ── */}
+        {allSources.length > 0 && (
           <section style={{ marginBottom: 44 }}>
             <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
               Sources &amp; Further Reading
             </h2>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              {(site.sources || []).map((src, i) =>
+              {allSources.map((src, i) =>
                 src.url ? (
                   <a key={i} href={src.url} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-sm)", padding: "8px 14px", fontSize: 13, color: "var(--accent-deep)", textDecoration: "none", fontWeight: 600 }}>
-                    {src.label || src.title} ↗
+                    {src.label} ↗
                   </a>
                 ) : (
                   <span key={i} style={{ display: "inline-block", background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-sm)", padding: "8px 14px", fontSize: 13, color: "var(--ink-soft)" }}>
-                    {src.label || src.title}
+                    {src.label}
                   </span>
                 )
               )}
-              {site.wikipedia && (
-                <a href={site.wikipedia} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-sm)", padding: "8px 14px", fontSize: 13, color: "var(--accent-deep)", textDecoration: "none", fontWeight: 600 }}>
-                  Wikipedia ↗
-                </a>
-              )}
-              {site.wikidata && (
-                <a href={`https://www.wikidata.org/wiki/${site.wikidata}`} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-sm)", padding: "8px 14px", fontSize: 13, color: "var(--accent-deep)", textDecoration: "none", fontWeight: 600 }}>
-                  Wikidata ↗
-                </a>
-              )}
-            </div>
-          </section>
-        )}
-
-        {/* ── Nearby Sites ── */}
-        {nearby.length > 0 && (
-          <section>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
-              Explore Nearby Heritage
-            </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
-              {nearby.map((s) => {
-                const sColor = eraColor(s.era);
-                return (
-                  <Link key={s.id} href={`/sites/${s.id}`} style={{ textDecoration: "none", color: "inherit" }} className="pressable-sm">
-                    <div style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", padding: "14px 16px", boxShadow: "var(--e1)" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
-                        <span style={{ width: 8, height: 8, borderRadius: "50%", background: sColor, display: "inline-block", flexShrink: 0 }} />
-                        <span style={{ fontSize: 11, color: "var(--ink-soft)", fontWeight: 700 }}>{eraLabel(s.era)}</span>
-                      </div>
-                      <div style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 14.5, lineHeight: 1.25, marginBottom: 4, color: "var(--ink)" }}>{s.name}</div>
-                      <div style={{ fontSize: 12, color: "var(--muted)" }}>{s.area}</div>
-                    </div>
-                  </Link>
-                );
-              })}
             </div>
           </section>
         )}
