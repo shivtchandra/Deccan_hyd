@@ -118,20 +118,11 @@ export default function MapCanvas({
         onReady({
           flyTo: (lat, lng, zoom = 16) => {
             if (!mapRef.current || !LRef.current) return;
-            const m = mapRef.current;
-            const currentZoom = m.getZoom();
-            const center = m.getCenter();
-            const dist = LRef.current.latLng(lat, lng).distanceTo(center);
-
-            if (currentZoom >= 13 && dist < 3000) {
-              m.panTo([lat, lng], { animate: true, duration: 0.55, easeLinearity: 0.2 });
-            } else {
-              m.flyTo([lat, lng], zoom, {
-                animate: true,
-                duration: 0.95,
-                easeLinearity: 0.2,
-              });
-            }
+            mapRef.current.flyTo([lat, lng], zoom, {
+              animate: true,
+              duration: 0.85,
+              easeLinearity: 0.2,
+            });
           },
           panTo: (lat, lng, duration = 1.0) => {
             if (!mapRef.current) return;
