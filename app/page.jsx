@@ -72,10 +72,9 @@ function heritageReducer(state, action) {
       return {
         ...state,
         selectedPeriodId: action.periodId,
-        // Period change clears site selection
-        selectedSiteId: null,
+        // Only clear site when selecting a period (not when clearing to null)
+        selectedSiteId: action.periodId ? null : state.selectedSiteId,
         selectedVanishedId: null,
-        // Reset trail when changing historical context
         selectedTrailId: null,
         currentTrailStopIndex: 0,
         mode: "explore",
