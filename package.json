@@ -17,6 +17,8 @@
     "seed:all": "node scripts/seed-osm.mjs && node scripts/enrich-wikidata.mjs && node scripts/fetch-commons-photos.mjs && node scripts/build-static.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "firebase": "^12.18.0",
     "firebase-admin": "^14.3.0",
     "leaflet": "^1.9.4",
