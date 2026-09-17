@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import { ERAS, TYPES, STATUS, eraLabel, typeLabel, statusLabel, eraColor, photoUrl } from "../../../lib/heritage.js";
 import SiteBottomNav from "../../components/SiteBottomNav.jsx";
 import { Icon } from "../../components/Icons.jsx";
-import DeccanPatternBg from "../../components/DeccanPatternBg.jsx";
 
 // Load sites helper
 function getSitesIndex() {
@@ -278,15 +277,15 @@ export default async function SitePage({ params }) {
     .slice(0, 6);
 
   return (
-    <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)", position: "relative" }}>
-      <DeccanPatternBg opacity={0.08} />
+    <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* ── Header ── */}
-      <header style={{ background: "var(--cream-hi)", borderBottom: "1px solid var(--line)", padding: "0 20px", position: "sticky", top: 0, zIndex: 100, boxShadow: "0 2px 10px rgba(43,33,25,0.06)" }}>
-        <div style={{ maxWidth: 920, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
+      <header style={{ background: "var(--cream-hi)", borderBottom: "1px solid var(--line)", padding: "0 20px", position: "sticky", top: 0, zIndex: 100, boxShadow: "0 1px 4px rgba(43,33,25,0.04)" }}>
+        <div style={{ maxWidth: 840, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
           <Link href="/" style={{ fontFamily: "Fraunces, serif", fontSize: 17, fontWeight: 700, textDecoration: "none", color: "var(--ink)", letterSpacing: "-0.3px", display: "flex", alignItems: "center", gap: 8 }}>
-            <Icon name="monument" size={18} color="var(--ink)" /> Deccan Heritage Map
+            <img src="/brand/charminar-logo.png" alt="Logo" style={{ width: 22, height: 22, objectFit: "contain" }} />
+            <span>Deccan Heritage Map</span>
           </Link>
           <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
             <Link href="/" style={{ color: "var(--ink-soft)", fontSize: 13, textDecoration: "none", fontWeight: 600 }}>
@@ -299,25 +298,25 @@ export default async function SitePage({ params }) {
         </div>
       </header>
 
-      <main style={{ maxWidth: 920, margin: "0 auto", padding: "32px 20px 140px" }}>
+      <main style={{ maxWidth: 740, margin: "0 auto", padding: "40px 20px 140px" }}>
         {/* ── Title & Meta Header ── */}
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 10 }}>
-            <span style={{ background: color, color: "#fff", padding: "4px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700, letterSpacing: "0.4px" }}>
+        <div style={{ marginBottom: 24 }}>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 14 }}>
+            <span style={{ background: color, color: "#fff", padding: "4px 12px", borderRadius: 999, fontSize: 11.5, fontWeight: 700, letterSpacing: "0.4px" }}>
               {eraLabel(site.era)}
             </span>
-            <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--ink-soft)", padding: "3px 11px", borderRadius: 999, fontSize: 11, fontWeight: 600 }}>
+            <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--ink-soft)", padding: "3px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 600 }}>
               {typeLabel(site.type)}
             </span>
-            <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--muted)", padding: "3px 11px", borderRadius: 999, fontSize: 11, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 4 }}>
+            <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--muted)", padding: "3px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 4 }}>
               <Icon name="pin" size={12} color="var(--muted)" /> {site.area}
             </span>
           </div>
-          <h1 style={{ fontFamily: "Fraunces, serif", fontSize: "clamp(30px, 4.5vw, 44px)", fontWeight: 700, color: "var(--ink)", margin: "0 0 6px", lineHeight: 1.15 }}>
+          <h1 style={{ fontFamily: "Fraunces, serif", fontSize: "clamp(34px, 5.5vw, 50px)", fontWeight: 700, color: "var(--ink)", margin: "0 0 8px", lineHeight: 1.15, letterSpacing: "-0.025em" }}>
             {site.name}
           </h1>
           {site.altNames?.length > 0 && (
-            <p style={{ margin: 0, color: "var(--muted)", fontSize: 14 }}>
+            <p style={{ margin: 0, color: "var(--muted)", fontSize: 15, lineHeight: 1.5 }}>
               Also known as: {site.altNames.join(", ")}
             </p>
           )}
@@ -372,7 +371,7 @@ export default async function SitePage({ params }) {
         )}
 
         {/* ── Quick facts strip ── */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 0, background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", overflow: "hidden", marginBottom: 36, boxShadow: "var(--e1)" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 0, background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: 14, overflow: "hidden", marginBottom: 36, boxShadow: "0 2px 8px rgba(43,33,25,0.04)" }}>
           {[
             { label: "Built", value: site.yearBuilt || "Historical" },
             { label: "Status", value: statusLabel(site.status) },
@@ -380,26 +379,28 @@ export default async function SitePage({ params }) {
             { label: "Area", value: site.area },
           ].map(({ label, value }, i) => (
             <div key={i} style={{ flex: "1 1 140px", padding: "14px 18px", borderRight: i < 3 ? "1px solid var(--line)" : "none" }}>
-              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1px", color: "var(--muted)", textTransform: "uppercase", marginBottom: 4 }}>{label}</div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>{value}</div>
+              <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: "0.08em", color: "var(--muted)", textTransform: "uppercase", marginBottom: 4 }}>{label}</div>
+              <div style={{ fontSize: 14.5, fontWeight: 600, color: "var(--ink)" }}>{value}</div>
             </div>
           ))}
         </div>
 
         {/* ── Summary lead ── */}
-        <p style={{ fontFamily: "Fraunces, serif", fontSize: 18, lineHeight: 1.65, color: "var(--ink)", fontWeight: 500, margin: "0 0 36px" }}>
-          {site.summary}
-        </p>
+        <div style={{ borderLeft: `3.5px solid ${color}`, paddingLeft: 20, margin: "0 0 36px" }}>
+          <p style={{ fontFamily: "Fraunces, serif", fontSize: "clamp(19px, 2.5vw, 22px)", lineHeight: 1.6, color: "var(--ink)", fontWeight: 500, margin: 0, letterSpacing: "-0.01em" }}>
+            {site.summary}
+          </p>
+        </div>
 
         {/* ── Full Story ── */}
         {site.story && (
-          <section style={{ marginBottom: 44 }}>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
+          <section style={{ marginBottom: 48 }}>
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 26, fontWeight: 700, margin: "0 0 18px", color: "var(--ink)", letterSpacing: "-0.015em" }}>
               History &amp; Story
             </h2>
-            <div style={{ fontSize: 15, lineHeight: 1.8, color: "var(--ink-soft)" }}>
+            <div style={{ fontSize: 17.5, lineHeight: 1.85, color: "#292524", fontWeight: 400 }}>
               {site.story.split(/\n+/).map((para, i) => (
-                <p key={i} style={{ margin: "0 0 14px" }}>{para}</p>
+                <p key={i} style={{ margin: "0 0 20px" }}>{para}</p>
               ))}
             </div>
           </section>
@@ -407,17 +408,17 @@ export default async function SitePage({ params }) {
 
         {/* ── Key Events Timeline ── */}
         {site.events?.length > 0 && (
-          <section style={{ marginBottom: 44 }}>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 20px", color: "var(--ink)" }}>
+          <section style={{ marginBottom: 48 }}>
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 26, fontWeight: 700, margin: "0 0 22px", color: "var(--ink)", letterSpacing: "-0.015em" }}>
               Key Events
             </h2>
-            <div style={{ position: "relative", paddingLeft: 28 }}>
-              <div style={{ position: "absolute", left: 8, top: 0, bottom: 0, width: 2, background: "var(--line)" }} />
+            <div style={{ position: "relative", paddingLeft: 30 }}>
+              <div style={{ position: "absolute", left: 7, top: 6, bottom: 6, width: 2, background: "var(--line)" }} />
               {site.events.map((ev, i) => (
-                <div key={i} style={{ position: "relative", marginBottom: 20 }}>
-                  <div style={{ position: "absolute", left: -24, top: 4, width: 12, height: 12, borderRadius: "50%", background: color, border: "2px solid var(--cream)" }} />
-                  <div style={{ fontSize: 12, fontWeight: 700, color: color, marginBottom: 3, letterSpacing: "0.5px" }}>{ev.year}</div>
-                  <div style={{ fontSize: 14, lineHeight: 1.6, color: "var(--ink-soft)" }}>{ev.description}</div>
+                <div key={i} style={{ position: "relative", marginBottom: 22 }}>
+                  <div style={{ position: "absolute", left: -30, top: 4, width: 14, height: 14, borderRadius: "50%", background: color, border: "3px solid var(--cream)", boxShadow: "0 1px 3px rgba(0,0,0,0.12)" }} />
+                  <div style={{ fontSize: 12.5, fontWeight: 700, color: color, marginBottom: 4, letterSpacing: "0.04em", fontFamily: "JetBrains Mono, monospace" }}>{ev.year}</div>
+                  <div style={{ fontSize: 15.5, lineHeight: 1.65, color: "#44403c" }}>{ev.description}</div>
                 </div>
               ))}
             </div>
@@ -426,17 +427,19 @@ export default async function SitePage({ params }) {
 
         {/* ── People ── */}
         {site.people?.length > 0 && (
-          <section style={{ marginBottom: 44 }}>
-            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 20px", color: "var(--ink)" }}>
+          <section style={{ marginBottom: 48 }}>
+            <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 26, fontWeight: 700, margin: "0 0 22px", color: "var(--ink)", letterSpacing: "-0.015em" }}>
               Key People
             </h2>
-            <div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 14 }}>
               {site.people.map((p, i) => (
-                <div key={i} style={{ display: "flex", gap: 16, paddingBottom: 18, marginBottom: 18, borderBottom: i < site.people.length - 1 ? "1px solid var(--line)" : "none", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, width: 8, height: 8, borderRadius: "50%", background: color, marginTop: 6 }} />
+                <div key={i} style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: 12, padding: "16px 18px", display: "flex", gap: 14, alignItems: "flex-start", boxShadow: "0 1px 4px rgba(43,33,25,0.03)" }}>
+                  <div style={{ flexShrink: 0, width: 34, height: 34, borderRadius: "50%", background: `rgba(${color === "var(--accent)" ? "196, 92, 53" : "42, 157, 143"}, 0.15)`, color: color, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 14, fontFamily: "Fraunces, serif" }}>
+                    {p.name.charAt(0)}
+                  </div>
                   <div>
-                    <div style={{ fontFamily: "Fraunces, serif", fontWeight: 700, fontSize: 16, color: "var(--ink)", marginBottom: 3 }}>{p.name}</div>
-                    <div style={{ fontSize: 14, color: "var(--ink-soft)", lineHeight: 1.6 }}>{p.role}</div>
+                    <div style={{ fontFamily: "Fraunces, serif", fontWeight: 700, fontSize: 16.5, color: "var(--ink)", marginBottom: 4 }}>{p.name}</div>
+                    <div style={{ fontSize: 13.5, color: "var(--ink-soft)", lineHeight: 1.55 }}>{p.role}</div>
                   </div>
                 </div>
               ))}
@@ -445,19 +448,19 @@ export default async function SitePage({ params }) {
         )}
 
         {/* ── Location & Access ── */}
-        <section style={{ marginBottom: 44 }}>
-          <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 24, margin: "0 0 16px", color: "var(--ink)" }}>
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 26, fontWeight: 700, margin: "0 0 18px", color: "var(--ink)", letterSpacing: "-0.015em" }}>
             Location &amp; Getting There
           </h2>
-          <div style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: "var(--r-md)", padding: "18px 20px", display: "flex", flexWrap: "wrap", gap: 24, alignItems: "flex-start" }}>
-            <div style={{ flex: "1 1 200px" }}>
-              <div style={{ fontSize: 13, color: "var(--ink-soft)", lineHeight: 2 }}>
+          <div style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", borderRadius: 14, padding: "20px 22px", display: "flex", flexWrap: "wrap", gap: 24, alignItems: "center", justifyContent: "space-between", boxShadow: "0 1px 4px rgba(43,33,25,0.03)" }}>
+            <div style={{ flex: "1 1 240px" }}>
+              <div style={{ fontSize: 14, color: "var(--ink-soft)", lineHeight: 2 }}>
                 <div><strong style={{ color: "var(--ink)" }}>Area / Locality:</strong> {site.area}</div>
                 <div><strong style={{ color: "var(--ink)" }}>Coordinates:</strong> {site.lat?.toFixed(5)}° N, {site.lng?.toFixed(5)}° E</div>
-                <div><strong style={{ color: "var(--ink)" }}>Access:</strong> {site.access || "Public area"}</div>
+                <div><strong style={{ color: "var(--ink)" }}>Access:</strong> <span style={{ textTransform: "capitalize" }}>{site.access || "Public area"}</span></div>
               </div>
             </div>
-            <Link href={`/?site=${site.id}`} style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--ink)", color: "var(--cream-hi)", padding: "10px 18px", borderRadius: "var(--r-sm)", fontSize: 14, fontWeight: 700, textDecoration: "none", alignSelf: "center", whiteSpace: "nowrap" }}>
+            <Link href={`/?site=${site.id}`} style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--ink)", color: "var(--cream-hi)", padding: "11px 20px", borderRadius: 999, fontSize: 14, fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap", boxShadow: "var(--e1)" }}>
               Open on Interactive Map →
             </Link>
           </div>
