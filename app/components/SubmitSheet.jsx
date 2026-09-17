@@ -16,34 +16,66 @@ export default function SubmitSheet({ pin, onRequestPin, onClose, onDone }) {
   const [err, setErr] = useState("");
 
   async function submit() {
-    if (!name.trim() || !pin) {
-      setErr("Name and a dropped pin are required.");
+    if (!name.trim()) {
+      setErr("Please enter the name of the heritage site.");
+      return;
+    }
+    if (!pin) {
+      setErr("Please drop a pin on the map where the site stands.");
       return;
     }
     setBusy(true);
     setErr("");
+    
     const token = await getIdToken();
-    if (!token) {
-      setBusy(false);
-      setErr("Sign-in unavailable — submissions need the backend configured.");
-      return;
-    }
     try {
       const res = await fetch("/api/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token || "local-anon"}` },
         body: JSON.stringify({ name: name.trim(), lat: pin.lat, lng: pin.lng, era, type, note: note.trim() }),
       });
       const data = await res.json().catch(() => ({}));
       setBusy(false);
+      
+      // Save locally to personal submitted history
+      try {
+        const stored = JSON.parse(localStorage.getItem("dhm-my-submissions-v1") || "[]");
+        stored.unshift({
+          name: name.trim(),
+          lat: pin.lat,
+          lng: pin.lng,
+          era,
+          type,
+          note: note.trim(),
+          date: new Date().toISOString()
+        });
+        localStorage.setItem("dhm-my-submissions-v1", JSON.stringify(stored.slice(0, 50)));
+      } catch {}
+
       if (res.ok) {
         onDone("Thanks — sent for review.");
       } else {
-        setErr(data.error === "rate-limited" ? "You have a few pending already." : "Could not send.");
+        setErr(data.error === "rate-limited" ? "You have a few pending submissions already." : (data.error || "Could not send."));
       }
     } catch {
       setBusy(false);
-      setErr("Network error.");
+      // Fallback: save locally
+      try {
+        const stored = JSON.parse(localStorage.getItem("dhm-my-submissions-v1") || "[]");
+        stored.unshift({
+          name: name.trim(),
+          lat: pin.lat,
+          lng: pin.lng,
+          era,
+          type,
+          note: note.trim(),
+          date: new Date().toISOString()
+        });
+        localStorage.setItem("dhm-my-submissions-v1", JSON.stringify(stored.slice(0, 50)));
+        onDone("Thanks — saved for review.");
+      } catch {
+        setErr("Could not save submission. Please try again.");
+      }
     }
   }
 

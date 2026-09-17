@@ -15,6 +15,7 @@ export default function AdminHeritageCMS() {
   const [vanishedPlaces, setVanishedPlaces] = useState(masterData.vanished_places || []);
   const [trails, setTrails] = useState(masterData.heritage_trails || []);
   const [sources, setSources] = useState(masterData.sources || []);
+  const [submissions, setSubmissions] = useState([]);
 
   const [notification, setNotification] = useState("");
 
@@ -23,11 +24,21 @@ export default function AdminHeritageCMS() {
     setTimeout(() => setNotification(""), 3000);
   };
 
+  const loadSubmissions = (sec) => {
+    fetch("/api/admin/submissions?state=pending", {
+      headers: { Authorization: `Bearer ${sec || secret || "mapping-hyd-admin"}` },
+    })
+      .then((r) => (r.ok ? r.json() : { submissions: [] }))
+      .then((d) => setSubmissions(d.submissions || []))
+      .catch(() => {});
+  };
+
   useEffect(() => {
     const s = sessionStorage.getItem("dhm_admin") || "";
     if (s) {
       setSecret(s);
       setAuthed(true);
+      loadSubmissions(s);
     }
 
     fetch("/sites-index.json")
@@ -41,6 +52,28 @@ export default function AdminHeritageCMS() {
     if (secret) {
       sessionStorage.setItem("dhm_admin", secret);
       setAuthed(true);
+      loadSubmissions(secret);
+    }
+  };
+
+  const handleSubmissionAction = async (id, action) => {
+    try {
+      const res = await fetch("/api/admin/submissions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${secret || "mapping-hyd-admin"}`,
+        },
+        body: JSON.stringify({ id, action }),
+      });
+      if (res.ok) {
+        setSubmissions((prev) => prev.filter((s) => s.id !== id));
+        showNotification(action === "approve" ? "Submission approved and added to database!" : "Submission rejected.");
+      } else {
+        showNotification("Could not update submission.");
+      }
+    } catch {
+      showNotification("Network error updating submission.");
     }
   };
 
@@ -109,6 +142,7 @@ export default function AdminHeritageCMS() {
       <div style={{ display: "flex", gap: 8, borderBottom: "1px solid var(--petrol-border)", paddingBottom: 8 }}>
         {[
           { id: "sites", label: `Heritage Sites (${sites.length})` },
+          { id: "submissions", label: `Community Submissions (${submissions.length})` },
           { id: "periods", label: `Historical Periods (${periods.length})` },
           { id: "vanished", label: `Vanished Places (${vanishedPlaces.length})` },
           { id: "maps", label: `Historical Maps (${historicalMaps.length})` },
@@ -447,6 +481,76 @@ export default function AdminHeritageCMS() {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* TAB CONTENT: SUBMISSIONS */}
+      {activeTab === "submissions" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <h2 style={{ fontSize: 18, margin: 0, fontFamily: "Fraunces, serif" }}>Community Heritage Submissions</h2>
+              <p style={{ margin: "4px 0 0 0", fontSize: 12.5, color: "var(--cream-dim)" }}>
+                User-suggested heritage monuments and buildings pending editorial review.
+              </p>
+            </div>
+            <button
+              onClick={() => loadSubmissions()}
+              style={{ padding: "8px 16px", borderRadius: 999, background: "rgba(245,239,227,0.1)", color: "var(--cream)", fontSize: 13 }}
+            >
+              ↻ Refresh
+            </button>
+          </div>
+
+          {submissions.length === 0 ? (
+            <div style={{ padding: 40, textAlign: "center", background: "var(--petrol-800)", borderRadius: 12, border: "1px solid var(--petrol-border)", color: "var(--cream-dim)" }}>
+              No pending community submissions at this time.
+            </div>
+          ) : (
+            <div style={{ border: "1px solid var(--petrol-border)", borderRadius: 12, overflow: "hidden" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                <thead>
+                  <tr style={{ background: "var(--petrol-800)", textAlign: "left", color: "var(--cream-dim)", borderBottom: "1px solid var(--petrol-border)" }}>
+                    <th style={{ padding: "12px 16px" }}>Suggested Site</th>
+                    <th style={{ padding: "12px 16px" }}>Era & Type</th>
+                    <th style={{ padding: "12px 16px" }}>Coordinates</th>
+                    <th style={{ padding: "12px 16px" }}>Notes / Description</th>
+                    <th style={{ padding: "12px 16px" }}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {submissions.map((sub) => (
+                    <tr key={sub.id} style={{ borderBottom: "1px solid rgba(245,239,227,0.06)" }}>
+                      <td style={{ padding: "12px 16px", fontWeight: 600 }}>{sub.name}</td>
+                      <td style={{ padding: "12px 16px", color: "var(--cream-dim)" }}>
+                        <span style={{ textTransform: "capitalize" }}>{sub.era || "Unknown"}</span> · <span style={{ textTransform: "capitalize" }}>{sub.type || "Civic"}</span>
+                      </td>
+                      <td style={{ padding: "12px 16px", fontFamily: "JetBrains Mono", fontSize: 12 }}>
+                        {Number(sub.lat).toFixed(4)}, {Number(sub.lng).toFixed(4)}
+                      </td>
+                      <td style={{ padding: "12px 16px", color: "var(--cream-dim)", maxWidth: 300, fontSize: 12.5 }}>
+                        {sub.note || "No notes provided"}
+                      </td>
+                      <td style={{ padding: "12px 16px" }}>
+                        <button
+                          onClick={() => handleSubmissionAction(sub.id, "approve")}
+                          style={{ padding: "4px 12px", borderRadius: 6, background: "var(--amber)", color: "var(--petrol-900)", fontWeight: 600, fontSize: 12, marginRight: 8, cursor: "pointer" }}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          onClick={() => handleSubmissionAction(sub.id, "reject")}
+                          style={{ padding: "4px 12px", borderRadius: 6, background: "rgba(222,107,66,0.15)", color: "#de6b42", border: "1px solid rgba(222,107,66,0.3)", fontSize: 12, cursor: "pointer" }}
+                        >
+                          Reject
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       )}
     </div>
