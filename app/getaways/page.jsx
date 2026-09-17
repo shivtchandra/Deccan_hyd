@@ -3,7 +3,6 @@ import path from "path";
 import Link from "next/link";
 import { eraLabel, eraColor } from "../../lib/heritage.js";
 import { Icon } from "../components/Icons.jsx";
-import DeccanPatternBg from "../components/DeccanPatternBg.jsx";
 
 export const metadata = {
   title: "Top Heritage Weekend Getaways from Hyderabad (40km–200km) | Deccan Heritage",
@@ -55,8 +54,7 @@ export default function GetawaysPage() {
   };
 
   return (
-    <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)", paddingBottom: 60, position: "relative" }}>
-      <DeccanPatternBg opacity={0.08} />
+    <div style={{ background: "var(--cream)", minHeight: "100vh", color: "var(--ink)", paddingBottom: 60 }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -66,7 +64,8 @@ export default function GetawaysPage() {
       <header style={{ background: "var(--cream-hi)", borderBottom: "1px solid var(--line)", padding: "14px 20px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <Link href="/" style={{ fontFamily: "Fraunces, serif", fontSize: 18, fontWeight: 700, textDecoration: "none", color: "var(--ink)", display: "flex", alignItems: "center", gap: 8 }}>
-            <Icon name="monument" size={20} color="var(--ink)" /> Deccan Heritage Map
+            <img src="/brand/charminar-logo.png" alt="Deccan Heritage Logo" style={{ width: 24, height: 24, objectFit: "contain", borderRadius: 4 }} />
+            <span>Deccan Heritage Map</span>
           </Link>
           <Link href="/" className="pressable-sm" style={{ background: "var(--accent)", color: "#fff", padding: "8px 16px", borderRadius: 999, fontWeight: 700, textDecoration: "none", fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6 }}>
             <span>Open Interactive Map</span>

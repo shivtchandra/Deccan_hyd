@@ -80,12 +80,20 @@ export default function AdminHeritageCMS() {
   if (!authed) {
     return (
       <div style={{ minHeight: "100vh", background: "var(--petrol-900)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
-        <form onSubmit={handleLogin} style={{ width: 360, background: "var(--petrol-800)", padding: 32, borderRadius: 16, border: "1px solid var(--petrol-border)", display: "flex", flexDirection: "column", gap: 16 }}>
-          <div style={{ fontFamily: "Fraunces, serif", fontSize: 22, color: "var(--cream)" }}>
-            Mapping HYD · Admin CMS
+        <form onSubmit={handleLogin} style={{ width: 380, background: "var(--petrol-800)", padding: 32, borderRadius: 16, border: "1px solid var(--petrol-border)", display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <img src="/brand/charminar-logo.png" alt="Logo" style={{ width: 36, height: 36, objectFit: "contain", borderRadius: 8, background: "#FAF6EE", padding: 2 }} />
+            <div>
+              <div style={{ fontFamily: "Fraunces, serif", fontSize: 20, color: "var(--cream)", lineHeight: 1.2 }}>
+                Deccan Heritage
+              </div>
+              <div style={{ fontSize: 11.5, color: "var(--amber)", fontFamily: "JetBrains Mono" }}>
+                Editorial Admin CMS
+              </div>
+            </div>
           </div>
-          <p style={{ margin: 0, fontSize: 13, color: "var(--cream-dim)" }}>
-            Enter your administrative key to manage heritage sites, historical periods, overlays, and citations.
+          <p style={{ margin: 0, fontSize: 13, color: "var(--cream-dim)", lineHeight: 1.5 }}>
+            Enter your administrative key to manage heritage monuments, historical periods, and review community submissions.
           </p>
           <input
             type="password"
@@ -106,13 +114,16 @@ export default function AdminHeritageCMS() {
     <div style={{ minHeight: "100vh", background: "var(--petrol-900)", color: "var(--cream)", padding: "24px 32px", display: "flex", flexDirection: "column", gap: 24 }}>
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid var(--petrol-border)", paddingBottom: 18 }}>
-        <div>
-          <div style={{ fontSize: 11, fontFamily: "JetBrains Mono", color: "var(--amber)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-            Heritage Editorial Management System
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <img src="/brand/charminar-logo.png" alt="Logo" style={{ width: 40, height: 40, objectFit: "contain", borderRadius: 8, background: "#FAF6EE", padding: 2 }} />
+          <div>
+            <div style={{ fontSize: 11, fontFamily: "JetBrains Mono", color: "var(--amber)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              Heritage Editorial Management System
+            </div>
+            <h1 style={{ margin: "2px 0 0 0", fontSize: 24, fontFamily: "Fraunces, serif" }}>
+              Deccan Heritage CMS Dashboard
+            </h1>
           </div>
-          <h1 style={{ margin: "4px 0 0 0", fontSize: 26, fontFamily: "Fraunces, serif" }}>
-            Mapping HYD CMS Dashboard
-          </h1>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>

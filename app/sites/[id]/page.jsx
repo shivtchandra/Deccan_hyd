@@ -555,11 +555,12 @@ export default async function SitePage({ params }) {
 
       {/* ── Footer ── */}
       <footer style={{ background: "var(--ink)", color: "var(--cream)", padding: "28px 20px", textAlign: "center", paddingBottom: "calc(28px + 80px + env(safe-area-inset-bottom, 0px))" }}>
-        <div style={{ fontFamily: "Fraunces, serif", fontSize: 16, fontWeight: 700, marginBottom: 8, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
-          <Icon name="monument" size={18} color="var(--cream)" /> Deccan Heritage Map
+        <div style={{ fontFamily: "Fraunces, serif", fontSize: 16, fontWeight: 700, marginBottom: 8, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+          <img src="/brand/charminar-logo.png" alt="Deccan Heritage Logo" style={{ width: 22, height: 22, objectFit: "contain", borderRadius: 4, background: "#FAF6EE", padding: 1 }} />
+          <span>Deccan Heritage Map</span>
         </div>
-        <p style={{ margin: "0 0 16px", fontSize: 13, opacity: 0.65, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
-          Mapping Hyderabad&apos;s built heritage across 500 years — from the Qutb Shahi Sultanate to the Nizam era.
+        <p style={{ margin: "0 0 16px", fontSize: 13, opacity: 0.75, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
+          Mapping Hyderabad's built heritage across 500 years from the Qutb Shahi Sultanate to the modern era.
         </p>
         <Link href="/" style={{ display: "inline-block", background: color, color: "#fff", padding: "9px 22px", borderRadius: 999, fontSize: 13, fontWeight: 700, textDecoration: "none" }}>
           Explore the Interactive Map →

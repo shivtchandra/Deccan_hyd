@@ -22,8 +22,9 @@ export default function About() {
       <p style={{ color: "#c2603a", fontWeight: 600, letterSpacing: "0.06em", fontSize: "0.8rem", textTransform: "uppercase", marginBottom: 8 }}>
         heritage.mapmyhyd.com
       </p>
-      <h1 style={{ fontSize: "2rem", fontWeight: 700, lineHeight: 1.2, marginBottom: 20 }}>
-        Deccan Heritage Map
+      <h1 style={{ fontSize: "2.2rem", fontWeight: 700, lineHeight: 1.2, marginBottom: 24, display: "flex", alignItems: "center", gap: 12 }}>
+        <img src="/brand/charminar-logo.png" alt="Deccan Heritage Logo" style={{ width: 34, height: 34, objectFit: "contain", borderRadius: 8, background: "#FAF6EE", border: "1px solid #e7dfd5" }} />
+        <span>Deccan Heritage Map</span>
       </h1>
 
       <section style={{ marginBottom: 40 }}>
