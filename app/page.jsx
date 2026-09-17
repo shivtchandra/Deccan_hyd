@@ -247,10 +247,17 @@ export default function Page() {
     []
   );
 
-  const flash = (m) => {
-    setToast(m);
-    setTimeout(() => setToast(""), 2600);
-  };
+  // Global Cmd+K keyboard shortcut to open search
+  useEffect(() => {
+    const handleGlobalKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKey);
+    return () => window.removeEventListener("keydown", handleGlobalKey);
+  }, []);
 
   // ---- load & restore persisted state ----
   useEffect(() => {

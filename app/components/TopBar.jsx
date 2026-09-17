@@ -66,132 +66,34 @@ export default function TopBar({
 
       <div
         className="dhm-search-container"
-        ref={dropdownRef}
-        style={{ position: "relative", flex: 1, maxWidth: 320, marginLeft: "auto" }}
+        onClick={() => onOpenSearch && onOpenSearch()}
+        style={{ position: "relative", flex: 1, maxWidth: 320, marginLeft: "auto", cursor: "pointer" }}
       >
-        <div className={`dhm-search-wrap${focused ? " focused" : ""}`}>
+        <div className="dhm-search-wrap" style={{ cursor: "pointer" }}>
           <Icon name="search" size={14} width={1.8} color="var(--ink-soft)" />
           <input
             type="text"
             className="dhm-search-input"
             placeholder="Search heritage..."
-            value={q || ""}
-            onChange={(e) => setQ && setQ(e.target.value)}
-            onFocus={() => setFocused(true)}
+            readOnly
+            style={{ cursor: "pointer" }}
             aria-label="Search heritage"
           />
-          {q ? (
-            <button
-              type="button"
-              className="dhm-search-clear"
-              onClick={() => setQ && setQ("")}
-              aria-label="Clear search"
-            >
-              ✕
-            </button>
-          ) : null}
+          <kbd
+            style={{
+              fontSize: 10.5,
+              fontFamily: "ui-monospace, monospace",
+              padding: "2px 6px",
+              background: "var(--cream)",
+              border: "1px solid var(--line)",
+              borderRadius: 4,
+              color: "var(--ink-soft)",
+              pointerEvents: "none",
+            }}
+          >
+            ⌘K
+          </kbd>
         </div>
-
-        {/* Live Search Dropdown */}
-        {focused && (
-          <div className="dhm-search-dropdown material">
-            {!q || !q.trim() ? (
-              <div className="dhm-topbar-poetic-dropdown">
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-                  <div className="dhm-search-vignette-wrap" style={{ width: 44, height: 44, margin: 0, flexShrink: 0 }}>
-                    <img
-                      src="/charminar-field-note.png"
-                      alt="Charminar Field Note"
-                      className="dhm-search-vignette-img"
-                    />
-                  </div>
-                  <div style={{ textAlign: "left" }}>
-                    <div style={{ fontFamily: "Fraunces, serif", fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>
-                      Deccan Heritage Atlas
-                    </div>
-                    <div style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>
-                      Search 54 monuments, gates & eras
-                    </div>
-                  </div>
-                </div>
-                <div className="dhm-search-chips-label" style={{ textAlign: "left", fontSize: 9.5, marginBottom: 6 }}>
-                  Quick Explorations:
-                </div>
-                <div className="dhm-search-chips-row" style={{ justifyContent: "flex-start" }}>
-                  {["Charminar", "Golconda", "Qutb Shahi", "Chowmahalla", "Paigah", "Musi"].map((tag) => (
-                    <button
-                      key={tag}
-                      type="button"
-                      className="dhm-search-chip"
-                      style={{ fontSize: 11, padding: "3px 9px", background: "var(--paper-warm)", color: "var(--ink)", border: "1px solid var(--line)" }}
-                      onMouseDown={(e) => {
-                        e.preventDefault();
-                        if (setQ) setQ(tag);
-                      }}
-                    >
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ) : !hasResults ? (
-              <div className="dhm-search-empty" style={{ padding: "16px 14px", textAlign: "center" }}>
-                <div style={{ fontSize: 18, marginBottom: 4 }}>📜</div>
-                <div style={{ fontWeight: 600, fontSize: 12.5, color: "var(--ink)" }}>No records found for "{q}"</div>
-                <div style={{ fontSize: 11, color: "var(--muted)", marginTop: 4 }}>Try searching "Golconda", "Fort", or "Nizam"</div>
-              </div>
-            ) : (
-              <>
-                {results.sites && results.sites.length > 0 && (
-                  <div className="dhm-search-group">
-                    <div className="dhm-search-group-title">Heritage Sites ({results.sites.length})</div>
-                    {results.sites.slice(0, 5).map((s) => (
-                      <div
-                        key={s.id}
-                        className="dhm-search-item"
-                        onClick={() => {
-                          setFocused(false);
-                          if (onSelectSite) onSelectSite(s.id);
-                        }}
-                      >
-                        <span className="dhm-search-item-name">{s.name}</span>
-                        <span className="dhm-search-item-meta">{s.area || s.era}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {results.vanished && results.vanished.length > 0 && (
-                  <div className="dhm-search-group">
-                    <div
-                      className="dhm-search-group-title"
-                      style={{ color: "var(--accent)" }}
-                    >
-                      Vanished Places ({results.vanished.length})
-                    </div>
-                    {results.vanished.slice(0, 3).map((v) => (
-                      <div
-                        key={v.id}
-                        className="dhm-search-item"
-                        onClick={() => {
-                          setFocused(false);
-                          if (onSelectSite) onSelectSite(v.id);
-                        }}
-                      >
-                        <span
-                          className="dhm-search-item-name"
-                          style={{ color: "var(--accent)" }}
-                        >
-                          {v.name}
-                        </span>
-                        <span className="dhm-search-item-meta">{v.current_location}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        )}
       </div>
     </header>
   );
