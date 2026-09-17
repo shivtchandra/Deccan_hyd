@@ -2385,7 +2385,11 @@
   {
     "id": "saidani-ma-tomb",
     "name": "Saidani Ma Tomb",
-    "altNames": [],
+    "altNames": [
+      "Tomb of Saidani Ma",
+      "Saidani Ma Maqbara",
+      "Tank Bund Tomb"
+    ],
     "lat": 17.387,
     "lng": 78.4,
     "era": "qutb-shahi",
@@ -2394,17 +2398,31 @@
     "status": "state-protected",
     "access": "free",
     "area": "Golconda",
-    "summary": "A domed tomb on a raised platform near the Qutb Shahi necropolis, built in the 19th century but deliberately echoing the 16th-century royal tomb style.",
-    "story": "A domed tomb built in 1883 near the Qutb Shahi necropolis but consciously imitating the 16th-century royal tomb vocabulary — raised platform, bulbous dome, carved stone screens. Its scale and deliberate siting among the older royal tombs suggest patronage by someone with intimate knowledge of the necropolis, and an intent to extend its aesthetic even two centuries after the dynasty ended. A quiet act of architectural memory in the era of Victorian Hyderabad.",
+    "summary": "An extraordinary late-19th century Asaf Jahi mausoleum on the banks of Hussain Sagar, celebrated for its sublime blend of Mughal, Persian, and Qutb Shahi stuccowork and intricate Islamic lattice jali screens.",
+    "story": "Located on the northern embankment of Tank Bund road, this elegant domed tomb was constructed in 1883 CE during the reign of Mahbub Ali Khan (Asaf Jah VI) by Sardar Abdul Haq, styled Diler Jung. Abdul Haq was a prominent statesman, Director of the Nizam's Guaranteed State Railway (NGSR), and Home Secretary of Hyderabad State, who built this memorial for his beloved mother, Saidani Ma.\n\nThe tomb represents a stunning architectural synthesis of traditional Islamic and European craftsmanship. The monument features a grand bulbous central dome flanked by miniature octagonal corner kiosks (chhatris), multifaceted arches with deep lotus motifs, and walls covered in some of the most delicate, lace-like stucco filigree work anywhere in the Deccan. The subterranean chamber houses the marble sarcophagus of Saidani Ma, while the upper gallery once offered serene unobstructed vistas across the waters of Hussain Sagar.",
     "events": [
       {
         "year": 1883,
-        "description": "Tomb constructed near Qutb Shahi necropolis in deliberate echo of royal tomb style"
+        "description": "Construction completed on the scenic northern approach to Tank Bund"
+      },
+      {
+        "year": 1908,
+        "description": "Great Musi Flood passes safely below the elevated reservoir embankments"
+      },
+      {
+        "year": 2002,
+        "description": "Declared a state-protected heritage monument by the Department of Archaeology and Museums"
+      },
+      {
+        "year": 2023,
+        "description": "Comprehensive stucco restoration, dynamic heritage illumination, and landscaping completed"
       }
     ],
     "connections": [
-      "qutb-shahi-tombs",
-      "golconda-fort"
+      "husain-sagar",
+      "buddha-statue-hussain-sagar",
+      "khairatabad-ganesh",
+      "british-residency"
     ],
     "addedBy": "seed",
     "verifiedAt": "2026-09-01",
@@ -2416,12 +2434,40 @@
         "licence": "CC BY-SA",
         "source": "https://commons.wikimedia.org"
       }
+    ],
+    "people": [
+      {
+        "name": "Sardar Abdul Haq (Diler Jung)",
+        "role": "Director of the Nizam's State Railway and Home Secretary who commissioned the tomb for his mother"
+      },
+      {
+        "name": "Saidani Ma",
+        "role": "Noble matriarch and revered pious woman in whose honour the mausoleum was erected"
+      },
+      {
+        "name": "Mahbub Ali Khan (Asaf Jah VI)",
+        "role": "6th Nizam of Hyderabad during whose golden architectural era the monument was built"
+      }
+    ],
+    "sources": [
+      {
+        "label": "Telangana Archaeology & Museums",
+        "url": "https://heritage.telangana.gov.in/"
+      },
+      {
+        "label": "Wikipedia: Tomb of Saidani Ma",
+        "url": "https://en.wikipedia.org/wiki/Tomb_of_Saidani_Ma"
+      }
     ]
   },
   {
     "id": "khairtabad-mosque",
     "name": "Khairtabad Mosque",
-    "altNames": [],
+    "altNames": [
+      "Khairatabad Mosque & Stepwell",
+      "Khairunnisa Begum Mosque",
+      "Khairatabad Masjid"
+    ],
     "lat": 17.4093,
     "lng": 78.4514,
     "era": "qutb-shahi",
@@ -2430,34 +2476,51 @@
     "status": "asi-protected",
     "access": "free",
     "area": "Khairatabad",
-    "summary": "Built by the scholar Akkanna for Hayat Bakshi Begum, giving the locality its name (Khairat-abad). A large single-hall mosque with tall corner minarets.",
-    "story": "The scholar Akkanna commissioned this mosque on behalf of Hayat Bakshi Begum — giving the neighbourhood of Khairatabad its name, derived from Khairat (charitable gift). A large single-hall mosque with tall corner minarets on the old road northwest of the city, it stands as one of the oldest structures in what is now Hyderabad's western suburbs. The mosque was built during Abdullah Qutb Shah's reign, when the Qutb Shahi court was at its most culturally sophisticated.",
+    "summary": "A 17th-century Qutb Shahi domed mosque and historic stepped reservoir built in 1626 CE by Princess Khairunnisa Begum for her royal tutor and scholar Akhund Mulla Abdul Malik.",
+    "story": "Built in 1626 CE during the reign of Sultan Muhammad Qutb Shah (the sixth ruler of Golconda), this exquisite mosque was commissioned by Princess Khairunnisa Begum, the daughter of Sultan Muhammad Quli Qutb Shah. The princess constructed the mosque along with an adjoining palatial retreat, large orchards, and a stepped water reservoir (baoli) for her revered tutor, the distinguished Persian scholar Akhund Mulla Abdul Malik.\n\nThe mosque's architecture is a quintessential masterpiece of Qutb Shahi style: a three-arched facade with rich stuccowork, delicate lotus-bud cresting, slender decorative minarets with ornamental jali panels, and a projecting domed prayer hall. In the adjacent courtyard stands a magnificent domed tomb designed for Mulla Abdul Malik, though the scholar passed away during a pilgrimage to Mecca and was buried in the holy city, leaving the tomb cenotaph unoccupied. The surrounding suburban locality grew around this royal endowment and came to be forever known as \"Khairatabad\".",
     "architect": "Commissioned by Akkanna for Hayat Bakshi Begum",
     "people": [
       {
-        "name": "Akkanna",
-        "role": "Brahmin scholar who commissioned it on behalf of Hayat Bakshi Begum"
+        "name": "Khairunnisa Begum",
+        "role": "Qutb Shahi royal princess who founded the mosque and established the locality of Khairatabad"
       },
       {
-        "name": "Hayat Bakshi Begum",
-        "role": "patron"
+        "name": "Akhund Mulla Abdul Malik",
+        "role": "Royal scholar, Persian grammarian, and tutor to Princess Khairunnisa Begum"
+      },
+      {
+        "name": "Sultan Muhammad Qutb Shah",
+        "role": "6th Golconda Sultan under whose reign the monument was dedicated"
       }
     ],
     "events": [
       {
         "year": 1626,
-        "description": "Built during Abdullah Qutb Shah's reign"
+        "description": "Construction completed along with surrounding royal orchards and stepped well"
+      },
+      {
+        "year": 1687,
+        "description": "Mughal siege of Golconda damages ancillary buildings of the estate"
+      },
+      {
+        "year": 2022,
+        "description": "Telangana Heritage Department and community trusts initiate stuccowork conservation and baoli restoration"
       }
     ],
     "connections": [
-      "hayat-bakshi-mosque",
-      "moula-ali-dargah",
-      "toli-masjid"
+      "khairatabad-ganesh",
+      "toli-masjid",
+      "qutb-shahi-tombs",
+      "charminar"
     ],
     "sources": [
       {
-        "label": "ASI",
-        "url": "https://asi.nic.in/"
+        "label": "Department of Heritage Telangana",
+        "url": "https://heritage.telangana.gov.in/"
+      },
+      {
+        "label": "Wikipedia: Khairtabad Mosque",
+        "url": "https://en.wikipedia.org/wiki/Khairtabad_Mosque"
       }
     ],
     "addedBy": "seed",
@@ -2971,7 +3034,8 @@
     "id": "khairatabad-ganesh",
     "name": "Khairatabad Bada Ganesh",
     "altNames": [
-      "Khairatabad Ganesh",
+      "Khairatabad Bada Ganesh",
+      "Hyderabad's Tallest Ganesha",
       "Bada Ganesh"
     ],
     "lat": 17.4116,
@@ -2983,32 +3047,58 @@
     "status": "state-protected",
     "access": "open",
     "area": "Khairatabad",
-    "summary": "Famous annual mammoth Ganesha idol installation in Khairatabad, established in 1954. Millions of devotees visit each year during Ganesh Chaturthi.",
-    "story": "Established in 1954 by freedom fighter S. Sitaram Das Ji following the unification of Hyderabad State with India. Starting with a 1-foot idol, the Khairatabad Ganesh grew annually by one foot each year, reaching heights over 60 feet and becoming one of India's largest annual devotional monuments.",
+    "summary": "Founded in 1954 by freedom fighter S. Sankaraiah, this world-renowned annual clay deity reaches up to 70 feet in height, drawing millions of pilgrims as India's largest and most famous community Ganesha idol.",
+    "story": "In 1954, following the integration of Hyderabad into the Indian Union, freedom fighter and former municipal councillor Singari Sankaraiah founded the Khairatabad Ganesh Utsava Samithi to foster communal harmony and patriotic unity during the 10-day Vinayaka Chaturthi festival. Starting with a modest 1-foot clay idol, the festival established a unique tradition of increasing the idol's height by one foot every year.\n\nBy 2014, the idol reached a towering height of 60 feet. Created over three months by hundreds of skilled artisans from Maharashtra, Tamil Nadu, Andhra Pradesh, and Telangana led by master craftsman Chinnaswamy Rajendran, the idol features intricate thematic depictions of Vedic deities sculpted entirely out of eco-friendly clay, organic grass straw, water colors, and a massive steel armature.\n\nA legendary highlight of the festival is the offering of a monumental \"Maha Laddu\" weighing between 500 kg to 5,000 kg, specially crafted by traditional sweet makers from Tapeswaram. On Anantha Chaturdashi, the monumental deity is carried on a massive custom 26-wheel hydraulic trailer in a grand 12-hour carnival procession through Khairatabad and Secretariat to Tank Bund for immersion into Hussain Sagar.",
     "people": [
       {
-        "name": "Singari Sitaram Das",
-        "role": "founder of the Khairatabad Ganesh Utsav Committee"
+        "name": "Singari Sankaraiah",
+        "role": "Freedom fighter and social leader who founded the Khairatabad Ganesh Utsava Samithi in 1954"
+      },
+      {
+        "name": "Chinnaswamy Rajendran",
+        "role": "Master artisan and sculptor who directed the design and construction of the giant idol for decades"
+      },
+      {
+        "name": "S. Sudarshan",
+        "role": "Current chairman of the Utsava Samithi preserving the 70-year tradition"
       }
     ],
     "events": [
       {
         "year": 1954,
-        "description": "First Ganesh Utsav established in Khairatabad"
+        "description": "Inaugural celebration with a 1-foot idol established to promote post-independence social harmony"
+      },
+      {
+        "year": 1974,
+        "description": "20th year milestone with the idol height scaling past 20 feet"
       },
       {
         "year": 2014,
-        "description": "Diamond Jubilee (60 feet tall idol created for 60th year)"
+        "description": "Diamond Jubilee celebrated with a record-setting 60-foot tall idol and 5,000 kg Tapeswaram Maha Laddu"
+      },
+      {
+        "year": 2022,
+        "description": "Historic transition to 100% eco-friendly water-soluble clay (Matti Vinayakudu) to protect Hussain Sagar ecology"
+      },
+      {
+        "year": 2024,
+        "description": "Platinum Jubilee (70th anniversary) marked by a monumental 70-foot idol"
       }
     ],
     "connections": [
-      "birla-mandir",
-      "ravindra-bharathi"
+      "khairtabad-mosque",
+      "buddha-statue-hussain-sagar",
+      "saidani-ma-tomb",
+      "birla-mandir"
     ],
     "sources": [
       {
-        "label": "Khairatabad Ganesh Utsav Committee",
-        "url": "https://en.wikipedia.org/wiki/Khairtabad_Ganesh"
+        "label": "Khairatabad Ganesh Utsava Samithi",
+        "url": "https://khairatabadganesh.com/"
+      },
+      {
+        "label": "Wikipedia: Khairatabad Ganesh",
+        "url": "https://en.wikipedia.org/wiki/Khairatabad_Ganesh"
       }
     ],
     "wikidata": "Q16250266",
@@ -3031,7 +3121,9 @@
     "altNames": [
       "Cyber Towers",
       "HITEC City",
-      "Cyberabad"
+      "Cyberabad",
+      "L&T Infocity",
+      "Madhapur Tech Hub"
     ],
     "lat": 17.4504,
     "lng": 78.3808,
@@ -3042,30 +3134,82 @@
     "status": "unprotected",
     "access": "open",
     "area": "Madhapur / HITEC City",
-    "summary": "Inaugurated in 1998, the iconic high-tech campus and octagonal Cyber Towers building transformed Hyderabad into a global technology powerhouse.",
-    "story": "Inaugurated in November 1998, Cyber Towers was the flagship structure of Hyderabad's Information Technology Engineering Consultancy (HITEC) City. Its distinctive octagonal central tower and arched fountain forecourt symbolised the emergence of 'Cyberabad', propelling Hyderabad onto the global technology map.",
+    "summary": "The iconic 10-storey octagonal monolith and fountain plaza inaugurated in 1998 that transformed Hyderabad from a historic princely capital into \"Cyberabad\", India's premier global technology and software hub.",
+    "story": "In the mid-1990s, Hyderabad embarked on an ambitious transformation to reinvent its economy for the 21st century. Spearheaded by the Government of Andhra Pradesh in partnership with Larsen & Toubro Infocity Limited (LTIL), the Hyderabad Information Technology Engineering Consultancy City (HITEC City) was conceived on a 151-acre rocky expanse in Madhapur.\n\nThe centerpiece of Phase 1 was Cyber Towers — a 10-storey octagonal architectural landmark featuring a dramatic central atrium, tinted glass curtain walls, and a grand arched fountain roundabout. Designed to offer world-class infrastructure, high-speed international satellite earth stations, and uninterrupted dual-redundant power supplies, Cyber Towers provided global tech giants with plug-and-play offices that were virtually unprecedented in India at the time.\n\nWhen Prime Minister Atal Bihari Vajpayee inaugurated the campus in November 1998 alongside anchor tenants Oracle and GE, it ignited a historic economic renaissance. The iconic building gained global spotlight when Microsoft established its first overseas R&D centre in Hyderabad, and U.S. President Bill Clinton visited in March 2000, praising Hyderabad's technological leadership. Cyber Towers catalyzed the rapid urban expansion of Madhapur, Gachibowli, and the Financial District, giving birth to the moniker \"Cyberabad\" and establishing Hyderabad as a pivotal crossroads of global enterprise.",
     "people": [
       {
         "name": "N. Chandrababu Naidu",
-        "role": "Chief Minister who spearheaded Cyberabad and HITEC City"
+        "role": "Chief Minister of Andhra Pradesh who conceptualized Cyberabad and drove international tech investments"
+      },
+      {
+        "name": "Atal Bihari Vajpayee",
+        "role": "Prime Minister of India who formally inaugurated Cyber Towers on November 22, 1998"
+      },
+      {
+        "name": "Bill Gates",
+        "role": "Microsoft Co-founder who established Microsoft's first international development centre outside Redmond in Hyderabad"
+      },
+      {
+        "name": "Bill Clinton",
+        "role": "42nd U.S. President whose historic March 2000 state visit to Cyber Towers placed Hyderabad on the global map"
+      },
+      {
+        "name": "A. Ramakrishna",
+        "role": "President & Deputy Managing Director of L&T who spearheaded the engineering and construction of the complex"
       }
     ],
     "events": [
       {
+        "year": 1996,
+        "description": "Project conceived and ground broken as a pioneering public-private partnership between APIIC and Larsen & Toubro Infocity Ltd"
+      },
+      {
         "year": 1998,
-        "description": "Inauguration of Cyber Towers by Prime Minister Atal Bihari Vajpayee"
+        "description": "Formal inauguration of Cyber Towers by Prime Minister Atal Bihari Vajpayee on November 22"
+      },
+      {
+        "year": 1998,
+        "description": "Microsoft opens its first overseas India Development Center (IDC) in Hyderabad"
       },
       {
         "year": 2000,
-        "description": "U.S. President Bill Clinton visits Cyber Towers"
+        "description": "U.S. President Bill Clinton tours Cyber Towers and addresses tech leaders on March 24"
+      },
+      {
+        "year": 2002,
+        "description": "British Prime Minister Tony Blair visits Cyber Towers during his official India mission"
+      },
+      {
+        "year": 2004,
+        "description": "Expansion of HITEC City with Cyber Gateway and Cyber Pearl across Madhapur"
+      },
+      {
+        "year": 2015,
+        "description": "Inauguration of T-Hub nearby in Knowledge City, establishing the next generation of Hyderabad's innovation ecosystem"
       }
     ],
     "connections": [
-      "t-hub-knowledge-city"
+      "t-hub-knowledge-city",
+      "buddha-statue-hussain-sagar",
+      "ravindra-bharathi",
+      "birla-mandir",
+      "khairatabad-ganesh"
     ],
     "sources": [
       {
-        "label": "Wikipedia",
+        "label": "Telangana ITE&C Dept",
+        "url": "https://it.telangana.gov.in/"
+      },
+      {
+        "label": "L&T Infocity Archives",
+        "url": "https://www.larsentoubro.com/"
+      },
+      {
+        "label": "PIB India Archives (1998–2000)",
+        "url": "https://archive.pib.gov.in/"
+      },
+      {
+        "label": "Wikipedia: HITEC City",
         "url": "https://en.wikipedia.org/wiki/HITEC_City"
       }
     ],
@@ -3088,7 +3232,8 @@
     "name": "Monolithic Buddha Statue",
     "altNames": [
       "Hussain Sagar Buddha",
-      "Gibraltar Rock Buddha"
+      "Gibraltar Rock Buddha",
+      "Hyderabad Buddha Monolith"
     ],
     "lat": 17.4156,
     "lng": 78.475,
@@ -3099,35 +3244,58 @@
     "status": "state-protected",
     "access": "ticketed",
     "area": "Hussain Sagar / Lumbini Park",
-    "summary": "An 18-metre tall monolithic granite statue of Gautama Buddha standing on Gibraltar Rock in the center of Hussain Sagar lake.",
-    "story": "Conceived in 1985 and carved by 200 master sculptors led by S.M. Ganapathi Sthapati from a single 450-tonne white granite monolith in Nalgonda. Erected on a lotus pedestal in the middle of Hussain Sagar lake in 1992, it stands as one of the world's tallest monolithic Buddha statues.",
+    "summary": "Standing 18 metres (58 feet) tall and weighing 450 tonnes, this colossal white granite monolith was carved from a single boulder and stands majestically on Gibraltar Rock in the center of the 16th-century Hussain Sagar lake.",
+    "story": "Conceived in 1985 by Chief Minister N.T. Rama Rao after being inspired by the Statue of Liberty in New York, the Monolithic Buddha was designed to symbolize peace, harmony, and the Deccan's deep ancient Buddhist heritage.\n\nOver 200 sculptors led by temple architect S.M. Ganapathi Sthapati worked for five years near Nalgonda to carve the 450-tonne monolithic sculpture from a single massive white granite quarry face. Transporting the 58-foot colossus across 60 km required a mammoth trailer with 192 wheels.\n\nTragedy struck in March 1990 when the trailer tipped into the waters of Hussain Sagar during the installation onto Gibraltar Rock, sinking the statue to the lake bed. After a dramatic two-year salvage operation, the unbroken monolith was successfully raised, restored, and consecrated in December 1992 by the 14th Dalai Lama, Tenzin Gyatso. Today, surrounded by illuminated musical fountains and accessible via ferries from Lumbini Park, the Buddha is one of Hyderabad's most recognizable skyline symbols.",
     "people": [
       {
-        "name": "N. T. Rama Rao",
-        "role": "Chief Minister who commissioned the statue project"
+        "name": "N.T. Rama Rao",
+        "role": "Chief Minister of Andhra Pradesh who envisioned and commissioned the monolithic project in 1985"
       },
       {
-        "name": "S. M. Ganapathi Sthapati",
-        "role": "Master sculptor who carved the monolith"
+        "name": "S.M. Ganapathi Sthapati",
+        "role": "Renowned traditional master architect and sculptor who directed the carving of the monolith"
+      },
+      {
+        "name": "14th Dalai Lama (Tenzin Gyatso)",
+        "role": "Consecrated the Buddha statue during its grand spiritual dedication in December 1992"
       }
     ],
     "events": [
       {
         "year": 1985,
-        "description": "Carving begins on a single granite boulder in Nalgonda"
+        "description": "Monolith project announced to commemorate Andhra and Telangana's Buddhist heritage"
+      },
+      {
+        "year": 1988,
+        "description": "Carving completed by 200 sculptors from a single white granite rock near Raigir, Nalgonda"
+      },
+      {
+        "year": 1990,
+        "description": "Statue falls into Hussain Sagar lake during transport across the water on March 10"
       },
       {
         "year": 1992,
-        "description": "Consecrated on Gibraltar Rock by the Dalai Lama"
+        "description": "Successful recovery, erection on Gibraltar Rock, and consecration on December 1"
+      },
+      {
+        "year": 2006,
+        "description": "Dalai Lama conducts Kalachakra blessings and prayers at the monument"
       }
     ],
     "connections": [
+      "husain-sagar",
       "birla-mandir",
-      "telangana-martyrs-memorial"
+      "ravindra-bharathi",
+      "telangana-martyrs-memorial",
+      "hitec-city-cyber-towers"
     ],
     "sources": [
       {
-        "label": "Wikipedia",
+        "label": "Telangana Tourism Department",
+        "url": "https://telanganatourism.gov.in/"
+      },
+      {
+        "label": "Wikipedia: Buddha Statue of Hyderabad",
         "url": "https://en.wikipedia.org/wiki/Buddha_Statue_of_Hyderabad"
       }
     ],
@@ -3149,7 +3317,8 @@
     "id": "ravindra-bharathi",
     "name": "Ravindra Bharathi Cultural Complex",
     "altNames": [
-      "Ravindra Bharathi Auditorium"
+      "Ravindra Bharathi Auditorium",
+      "Tagore Centenary Memorial Hyderabad"
     ],
     "lat": 17.4042,
     "lng": 78.4697,
@@ -3160,28 +3329,54 @@
     "status": "state-protected",
     "access": "ticketed",
     "area": "Lakdikapul / Saifabad",
-    "summary": "Premier state cultural auditorium and theatre arts complex established in 1961 to commemorate Rabindranath Tagore's birth centenary.",
-    "story": "Inaugurated in May 1961 by Dr. S. Radhakrishnan, Ravindra Bharathi has served for over six decades as Hyderabad's epicentre of classical Kuchipudi dance, Carnatic & Hindustani music concerts, and Telugu theatre.",
+    "summary": "Built to commemorate the birth centenary of Nobel laureate Rabindranath Tagore, Ravindra Bharathi is Hyderabad's premier performing arts auditorium and cultural heart, hosting classical dance, theatre, music, and poetry for over six decades.",
+    "story": "Inaugurated on May 11, 1961 by Dr. Sarvepalli Radhakrishnan, Ravindra Bharathi was commissioned by the Government of Andhra Pradesh as part of the nationwide Rabindranath Tagore Birth Centenary celebrations. Designed by renowned chief architect Mohammed Fayazuddin, the building seamlessly merges post-independence modernist civic architecture with Deccan structural elements.\n\nThe auditorium has an acoustically calibrated 1,100-seat main hall, an art gallery, an open-air amphitheatre, and rehearsal spaces. For over six decades, it has served as the spiritual sanctuary of Kuchipudi dance, Carnatic and Hindustani classical concerts, Telugu theatre festivals, Urdu Mushairas, and international cultural exchange. It stands adjacent to the Telangana State Assembly and Secretariat as a permanent beacon of Deccan arts.",
     "people": [
       {
-        "name": "Dr. S. Radhakrishnan",
-        "role": "Vice President of India who inaugurated the complex"
+        "name": "Mohammed Fayazuddin",
+        "role": "Master civic architect who designed the modernist cultural complex"
+      },
+      {
+        "name": "Dr. Sarvepalli Radhakrishnan",
+        "role": "Vice President and later President of India who inaugurated the complex on May 11, 1961"
+      },
+      {
+        "name": "Burgula Ramakrishna Rao",
+        "role": "Cultural patron and statesman who championed establishing national cultural institutions in Hyderabad"
       }
     ],
     "events": [
       {
+        "year": 1960,
+        "description": "Foundation stone laid in Saifabad during the Tagore Centenary year"
+      },
+      {
         "year": 1961,
-        "description": "Inaugurated for Rabindranath Tagore's birth centenary"
+        "description": "Grand public inauguration on May 11 by Dr. Sarvepalli Radhakrishnan"
+      },
+      {
+        "year": 1975,
+        "description": "World Telugu Conference inaugural cultural performances hosted here"
+      },
+      {
+        "year": 2011,
+        "description": "Golden Jubilee celebrations marked by extensive acoustic and stage modernization"
       }
     ],
     "connections": [
+      "telangana-martyrs-memorial",
       "birla-mandir",
-      "khairatabad-ganesh"
+      "buddha-statue-hussain-sagar",
+      "hyderabad-town-hall"
     ],
     "sources": [
       {
-        "label": "Department of Culture Telangana",
+        "label": "Department of Language & Culture Telangana",
         "url": "https://culture.telangana.gov.in/"
+      },
+      {
+        "label": "Wikipedia: Ravindra Bharathi",
+        "url": "https://en.wikipedia.org/wiki/Ravindra_Bharathi"
       }
     ],
     "wikidata": "Q13008083",
@@ -3202,7 +3397,8 @@
     "id": "birla-mandir",
     "name": "Birla Mandir (Naubath Pahad)",
     "altNames": [
-      "Venkateswara Temple Naubath Pahad"
+      "Birla Temple",
+      "Venkateswara Temple Naubat Pahad"
     ],
     "lat": 17.4062,
     "lng": 78.4691,
@@ -3213,27 +3409,45 @@
     "status": "state-protected",
     "access": "open",
     "area": "Adarsh Nagar / Lakdikapul",
-    "summary": "A magnificent white marble temple perched atop Naubath Pahad hill overlooking Hussain Sagar, constructed from 2,000 tonnes of pure Rajasthani marble.",
-    "story": "Constructed over 10 years by the Birla Foundation and consecrated in 1976 by Swami Ranganathananda of Ramakrishna Math. The temple blends South Indian Dravidian gopuram architecture with Utkala Oriya shikhara design.",
+    "summary": "A breathtaking 2,000-tonne white Rajasthani marble temple perched atop the 280-foot high Naubat Pahad hill, blending South Indian Dravidian gopuram and Utkal temple architecture overlooking Hussain Sagar.",
+    "story": "Perched dramatically atop the rocky volcanic outcrop of Naubat Pahad (where historical Nizam-era royal proclamations were once announced with kettledrums), Birla Mandir was constructed over a span of ten years by the Birla Foundation and consecrated in 1976 by Swami Ranganathananda of the Ramakrishna Mission.\n\nThe temple is dedicated to Lord Venkateswara (Balaji) with an 11-foot tall granite sanctum idol flanked by a carved lotus canopy. The entire temple edifice was constructed without traditional bells to provide a tranquil atmosphere for silent meditation. Elaborate marble carvings depicting scenes from the Ramayana, Mahabharata, and Bhagavad Gita adorn the corridors, while the hilltop vantage point offers panoramic 360-degree vistas across Hussain Sagar, the Secretariat, and the twin cities.",
     "people": [
       {
-        "name": "B. M. Birla",
-        "role": "industrialist and philanthropist who commissioned the marble temple"
+        "name": "Swami Ranganathananda",
+        "role": "President of the Ramakrishna Mission who consecrated the temple in February 1976"
+      },
+      {
+        "name": "G.D. Birla & B.M. Birla",
+        "role": "Philanthropic industrialists whose foundation commissioned and financed the white marble temple"
       }
     ],
     "events": [
       {
+        "year": 1966,
+        "description": "Construction commences on the 280-foot high granite summit of Naubat Pahad"
+      },
+      {
         "year": 1976,
-        "description": "Consecration of the temple atop Naubath Pahad"
+        "description": "Formal consecration (Prana Pratishtha) on February 13 by Swami Ranganathananda"
+      },
+      {
+        "year": 1990,
+        "description": "Hilltop gardens and scenic observation platforms expanded overlooking the lake"
       }
     ],
     "connections": [
+      "buddha-statue-hussain-sagar",
+      "husain-sagar",
       "ravindra-bharathi",
-      "buddha-statue-hussain-sagar"
+      "telangana-martyrs-memorial"
     ],
     "sources": [
       {
-        "label": "Wikipedia",
+        "label": "Birla Foundation Heritage",
+        "url": "https://www.birlas.com/"
+      },
+      {
+        "label": "Wikipedia: Birla Mandir, Hyderabad",
         "url": "https://en.wikipedia.org/wiki/Birla_Mandir,_Hyderabad"
       }
     ],
@@ -3255,8 +3469,9 @@
     "id": "telangana-martyrs-memorial",
     "name": "Telangana Martyrs Memorial",
     "altNames": [
+      "Gun Park Memorial",
       "Amara Veerula Stupam",
-      "Amara Veerula Smarakam"
+      "Martyrs Stupa Saifabad"
     ],
     "lat": 17.411,
     "lng": 78.4705,
@@ -3267,27 +3482,50 @@
     "status": "state-protected",
     "access": "open",
     "area": "Hussain Sagar Parkway",
-    "summary": "A spectacular 26-metre high seamless stainless steel diya monument inaugurated in 2023 along the Hussain Sagar promenade dedicated to Telangana statehood martyrs.",
-    "story": "Inaugurated in June 2023, this architectural marvel features a glowing flame atop a seamless mirror-polished stainless steel structure, housing a museum, convention hall, and memorial terrace overlooking the lake.",
+    "summary": "Sculpted by prominent artist Aekka Yadagiri Rao, this 25-foot black granite monument in Gun Park stands opposite the State Assembly as the poignant memorial commemorating the 369 student martyrs of the 1969 Telangana agitation.",
+    "story": "In the aftermath of the 1969 Telangana statehood movement in which 369 students and youths were killed during police crackdowns, the student union and citizens commissioned a permanent memorial in Gun Park, directly facing the State Legislative Assembly.\n\nSculpted by renowned Osmania University fine arts professor Aekka Yadagiri Rao, the 25-foot black granite monument carries profound symbolic allegories: a solid square base representing the steadfast collective resolve of the people, a central rising shaft adorned with a 9-petal lotus flower signifying the original 9 districts of Telangana, bullet indentations symbolizing state sacrifice, and a pristine white marble crown atop the stupa representing eternal peace and immortality for the martyrs. It remains the most politically and emotionally resonant monument of contemporary Hyderabad.",
     "people": [
       {
-        "name": "K. Chandrashekar Rao",
-        "role": "Chief Minister who dedicated the memorial"
+        "name": "Aekka Yadagiri Rao",
+        "role": "Eminent sculptor and Osmania University professor who designed and sculpted the black granite memorial"
+      },
+      {
+        "name": "Marri Chenna Reddy",
+        "role": "Telangana Praja Samithi leader during the 1969 agitation"
       }
     ],
     "events": [
       {
+        "year": 1969,
+        "description": "Historic Telangana agitation across Osmania University and Hyderabad demanding regional statehood"
+      },
+      {
+        "year": 1970,
+        "description": "Construction and erection of the 25-foot black granite stupa in Gun Park"
+      },
+      {
+        "year": 2014,
+        "description": "Formal tribute by the first Chief Minister of newly formed Telangana state on June 2, 2014"
+      },
+      {
         "year": 2023,
-        "description": "Inauguration of the stainless steel Diya memorial on Telangana Formation Day"
+        "description": "Modern Amara Deepam memorial unveiled along Hussain Sagar to complement the historic Gun Park stupa"
       }
     ],
     "connections": [
+      "ravindra-bharathi",
+      "hyderabad-town-hall",
+      "birla-mandir",
       "buddha-statue-hussain-sagar"
     ],
     "sources": [
       {
-        "label": "Government of Telangana",
+        "label": "Telangana State Archives",
         "url": "https://telangana.gov.in/"
+      },
+      {
+        "label": "Wikipedia: Telangana Martyrs Memorial",
+        "url": "https://en.wikipedia.org/wiki/Telangana_Martyrs_Memorial"
       }
     ],
     "addedBy": "seed",
