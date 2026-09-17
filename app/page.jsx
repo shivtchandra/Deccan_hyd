@@ -93,7 +93,7 @@ function heritageReducer(state, action) {
         ...state,
         selectedVanishedId: action.vanishedId,
         selectedSiteId: null,
-        mode: "vanished",
+        mode: action.vanishedId ? "vanished" : "explore",
       };
 
     case "SET_MODE":
@@ -566,11 +566,16 @@ export default function Page() {
   const activeRouteIds = tab === "routes" || planned ? routeIds : [];
 
   const handleTabChange = (nextTab) => {
-    if (nextTab !== "explore") setOriginChapterOpen(false);
+    if (nextTab !== "explore") {
+      setOriginChapterOpen(false);
+      setSelectedOriginId(null);
+    }
     if (nextTab !== "map") {
       setSheetOpen(false);
       dispatch({ type: "SELECT_SITE", siteId: null });
       dispatch({ type: "SELECT_VANISHED", vanishedId: null });
+    } else {
+      dispatch({ type: "SET_MODE", mode: "explore" });
     }
     setTab(nextTab);
   };

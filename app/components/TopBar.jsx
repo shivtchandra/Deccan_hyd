@@ -93,10 +93,53 @@ export default function TopBar({
         </div>
 
         {/* Live Search Dropdown */}
-        {focused && q && typeof q === "string" && q.trim() !== "" && (
+        {focused && (
           <div className="dhm-search-dropdown material">
-            {!hasResults ? (
-              <div className="dhm-search-empty">No matching heritage records</div>
+            {!q || !q.trim() ? (
+              <div className="dhm-topbar-poetic-dropdown">
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                  <div className="dhm-search-vignette-wrap" style={{ width: 44, height: 44, margin: 0, flexShrink: 0 }}>
+                    <img
+                      src="/charminar-field-note.png"
+                      alt="Charminar Field Note"
+                      className="dhm-search-vignette-img"
+                    />
+                  </div>
+                  <div style={{ textAlign: "left" }}>
+                    <div style={{ fontFamily: "Fraunces, serif", fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>
+                      Deccan Heritage Atlas
+                    </div>
+                    <div style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>
+                      Search 54 monuments, gates & eras
+                    </div>
+                  </div>
+                </div>
+                <div className="dhm-search-chips-label" style={{ textAlign: "left", fontSize: 9.5, marginBottom: 6 }}>
+                  Quick Explorations:
+                </div>
+                <div className="dhm-search-chips-row" style={{ justifyContent: "flex-start" }}>
+                  {["Charminar", "Golconda", "Qutb Shahi", "Chowmahalla", "Paigah", "Musi"].map((tag) => (
+                    <button
+                      key={tag}
+                      type="button"
+                      className="dhm-search-chip"
+                      style={{ fontSize: 11, padding: "3px 9px", background: "var(--paper-warm)", color: "var(--ink)", border: "1px solid var(--line)" }}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        if (setQ) setQ(tag);
+                      }}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : !hasResults ? (
+              <div className="dhm-search-empty" style={{ padding: "16px 14px", textAlign: "center" }}>
+                <div style={{ fontSize: 18, marginBottom: 4 }}>📜</div>
+                <div style={{ fontWeight: 600, fontSize: 12.5, color: "var(--ink)" }}>No records found for "{q}"</div>
+                <div style={{ fontSize: 11, color: "var(--muted)", marginTop: 4 }}>Try searching "Golconda", "Fort", or "Nizam"</div>
+              </div>
             ) : (
               <>
                 {results.sites && results.sites.length > 0 && (

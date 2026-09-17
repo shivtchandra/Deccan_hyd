@@ -41,7 +41,7 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
   if (layout === "list") {
     return (
       <div ref={railRef} className="dhm-card-list-wrap">
-        {sites.slice(0, 40).map((s) => {
+        {sites.map((s) => {
           const risk = s.status === "at-risk" || s.status === "lost";
           const sel = s.id === selectedId;
           const color = eraColor(s.era);

@@ -25,9 +25,12 @@ export default function PostcardModal({ site, onClose }) {
 
   const yearBuilt = site.startYear || site.yearBuilt || (site.era === "qutb-shahi" ? "1591" : "18th C.");
   const coords = site.lat && site.lng ? `${site.lat.toFixed(4)}°N, ${site.lng.toFixed(4)}°E` : "17.3616°N, 78.4747°E";
-  const shareUrl = typeof window !== "undefined"
-    ? `${window.location.origin}/?site=${site.id}`
-    : `https://heritage.mapmyhyd.com/?site=${site.id}`;
+  
+  // Prefer clean production domain
+  const baseUrl = typeof window !== "undefined" && window.location.hostname !== "localhost"
+    ? window.location.origin
+    : "https://heritage.mapmyhyd.com";
+  const shareUrl = `${baseUrl}/?site=${site.id}`;
 
   const handleCopyLink = () => {
     navigator.clipboard?.writeText(shareUrl);
@@ -40,7 +43,6 @@ export default function PostcardModal({ site, onClose }) {
       try {
         await navigator.share({
           title: `${site.name} — Deccan Heritage Map`,
-          text: `Explore ${site.name} (${yearBuilt} CE) on the interactive Deccan Heritage Map.`,
           url: shareUrl,
         });
       } catch {}

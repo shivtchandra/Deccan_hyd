@@ -2834,6 +2834,13 @@ body::after {
   margin-bottom: 2px;
 }
 
+.dhm-topbar-poetic-dropdown {
+  padding: 14px;
+  background: var(--paper-warm, #FAF6EE);
+  border-radius: var(--r-md);
+}
+
+
 
 
 
