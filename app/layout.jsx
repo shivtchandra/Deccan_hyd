@@ -70,7 +70,13 @@ export const metadata = {
     },
   },
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c2603a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3l3 5-3 2-3-2z M12 10v8 M8 21h8 M9 18h6'/></svg>",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "64x64" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
@@ -91,7 +97,7 @@ export default function RootLayout({ children }) {
         "@id": "https://heritage.mapmyhyd.com/#organization",
         "name": "Deccan Heritage Map",
         "url": "https://heritage.mapmyhyd.com",
-        "logo": "https://heritage.mapmyhyd.com/photos/charminar.jpg",
+        "logo": "https://heritage.mapmyhyd.com/brand/charminar-logo.png",
       },
     ],
   };
