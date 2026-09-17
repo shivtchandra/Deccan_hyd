@@ -799,7 +799,7 @@ body::after {
   
   /* Desktop Place Details Right Drawer Panel */
   .scrim {
-    background: rgba(43, 33, 25, 0.18);
+    display: none !important;
   }
   .sheet {
     position: absolute !important;

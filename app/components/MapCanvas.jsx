@@ -314,7 +314,7 @@ export default function MapCanvas({
       const visited = passport?.visited?.[s.id];
       const c = eraColor(s.era);
       const size = 52;
-      const stateKey = `hero:${s.id}:${active}:${visited}:${c}:${s.name}:${s.hasPhoto}`;
+      const stateKey = `hero:${s.id}:${visited}:${c}:${s.name}:${s.hasPhoto}`;
       nextMarkerKeys.add(s.id);
 
       const existing = spotMarkersRef.current.get(s.id);
@@ -391,7 +391,32 @@ export default function MapCanvas({
         spotMarkersRef.current.delete(id);
       }
     }
-  }, [sites, selectedId, passport, routeIds, ready, tick, isTimeTravel]);
+  }, [sites, passport, routeIds, ready, tick, isTimeTravel]);
+
+  // Seamless active pin state updates without DOM destruction or image reloads
+  useEffect(() => {
+    for (const [id, item] of spotMarkersRef.current.entries()) {
+      const active = id === selectedId;
+      item.marker.setZIndexOffset(active ? 1000 : 0);
+      const el = item.marker.getElement();
+      if (el) {
+        const pinEl = el.querySelector(".photo-pin");
+        if (pinEl) {
+          pinEl.classList.toggle("active", active);
+        }
+      }
+    }
+    for (const [key, item] of areaMarkersRef.current.entries()) {
+      const active = key === `spot:${selectedId}`;
+      const el = item.marker.getElement();
+      if (el) {
+        const pinEl = el.querySelector(".photo-pin");
+        if (pinEl) {
+          pinEl.classList.toggle("active", active);
+        }
+      }
+    }
+  }, [selectedId]);
 
   // Reactive flyTo when selectedId is chosen or loaded from URL
   const prevFlySiteRef = useRef(null);

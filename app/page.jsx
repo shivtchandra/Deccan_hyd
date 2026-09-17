@@ -487,15 +487,6 @@ export default function Page() {
     mapApi.current.fitRoute(bounds);
   }, [selectedPeriodId, sites]);
 
-  // Sync map to site selection
-  useEffect(() => {
-    if (!selectedId || !mapApi.current) return;
-    
-    const site = sitesById.get(selectedId);
-    if (!site) return;
-    
-    mapApi.current.flyTo(site.lat, site.lng, 16);
-  }, [selectedId, sitesById]);
 
   // Cinematic Documentary Chapters for Time Travel Camera Moves & Subtitles
   const activeDocChapter = useMemo(() => {
