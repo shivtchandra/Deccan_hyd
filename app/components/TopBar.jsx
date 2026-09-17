@@ -40,17 +40,21 @@ export default function TopBar({
 
   return (
     <header className={`dhm-top${variant === "desktop" ? " dhm-top-desktop" : " material edge-below"}`}>
-      <div className="dhm-brand-area" onClick={() => setQ && setQ("")} style={{ cursor: "pointer" }}>
-        <div className="dhm-mark" aria-hidden="true" style={{ position: "relative" }}>
-          <Icon name="gateway" size={17} width={1.8} color="var(--accent-deep)" />
+      <div className="dhm-brand-area" onClick={() => setQ && setQ("")} style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: 9 }}>
+        <div className="dhm-mark" aria-hidden="true" style={{ position: "relative", width: 30, height: 30, borderRadius: 8, overflow: "hidden", border: "1px solid var(--line)", background: "#FAF6EE", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 1px 3px rgba(43,33,25,0.08)" }}>
+          <img
+            src="/brand/charminar-logo.png"
+            alt="Deccan Heritage Logo"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
           {eraKey && (
             <span
               style={{
                 position: "absolute",
-                bottom: -2,
-                right: -2,
-                width: 7,
-                height: 7,
+                bottom: 1,
+                right: 1,
+                width: 6.5,
+                height: 6.5,
                 borderRadius: "50%",
                 background: `var(--era-${eraKey}, var(--accent))`,
                 border: "1.5px solid var(--cream-hi)",
