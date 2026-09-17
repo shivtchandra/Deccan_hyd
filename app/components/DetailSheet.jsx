@@ -147,7 +147,7 @@ export default function DetailSheet({
           <div style={{ width: 40, height: 4, borderRadius: 2, background: "var(--line)", margin: "0 auto" }} />
         </div>
 
-        <div className="dhm-detail" style={{ overflowY: "auto", padding: "0 18px calc(90px + env(safe-area-inset-bottom, 0px))" }}>
+        <div className="dhm-detail" style={{ overflowY: "auto", padding: "16px 16px calc(90px + env(safe-area-inset-bottom, 0px))" }}>
           {pending && !site && (
             <div style={{ padding: 40, textAlign: "center", color: "var(--muted)" }}>
               <span className="swirl" style={{ display: "inline-block" }}>
@@ -170,7 +170,7 @@ export default function DetailSheet({
                     <img
                       src={thenPhoto.url}
                       alt={`Archival view of ${site.name}`}
-                      style={{ objectPosition: "center 20%" }}
+                      style={{ objectPosition: "center 25%" }}
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:12px;padding:20px;text-align:center;">Historical image unavailable</div>';
@@ -184,7 +184,7 @@ export default function DetailSheet({
                       style={{
                         width: containerWidth ? `${containerWidth}px` : "100%",
                         maxWidth: "none",
-                        objectPosition: "center 20%",
+                        objectPosition: "center 25%",
                       }}
                       onError={(e) => {
                         e.target.style.display = 'none';
@@ -203,21 +203,8 @@ export default function DetailSheet({
                   className="dhm-hero"
                   onClick={() => site.photos?.[0]?.url && setLightboxUrl(site.photos[0].url)}
                   style={{
-                    position: "relative",
-                    width: "100%",
-                    aspectRatio: "16 / 10",
-                    minHeight: 200,
-                    maxHeight: 280,
-                    borderRadius: "var(--r-md)",
-                    border: "1px solid var(--line)",
-                    boxShadow: "var(--e1)",
-                    margin: "0 0 16px",
-                    cursor: site.photos?.[0]?.url ? "pointer" : "default",
                     background: eraColor(site.era),
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflow: "hidden",
+                    cursor: site.photos?.[0]?.url ? "pointer" : "default",
                   }}
                   title={site.photos?.[0]?.url ? "Click to view full uncropped photo" : undefined}
                 >
@@ -231,8 +218,8 @@ export default function DetailSheet({
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
-                        objectPosition: "center 20%",
-                        filter: "saturate(1.08) contrast(1.03)",
+                        objectPosition: "center 25%",
+                        filter: "saturate(1.06) contrast(1.02)",
                       }}
                     />
                   ) : (

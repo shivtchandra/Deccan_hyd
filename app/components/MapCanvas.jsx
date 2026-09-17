@@ -73,9 +73,13 @@ export default function MapCanvas({
       if (dead || !elRef.current || mapRef.current) return;
       LRef.current = L;
 
+      const initialSite = selectedId ? sites?.find((s) => s.id === selectedId) : null;
+      const initialCenter = initialSite ? [initialSite.lat, initialSite.lng] : HYD_CENTER;
+      const initialZoom = initialSite ? 16 : 12;
+
       const map = L.map(elRef.current, {
-        center: HYD_CENTER,
-        zoom: 12,
+        center: initialCenter,
+        zoom: initialZoom,
         zoomControl: false,
         attributionControl: false,
         minZoom: 10,
@@ -397,6 +401,17 @@ export default function MapCanvas({
       }
     }
   }, [sites, selectedId, passport, routeIds, ready, tick, isTimeTravel]);
+
+  // Reactive flyTo when selectedId is chosen or loaded from URL
+  const prevFlySiteRef = useRef(null);
+  useEffect(() => {
+    if (!selectedId || !mapRef.current || !sites?.length) return;
+    if (prevFlySiteRef.current === selectedId) return;
+    prevFlySiteRef.current = selectedId;
+    const target = sites.find((s) => s.id === selectedId);
+    if (!target) return;
+    mapRef.current.flyTo([target.lat, target.lng], 16, { animate: true, duration: 0.85 });
+  }, [selectedId, sites, ready]);
 
   // Vanished Places Layer: persistent diffing
   useEffect(() => {

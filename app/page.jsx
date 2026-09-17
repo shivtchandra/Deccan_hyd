@@ -28,9 +28,6 @@ import EraTransition from "./components/EraTransition.jsx";
 // import IsometricDiorama from "./components/IsometricDiorama.jsx";
 import { ERA_NARRATIVES } from "../lib/eraNarratives.js";
 
-// Central Heritage State System
-// This replaces the scattered state variables with a single coherent state model
-
 const initialHeritageState = {
   selectedPeriodId: null,
   selectedSiteId: null,
@@ -43,6 +40,31 @@ const initialHeritageState = {
   compareMode: "historical",
   showMapOverlay: false,
 };
+
+function getInitialHeritageState() {
+  if (typeof window === "undefined") return initialHeritageState;
+  try {
+    const sp = new URLSearchParams(window.location.search);
+    const site = sp.get("site");
+    const period = sp.get("period");
+    if (site) {
+      return {
+        ...initialHeritageState,
+        selectedSiteId: site,
+      };
+    }
+    if (period) {
+      const found = HISTORICAL_PERIODS.find((p) => p.id === period || p.name === period || p.short_title === period);
+      if (found) {
+        return {
+          ...initialHeritageState,
+          selectedPeriodId: found.id,
+        };
+      }
+    }
+  } catch {}
+  return initialHeritageState;
+}
 
 function heritageReducer(state, action) {
   switch (action.type) {
@@ -166,7 +188,14 @@ export default function Page() {
   const [filter, setFilter] = useState(emptyFilter);
   const [detail, setDetail] = useState({});
   const [detailPending, setDetailPending] = useState(false);
-  const [sheetOpen, setSheetOpen] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return Boolean(new URLSearchParams(window.location.search).get("site"));
+    } catch {
+      return false;
+    }
+  });
   const [passport, setPassport] = useState({ visited: {}, saved: {} });
   const [tab, setTab] = useState("map");
   const [routeIds, setRouteIds] = useState([]);
@@ -189,8 +218,8 @@ export default function Page() {
   const [selectedOriginId, setSelectedOriginId] = useState(null);
   const [explorersData, setExplorersData] = useState(null);
 
-  // Central Heritage State using reducer
-  const [heritageState, dispatch] = useReducer(heritageReducer, initialHeritageState);
+  // Central Heritage State using reducer with initial URL state
+  const [heritageState, dispatch] = useReducer(heritageReducer, null, getInitialHeritageState);
 
   const mapApi = useRef(null);
 
@@ -213,7 +242,7 @@ export default function Page() {
     (site) => {
       if (!site || !mapApi.current) return;
       mapApi.current.flyTo(site.lat, site.lng, 16);
-      setSelectedId(site.id);
+      dispatch({ type: "SELECT_SITE", siteId: site.id });
       setSheetOpen(true);
     },
     []
@@ -240,15 +269,18 @@ export default function Page() {
       .catch(() => {});
 
     const sp = new URLSearchParams(window.location.search);
+    const hasExplicitUrlParams = sp.toString().length > 0;
     let savedState = {};
-    try {
-      const stored = localStorage.getItem("dhm_active_state");
-      if (stored) savedState = JSON.parse(stored);
-    } catch {}
+    if (!hasExplicitUrlParams) {
+      try {
+        const stored = localStorage.getItem("dhm_active_state");
+        if (stored) savedState = JSON.parse(stored);
+      } catch {}
+    }
 
     const urlTab = sp.get("tab") || savedState.tab;
-    const site = sp.get("site") || savedState.site;
-    const period = sp.get("period") || savedState.period;
+    const site = sp.get("site") || (hasExplicitUrlParams ? null : savedState.site);
+    const period = sp.get("period") || (hasExplicitUrlParams ? null : savedState.period);
     const trail = sp.get("trail");
     const diorama = sp.get("diorama") || savedState.diorama;
     const origin = sp.get("origin") || savedState.origin;
@@ -263,13 +295,20 @@ export default function Page() {
     if (origin) {
       setOriginChapterOpen(true);
     }
-    if (site) {
-      dispatch({ type: "SELECT_SITE", siteId: site });
-      setSheetOpen(true);
-    }
     if (period) {
       const found = HISTORICAL_PERIODS.find((p) => p.id === period || p.name === period || p.short_title === period);
       if (found) dispatch({ type: "SELECT_PERIOD", periodId: found.id });
+    }
+    if (site) {
+      dispatch({ type: "SELECT_SITE", siteId: site });
+      setSheetOpen(true);
+      setTab("map");
+      fetch(`/api/sites/${site}`)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          if (data) setDetail((m) => ({ ...m, [site]: data }));
+        })
+        .catch(() => {});
     }
     if (trail) {
       const found = HERITAGE_TRAILS.find((t) => t.id === trail || t.slug === trail);
@@ -540,7 +579,11 @@ export default function Page() {
   // ---- handlers ----
   const handleReady = useCallback((api) => {
     mapApi.current = api;
-  }, []);
+    if (selectedId) {
+      const s = sitesById.get(selectedId);
+      if (s) api.flyTo(s.lat, s.lng, 16);
+    }
+  }, [selectedId, sitesById]);
 
   const handleSelect = (id) => {
     dispatch({ type: "SELECT_SITE", siteId: id });
@@ -656,7 +699,7 @@ export default function Page() {
     flash("Pin set.");
   };
 
-  const currentSite = selectedId ? detail[selectedId] : null;
+  const currentSite = selectedId ? (detail[selectedId] || sitesById.get(selectedId) || null) : null;
   const visitedCount = Object.keys(passport.visited).length;
 
   return (
