@@ -60,12 +60,50 @@ export default function HeritageSearch({
 
         <div className="search-results-list">
           {!query.trim() ? (
-            <div style={{ padding: "20px 14px", color: "var(--cream-dim)", fontSize: 13, textAlign: "center" }}>
-              Try searching for <b style={{ color: "var(--cream)" }}>Charminar</b>, <b style={{ color: "var(--cream)" }}>Chowmahalla</b>, <b style={{ color: "var(--cream)" }}>Afzal Darwaza</b>, <b style={{ color: "var(--cream)" }}>Musi</b>, or <b style={{ color: "var(--cream)" }}>Nizam</b>.
+            <div className="dhm-search-poetic-card">
+              <div className="dhm-search-vignette-wrap">
+                <img
+                  src="/charminar-field-note.png"
+                  alt="Charminar Field Note"
+                  className="dhm-search-vignette-img"
+                />
+              </div>
+              <div className="dhm-search-poetic-quote">
+                “Across minarets, riverbanks, and granite fortresses — 500 years of Deccan stories await.”
+              </div>
+              <div className="dhm-search-chips-label">Popular Heritage Explorations:</div>
+              <div className="dhm-search-chips-row">
+                {["Charminar", "Golconda", "Qutb Shahi", "Chowmahalla", "Paigah", "Musi River", "Gates"].map((tag) => (
+                  <button
+                    key={tag}
+                    className="dhm-search-chip"
+                    onClick={() => setQuery(tag)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
           ) : !hasResults ? (
-            <div style={{ padding: "24px 14px", color: "var(--cream-dim)", fontSize: 13, textAlign: "center" }}>
-              No historical records found for "{query}".
+            <div className="dhm-search-no-results">
+              <div style={{ fontSize: 24, marginBottom: 8 }}>📜</div>
+              <div style={{ color: "var(--cream)", fontWeight: 600, fontSize: 14 }}>
+                No historical records found for "{query}"
+              </div>
+              <p style={{ color: "var(--cream-dim)", fontSize: 12.5, margin: "6px 0 14px" }}>
+                Try searching by dynasty, landmark name, or architectural style.
+              </p>
+              <div className="dhm-search-chips-row" style={{ justifyContent: "center" }}>
+                {["Charminar", "Golconda", "Toli Masjid", "Falaknuma"].map((tag) => (
+                  <button
+                    key={tag}
+                    className="dhm-search-chip"
+                    onClick={() => setQuery(tag)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
           ) : (
             <>

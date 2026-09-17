@@ -5,6 +5,7 @@ import { ERAS, eraLabel, eraColor, typeLabel, statusLabel, ACCESS, photoUrl, hav
 import { Icon, TypeIcon } from "./Icons.jsx";
 import { enrichSiteRecord } from "../../lib/heritageData.js";
 import DeccanPatternBg from "./DeccanPatternBg.jsx";
+import PostcardModal from "./PostcardModal.jsx";
 
 // Draggable bottom sheet with three snaps. Photo hero / Then ↔ Now slider,
 // era/type/status badges, summary, significance, facts, sources, and actions.
@@ -24,6 +25,8 @@ export default function DetailSheet({
 }) {
   const [snap, setSnap] = useState("half");
   const [sliderPos, setSliderPos] = useState(50);
+  const [heroTab, setHeroTab] = useState("photo");
+  const [postcardOpen, setPostcardOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const sliderRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -158,8 +161,32 @@ export default function DetailSheet({
 
           {site && (
             <>
-              {/* THEN ↔ NOW Comparison Slider / Hero Image */}
-              {hasThenNow ? (
+              {/* Photo Mode Switcher */}
+              <div className="dhm-hero-mode-bar">
+                <button
+                  className={`dhm-hero-mode-pill ${heroTab === "photo" ? "active" : ""}`}
+                  onClick={() => setHeroTab("photo")}
+                >
+                  📷 Photo
+                </button>
+                <button
+                  className={`dhm-hero-mode-pill ${heroTab === "fieldnote" ? "active" : ""}`}
+                  onClick={() => setHeroTab("fieldnote")}
+                >
+                  ✒️ Field Note
+                </button>
+                {hasThenNow && (
+                  <button
+                    className={`dhm-hero-mode-pill ${heroTab === "thennow" ? "active" : ""}`}
+                    onClick={() => setHeroTab("thennow")}
+                  >
+                    ⏳ Then & Now
+                  </button>
+                )}
+              </div>
+
+              {/* Multi-Mode Hero Display */}
+              {heroTab === "thennow" && hasThenNow ? (
                 <div
                   ref={sliderRef}
                   className="dhm-then-now-wrap"
@@ -197,6 +224,50 @@ export default function DetailSheet({
                   </div>
                   <div className="dhm-then-badge">THEN · {thenPhoto.year}</div>
                   <div className="dhm-now-badge">NOW</div>
+                </div>
+              ) : heroTab === "fieldnote" ? (
+                <div
+                  className="dhm-hero dhm-hero-fieldnote"
+                  onClick={() => setPostcardOpen(true)}
+                  title="Click to view vintage postcard"
+                  style={{ cursor: "pointer", background: "#FAF6EE" }}
+                >
+                  {site.id === "charminar" ? (
+                    <img
+                      src="/charminar-field-note.png"
+                      alt={`${site.name} Archival Field Note`}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        padding: "8px",
+                      }}
+                    />
+                  ) : (
+                    <div className="dhm-generic-fieldnote-wrap">
+                      {site.photos?.[0]?.url && (
+                        <img
+                          src={site.photos[0].url}
+                          alt={site.name}
+                          className="dhm-fn-sketch-img"
+                        />
+                      )}
+                      <div className="dhm-fn-overlay">
+                        <div className="dhm-fn-tag">DECCAN ARCHIVE • {eraLabel(site.era)}</div>
+                        <div className="dhm-fn-title">{site.name}</div>
+                        <div className="dhm-fn-meta">
+                          <span>{site.lat ? `${site.lat.toFixed(3)}°N, ${site.lng?.toFixed(3)}°E` : "Deccan"}</span>
+                          <span>•</span>
+                          <span>Built c. {site.startYear || site.yearBuilt || "Historic"}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <div className="dhm-hero-expand-badge">
+                    <span>🎴 Open Postcard</span>
+                  </div>
                 </div>
               ) : (
                 <div
@@ -456,11 +527,18 @@ export default function DetailSheet({
                   />
                   {passportState === "saved" ? "Saved" : "Save"}
                 </button>
+                <button
+                  className="dhm-btn pressable-sm"
+                  onClick={() => setPostcardOpen(true)}
+                  title="Generate Vintage Postcard"
+                >
+                  <span style={{ fontSize: 13 }}>🎴</span>
+                  Postcard
+                </button>
                 <button className="dhm-btn ghost pressable-sm" onClick={() => onAddToRoute(site.id)} disabled={inRoute}>
                   <Icon name="route" size={15} width={2} color="var(--ink-soft)" />
                   {inRoute ? "In route" : "Add to route"}
                 </button>
-
               </div>
 
               {/* Sources */}
@@ -487,6 +565,11 @@ export default function DetailSheet({
           )}
         </div>
       </div>
+
+      {/* Vintage Postcard Modal */}
+      {postcardOpen && site && (
+        <PostcardModal site={site} onClose={() => setPostcardOpen(false)} />
+      )}
 
       {/* Lightbox Modal for Uncropped Full Photo View */}
       {lightboxUrl && site && (

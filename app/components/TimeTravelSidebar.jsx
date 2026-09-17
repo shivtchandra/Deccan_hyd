@@ -53,10 +53,22 @@ export default function TimeTravelSidebar({
       </div>
 
       {/* Active Chapter Card */}
-      <div className="dhm-tt-active-card">
-        <div className="dhm-tt-card-era">{activeChapter.era}</div>
-        <h3 className="dhm-tt-card-title">{activeChapter.title}</h3>
-        <p className="dhm-tt-card-desc">{activeChapter.text}</p>
+      <div className="dhm-tt-active-card dhm-tt-active-illustrated">
+        <div className="dhm-tt-card-vignette">
+          {activeChapter.era === "Qutb Shahi" ? (
+            <img src="/charminar-field-note.png" alt="Qutb Shahi Era" className="dhm-tt-vignette-img" />
+          ) : (
+            <div className="dhm-tt-era-stamp-badge">
+              <span style={{ fontSize: 20 }}>📜</span>
+              <span className="dhm-tt-stamp-text">ERA ARCHIVE</span>
+            </div>
+          )}
+        </div>
+        <div className="dhm-tt-card-info">
+          <div className="dhm-tt-card-era-badge">{activeChapter.era}</div>
+          <h3 className="dhm-tt-card-title">{activeChapter.title}</h3>
+          <p className="dhm-tt-card-desc">{activeChapter.text}</p>
+        </div>
       </div>
 
       {/* Chapter Navigation List */}
