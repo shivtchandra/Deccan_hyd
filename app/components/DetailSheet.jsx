@@ -241,8 +241,8 @@ export default function DetailSheet({
                         inset: 0,
                         width: "100%",
                         height: "100%",
-                        objectFit: "contain",
-                        padding: "8px",
+                        objectFit: "cover",
+                        objectPosition: "center center",
                       }}
                     />
                   ) : (

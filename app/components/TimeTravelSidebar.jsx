@@ -15,6 +15,17 @@ export const DOCUMENTARY_CHAPTERS = [
   { start: 1998, end: 2026, yearJump: 2000, center: [17.4250, 78.4200], zoom: 12.5, title: "1998: Cyberabad & Modern Era", era: "Modern IT", text: "Cyber Towers & HITEC City propel Hyderabad into a premier global technology powerhouse." },
 ];
 
+const ERA_IMAGE_MAP = {
+  1591: "/charminar-field-note.png",
+  1687: "/brand/era-1687.png",
+  1724: "/brand/era-1724.png",
+  1798: "/brand/era-1798.png",
+  1869: "/brand/era-1869.png",
+  1908: "/brand/era-1908.png",
+  1948: "/brand/era-1948.png",
+  2000: "/brand/era-1998.png",
+};
+
 export default function TimeTravelSidebar({
   selectedYear,
   onSelectYear,
@@ -55,14 +66,11 @@ export default function TimeTravelSidebar({
       {/* Active Chapter Card */}
       <div className="dhm-tt-active-card dhm-tt-active-illustrated">
         <div className="dhm-tt-card-vignette">
-          {activeChapter.era === "Qutb Shahi" ? (
-            <img src="/charminar-field-note.png" alt="Qutb Shahi Era" className="dhm-tt-vignette-img" />
-          ) : (
-            <div className="dhm-tt-era-stamp-badge">
-              <span style={{ fontSize: 20 }}>📜</span>
-              <span className="dhm-tt-stamp-text">ERA ARCHIVE</span>
-            </div>
-          )}
+          <img
+            src={ERA_IMAGE_MAP[activeChapter.yearJump] || "/charminar-field-note.png"}
+            alt={activeChapter.title}
+            className="dhm-tt-vignette-img"
+          />
         </div>
         <div className="dhm-tt-card-info">
           <div className="dhm-tt-card-era-badge">{activeChapter.era}</div>
@@ -77,12 +85,27 @@ export default function TimeTravelSidebar({
         <div className="dhm-tt-chapter-list">
           {DOCUMENTARY_CHAPTERS.map((ch) => {
             const isActive = activeChapter.title === ch.title;
+            const imgUrl = ERA_IMAGE_MAP[ch.yearJump];
             return (
               <button
                 key={ch.title}
                 className={`dhm-tt-chapter-btn ${isActive ? "active" : ""}`}
                 onClick={() => onSelectYear(ch.yearJump)}
               >
+                {imgUrl && (
+                  <img
+                    src={imgUrl}
+                    alt={ch.title}
+                    style={{
+                      width: 22,
+                      height: 22,
+                      borderRadius: 4,
+                      objectFit: "cover",
+                      flexShrink: 0,
+                      marginRight: 6,
+                    }}
+                  />
+                )}
                 <span className="dhm-tt-ch-year">{ch.yearJump}</span>
                 <span className="dhm-tt-ch-name">{ch.title.split(":")[1] || ch.title}</span>
               </button>
