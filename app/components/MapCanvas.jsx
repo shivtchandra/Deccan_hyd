@@ -58,9 +58,11 @@ export default function MapCanvas({
   const onSelectRef = useRef(onSelect);
   const onPickRef = useRef(onPick);
   const onSelectVanishedRef = useRef(onSelectVanished);
+  const onReadyRef = useRef(onReady);
   onSelectRef.current = onSelect;
   onPickRef.current = onPick;
   onSelectVanishedRef.current = onSelectVanished;
+  onReadyRef.current = onReady;
 
   const [ready, setReady] = useState(0);
   const [tick, setTick] = useState(0);
@@ -114,8 +116,8 @@ export default function MapCanvas({
       meLayerRef.current = L.layerGroup().addTo(map);
       setReady((n) => n + 1);
 
-      if (onReady) {
-        onReady({
+      if (onReadyRef.current) {
+        onReadyRef.current({
           flyTo: (lat, lng, zoom = 16) => {
             if (!mapRef.current || !LRef.current) return;
             mapRef.current.flyTo([lat, lng], zoom, {
@@ -137,7 +139,7 @@ export default function MapCanvas({
       mapRef.current?.remove();
       mapRef.current = null;
     };
-  }, [onReady]);
+  }, []);
 
   useEffect(() => {
     if (elRef.current) elRef.current.style.cursor = pickMode ? "crosshair" : "";
