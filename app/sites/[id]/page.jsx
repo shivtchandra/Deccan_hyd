@@ -327,7 +327,7 @@ export default async function SitePage({ params }) {
             <span>Deccan Heritage Map</span>
           </Link>
           <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-            <Link href="/" style={{ color: "var(--ink-soft)", fontSize: 13, textDecoration: "none", fontWeight: 600 }}>
+            <Link href="/" className="site-detail-back-link" style={{ color: "var(--ink-soft)", fontSize: 13, textDecoration: "none", fontWeight: 600 }}>
               ← All Sites
             </Link>
             <Link href={`/?site=${site.id}`} className="pressable-sm" style={{ background: color, color: "#fff", padding: "7px 16px", borderRadius: 999, fontWeight: 700, textDecoration: "none", fontSize: 13, whiteSpace: "nowrap", boxShadow: "var(--e1)" }}>

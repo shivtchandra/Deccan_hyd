@@ -2840,8 +2840,14 @@ body::after {
   border-radius: var(--r-md);
 }
 
+/* Site detail header responsive styling */
+.site-detail-back-link {
+  display: inline-flex;
+  align-items: center;
+}
 
-
-
-
-
+@media (max-width: 640px) {
+  .site-detail-back-link {
+    display: none !important;
+  }
+}

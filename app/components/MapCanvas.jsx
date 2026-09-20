@@ -476,22 +476,6 @@ export default function MapCanvas({
         const tooltipContent = `<div style="font-family:inherit;font-size:12px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:4px;">${clockSvg("var(--pop)")} ${v.name}</div><div style="font-size:10.5px;color:var(--accent);font-weight:600;">Active: ${v.start_year}–${v.end_year}</div>`;
         m.bindTooltip(tooltipContent, { direction: "top", offset: [0, -18], opacity: 0.95 });
 
-        const popupContent = `
-          <div style="padding: 4px 2px; font-family: system-ui, sans-serif; max-width: 240px;">
-            <div style="font-size: 10px; font-weight: 700; color: #a8441f; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;">
-              VANISHED PLACE (${v.start_year} – ${v.end_year})
-            </div>
-            <div style="font-size: 14px; font-weight: 700; color: #111; margin-bottom: 2px;">${v.name}</div>
-            <div style="font-size: 11px; color: #666; margin-bottom: 6px;">${v.current_location || "Old City"}</div>
-            <div style="font-size: 11.5px; color: #333; line-height: 1.35; border-top: 1px solid #eee; padding-top: 6px;">
-              <b>THEN:</b> ${v.what_existed}
-            </div>
-            <div style="font-size: 11.5px; color: #666; line-height: 1.35; margin-top: 4px;">
-              <b>TODAY:</b> ${v.what_exists_now}
-            </div>
-          </div>
-        `;
-        m.bindPopup(popupContent, { maxWidth: 260, className: "vanished-leaflet-popup" });
         m.addTo(layer);
         vanishedMarkersRef.current.set(v.id, { marker: m, key: stateKey });
       }

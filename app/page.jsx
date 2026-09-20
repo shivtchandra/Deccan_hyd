@@ -1046,44 +1046,69 @@ export default function Page() {
               position: "absolute",
               left: 14,
               right: 14,
-              top: 112,
-              bottom: 84,
+              bottom: "calc(16px + env(safe-area-inset-bottom, 0px))",
+              maxWidth: 480,
+              margin: "0 auto",
+              maxHeight: "min(440px, calc(100vh - 180px))",
               overflowY: "auto",
               padding: "16px 18px",
-              borderRadius: "var(--r-lg)",
+              borderRadius: "var(--r-xl)",
               border: "1.5px solid var(--pop)",
-              boxShadow: "var(--e3)",
-              zIndex: 420,
+              boxShadow: "0 12px 36px rgba(43, 33, 25, 0.22)",
+              zIndex: 500,
               display: "flex",
               flexDirection: "column",
-              gap: 8,
+              gap: 12,
+              animation: "sheetIn 0.25s cubic-bezier(0.2, 0.9, 0.3, 1) forwards",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-              <div>
-                <span style={{ fontSize: 10.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--pop)" }}>
-                  What Used to Be Here? ({selectedVanished.start_year} — {selectedVanished.end_year})
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--pop)", display: "inline-block", marginBottom: 2 }}>
+                  ⏳ What Used to Be Here? ({selectedVanished.start_year} — {selectedVanished.end_year})
                 </span>
-                <h3 style={{ margin: "2px 0 0 0", fontSize: 18, color: "var(--ink)" }}>{selectedVanished.name}</h3>
-                <div style={{ fontSize: 12, color: "var(--muted)" }}>{selectedVanished.current_location}</div>
+                <h3 style={{ margin: "2px 0 0 0", fontSize: 19, fontFamily: "var(--font-serif)", color: "var(--ink)", lineHeight: 1.25 }}>{selectedVanished.name}</h3>
+                <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>📍 {selectedVanished.current_location}</div>
               </div>
-              <button onClick={() => dispatch({ type: "SELECT_VANISHED", vanishedId: null })} aria-label="Close vanished place details" style={{ color: "var(--ink-soft)", fontSize: 16 }}>✕</button>
+              <button
+                onClick={() => dispatch({ type: "SELECT_VANISHED", vanishedId: null })}
+                aria-label="Close vanished place details"
+                className="pressable-sm"
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: "50%",
+                  background: "var(--cream)",
+                  border: "1px solid var(--line)",
+                  color: "var(--ink-soft)",
+                  fontSize: 14,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  flexShrink: 0,
+                }}
+              >
+                ✕
+              </button>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, background: "var(--cream-hi)", padding: 10, borderRadius: 8, border: "1px solid var(--line)" }}>
-              <div>
-                <div style={{ fontSize: 10, fontWeight: 700, color: "var(--pop)", textTransform: "uppercase" }}>THEN</div>
-                <div style={{ fontSize: 12, color: "var(--ink)", lineHeight: 1.35 }}>{selectedVanished.what_existed}</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, background: "var(--cream-hi)", padding: 12, borderRadius: "var(--r-md)", border: "1px solid var(--line)" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <div style={{ fontSize: 10.5, fontWeight: 800, color: "var(--pop)", textTransform: "uppercase", letterSpacing: "0.05em" }}>THEN</div>
+                <div style={{ fontSize: 12.5, color: "var(--ink)", lineHeight: 1.45 }}>{selectedVanished.what_existed}</div>
               </div>
-              <div>
-                <div style={{ fontSize: 10, fontWeight: 700, color: "var(--accent-deep)", textTransform: "uppercase" }}>TODAY</div>
-                <div style={{ fontSize: 12, color: "var(--ink-soft)", lineHeight: 1.35 }}>{selectedVanished.what_exists_now}</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 4, borderLeft: "1px solid var(--line)", paddingLeft: 10 }}>
+                <div style={{ fontSize: 10.5, fontWeight: 800, color: "var(--ink-soft)", textTransform: "uppercase", letterSpacing: "0.05em" }}>TODAY</div>
+                <div style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.45 }}>{selectedVanished.what_exists_now}</div>
               </div>
             </div>
 
-            <div style={{ fontSize: 12, color: "var(--ink-soft)", lineHeight: 1.4 }}>
-              <b>Reason for change: </b>{selectedVanished.reason_for_change}
-            </div>
+            {selectedVanished.reason_for_change && (
+              <div style={{ fontSize: 12, color: "var(--ink-soft)", lineHeight: 1.45, background: "var(--cream)", padding: "8px 12px", borderRadius: "var(--r-sm)" }}>
+                <b style={{ color: "var(--ink)" }}>Reason for change: </b>{selectedVanished.reason_for_change}
+              </div>
+            )}
           </div>
         )}
 
