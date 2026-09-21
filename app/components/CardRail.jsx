@@ -60,7 +60,20 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
             >
               <div className="dhm-card-list-thumb">
                 {s.hasPhoto ? (
-                  <img src={thumbUrl(s.id)} width="52" height="52" alt={s.name} loading="lazy" style={{ width: 52, height: 52, objectFit: "cover", aspectRatio: "1 / 1" }} />
+                  <img
+                    src={thumbUrl(s.id)}
+                    width="52"
+                    height="52"
+                    alt={s.name}
+                    loading="lazy"
+                    onError={(e) => {
+                      if (!e.currentTarget.dataset.fallback) {
+                        e.currentTarget.dataset.fallback = "true";
+                        e.currentTarget.src = photoUrl(s.id);
+                      }
+                    }}
+                    style={{ width: 52, height: 52, objectFit: "cover", aspectRatio: "1 / 1" }}
+                  />
                 ) : (
                   <TypeIcon type={s.type} size={22} width={1.4} color="rgba(255,255,255,0.9)" />
                 )}
@@ -141,7 +154,20 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
           >
             <div style={{ height: 96, background: color, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
               {s.hasPhoto ? (
-                <img src={thumbUrl(s.id)} width="224" height="96" alt={s.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%", filter: "saturate(1.05) contrast(1.02)" }} />
+                <img
+                  src={thumbUrl(s.id)}
+                  width="224"
+                  height="96"
+                  alt={s.name}
+                  loading="lazy"
+                  onError={(e) => {
+                    if (!e.currentTarget.dataset.fallback) {
+                      e.currentTarget.dataset.fallback = "true";
+                      e.currentTarget.src = photoUrl(s.id);
+                    }
+                  }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%", filter: "saturate(1.05) contrast(1.02)" }}
+                />
               ) : (
                 <TypeIcon type={s.type} size={40} width={1.4} color="rgba(255,255,255,0.9)" />
               )}
