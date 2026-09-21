@@ -114,7 +114,8 @@
     "connections": [
       "charminar",
       "badshahi-ashurkhana",
-      "chowmahalla-palace"
+      "chowmahalla-palace",
+      "premamati-mosque"
     ],
     "sources": [
       {
@@ -1698,7 +1699,8 @@
     ],
     "connections": [
       "golconda-fort",
-      "qutb-shahi-tombs"
+      "qutb-shahi-tombs",
+      "premamati-mosque"
     ],
     "sources": [
       {
@@ -3537,6 +3539,100 @@
         "credit": "Wikimedia Commons",
         "licence": "CC BY-SA 4.0",
         "source": "https://commons.wikimedia.org/wiki/File:Telangana_Martyrs_Memorial1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "premamati-mosque",
+    "name": "Premamati Mosque (Qutb Shahi Masjid)",
+    "altNames": [
+      "Premamati Masjid",
+      "Pema Mati Mosque",
+      "Qutb Shahi Mosque Ibrahim Bagh",
+      "Ibrahim Bagh ki Masjid"
+    ],
+    "lat": 17.3795,
+    "lng": 78.3796,
+    "era": "qutb-shahi",
+    "yearBuilt": "c. 1560–1610",
+    "type": "mosque",
+    "status": "state-protected",
+    "access": "free",
+    "area": "Ibrahim Bagh",
+    "summary": "A pre-Hyderabad Qutb Shahi masterpiece in Ibrahim Bagh. Begun under Ibrahim Quli Qutb Shah as the planned grand mosque for a new capital that was abandoned for water shortage, it later served as the architectural scale prototype for Makkah Masjid.",
+    "story": "Predating the founding of Hyderabad (1591), the Premamati Mosque was commissioned around 1560 by Ibrahim Quli Qutb Shah as the grand congregational mosque for a planned royal city in Ibrahim Bagh, west of Golconda Fort. When the new city scheme was abandoned due to acute water scarcity, Sultan Muhammad Quli Qutb Shah shifted the capital to the banks of the Musi River instead. In the early 17th century, royal architects used this solid pink-granite structure to test the structural engineering of monumental arches and vaulting before erecting the colossal Makkah Masjid in the city center. Featuring 5 grand facade arches, Kakatiya-inspired frizzle stone carvings, and 10 concealed ceiling domes, it was later associated in local lore with Premamati (Pema Mati), the celebrated Hindu consort and court artist of Sultan Abdullah Qutb Shah.",
+    "architect": "Ibrahim Quli Qutb Shah (commissioned); later used by Qutb Shahi royal master builders as Makkah Masjid prototype",
+    "people": [
+      {
+        "name": "Ibrahim Quli Qutb Shah",
+        "role": "4th Qutb Shahi sultan who initiated the mosque and the planned Ibrahim Bagh city"
+      },
+      {
+        "name": "Muhammad Quli Qutb Shah",
+        "role": "sultan who relocated the capital to the Musi River after the Ibrahim Bagh site faced water shortage"
+      },
+      {
+        "name": "Premamati (Pema Mati)",
+        "role": "famed court dancer and Hindu consort of Sultan Abdullah Qutb Shah, for whom the mosque was named in folklore"
+      },
+      {
+        "name": "Ghulam Yazdani",
+        "role": "Nizam's Chief Archaeologist who documented its architectural prototype link in 1924"
+      }
+    ],
+    "events": [
+      {
+        "year": 1560,
+        "description": "Construction begun by Ibrahim Quli Qutb Shah as the central Jama Masjid for a planned new city at Ibrahim Bagh"
+      },
+      {
+        "year": 1591,
+        "description": "Capital project shifted to the Musi River (founding Hyderabad) after water shortage halted Ibrahim Bagh's urban expansion"
+      },
+      {
+        "year": 1617,
+        "description": "Served as structural prototype to test granite arch spans and roof vaults prior to constructing Makkah Masjid"
+      },
+      {
+        "year": 1924,
+        "description": "Surveyed and documented in detail by Nizam's Archaeological Department under Ghulam Yazdani"
+      },
+      {
+        "year": 2016,
+        "description": "Extensively conserved and restored by the Telangana Archaeology and Museums Department"
+      }
+    ],
+    "connections": [
+      "mecca-masjid",
+      "taramati-baradari",
+      "golconda-fort",
+      "qutb-shahi-tombs"
+    ],
+    "sources": [
+      {
+        "label": "Wikipedia: Premamati Mosque",
+        "url": "https://en.wikipedia.org/wiki/Premamati_Mosque"
+      },
+      {
+        "label": "Archaeology Report of Nizam's Dominions (1924, Ghulam Yazdani)",
+        "url": "https://ignca.gov.in/Asi_data/15317.pdf"
+      },
+      {
+        "label": "Deccan Chronicle (Ather Moin)",
+        "url": "https://www.deccanchronicle.com/nation/current-affairs/081018/ibrahim-bagh-mosque-is-macca-masjid-model.html"
+      }
+    ],
+    "wikidata": "Q121236797",
+    "wikipedia": "https://en.wikipedia.org/wiki/Premamati_Mosque",
+    "addedBy": "research",
+    "verifiedAt": "2026-09-21",
+    "needsReview": false,
+    "photos": [
+      {
+        "url": "/photos/premamati-mosque.jpg",
+        "credit": "Wikimedia Commons",
+        "licence": "CC BY-SA 4.0",
+        "source": "https://en.wikipedia.org/wiki/Premamati_Mosque"
       }
     ]
   }
