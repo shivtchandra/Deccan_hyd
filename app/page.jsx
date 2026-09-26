@@ -27,7 +27,7 @@ import EraGuide from "./components/EraGuide.jsx";
 import EraTransition from "./components/EraTransition.jsx";
 // Disabled for now — 2.5D Charminar puzzle / street experience
 // import CharminarExperience from "./components/charminar/CharminarExperience.jsx";
-import ReelPlayer from "./components/reel/ReelPlayer.jsx";
+// import ReelPlayer from "./components/reel/ReelPlayer.jsx"; // reel not shipped yet
 import { ERA_NARRATIVES } from "../lib/eraNarratives.js";
 
 const initialHeritageState = {
@@ -305,10 +305,10 @@ export default function Page() {
     if (origin) {
       setOriginChapterOpen(true);
     }
-    const reel = sp.get("reel");
-    if (reel === "true" || reel === "1") {
-      setShowReel(true);
-    }
+    // const reel = sp.get("reel");
+    // if (reel === "true" || reel === "1") {
+    //   setShowReel(true);
+    // }
     if (period) {
       const found = HISTORICAL_PERIODS.find((p) => p.id === period || p.name === period || p.short_title === period);
       if (found) dispatch({ type: "SELECT_PERIOD", periodId: found.id });
@@ -831,7 +831,7 @@ export default function Page() {
               justifyContent: "flex-end",
             }}
           >
-            {/* Reel Launcher */}
+            {/* Reel Launcher — disabled until reel components are shipped
             <button
               type="button"
               onClick={() => setShowReel(true)}
@@ -871,6 +871,7 @@ export default function Page() {
                 30s
               </span>
             </button>
+            */}
 
             {/* Mystery Launcher — 2.5D Charminar puzzle disabled for now
             <button
@@ -1258,9 +1259,9 @@ export default function Page() {
         */}
 
         {/* Video-Shotcraft 9:16 Cinematic Promotional Reel Modal */}
-        {showReel && (
+        {/* {showReel && (
           <ReelPlayer onClose={() => setShowReel(false)} />
-        )}
+        )} */}
 
         {/* Routes Tab */}
         {tab === "routes" && (
