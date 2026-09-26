@@ -406,6 +406,8 @@ export default function Page() {
     return result.sort((a, b) => scoreOf(b) - scoreOf(a));
   }, [sites, filter, heritageState.mode, selectedPeriodId, selectedYear]);
 
+  const isAreaLore = tab === "explore" && exploreSubTab === "area-names";
+
   const activeVanishedPlaces = useMemo(() => {
     if (selectedYear !== null) {
       return VANISHED_PLACES.filter((v) => v.start_year <= selectedYear && v.end_year >= selectedYear);
@@ -924,7 +926,7 @@ export default function Page() {
           <div className="loading">Loading Hyderabad’s heritage…</div>
         ) : (
           <MapCanvas
-            sites={filtered}
+            sites={isAreaLore ? [] : filtered}
             routeStops={routeStops}
             selectedId={selectedId}
             onSelect={(id) => {
@@ -937,7 +939,7 @@ export default function Page() {
             onPick={onMapPick}
             onReady={handleReady}
             userLoc={userLoc}
-            vanishedPlaces={activeVanishedPlaces}
+            vanishedPlaces={isAreaLore ? [] : activeVanishedPlaces}
             selectedVanished={selectedVanished}
             onSelectVanished={handleSelectVanished}
             activeMapOverlayId={showMapOverlay ? selectedHistoricalMapId : null}
@@ -951,7 +953,7 @@ export default function Page() {
             }}
             baseTile={baseTile}
             isTimeTravel={selectedYear !== null}
-            areaPlaces={(tab === "explore" && exploreSubTab === "area-names") || (selectedAreaId && tab === "map") ? AREA_ETYMOLOGIES : []}
+            areaPlaces={isAreaLore || (selectedAreaId && tab === "map") ? AREA_ETYMOLOGIES : []}
             selectedAreaId={selectedAreaId}
             onSelectArea={(area) => setSelectedAreaId(area?.id || null)}
           />
