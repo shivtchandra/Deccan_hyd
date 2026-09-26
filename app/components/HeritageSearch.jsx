@@ -86,7 +86,6 @@ export default function HeritageSearch({
             </div>
           ) : !hasResults ? (
             <div className="dhm-search-no-results">
-              <div style={{ fontSize: 24, marginBottom: 8 }}>📜</div>
               <div style={{ color: "var(--cream)", fontWeight: 600, fontSize: 14 }}>
                 No historical records found for "{query}"
               </div>

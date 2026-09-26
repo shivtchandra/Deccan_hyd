@@ -39,12 +39,16 @@ export default function MapCanvas({
   onTrailStopSelect = null,
   baseTile = "standard",
   isTimeTravel = false,
+  areaPlaces = [],
+  selectedAreaId = null,
+  onSelectArea = null,
 }) {
   const elRef = useRef(null);
   const mapRef = useRef(null);
   const baseTileRef = useRef(null);
   const spotLayerRef = useRef(null);
   const vanishedLayerRef = useRef(null);
+  const areaPlacesLayerRef = useRef(null);
   const overlayLayerRef = useRef(null);
   const routeLayerRef = useRef(null);
   const meLayerRef = useRef(null);
@@ -113,6 +117,7 @@ export default function MapCanvas({
       routeLayerRef.current = L.layerGroup().addTo(map);
       spotLayerRef.current = L.layerGroup().addTo(map);
       vanishedLayerRef.current = L.layerGroup().addTo(map);
+      areaPlacesLayerRef.current = L.layerGroup().addTo(map);
       meLayerRef.current = L.layerGroup().addTo(map);
       setReady((n) => n + 1);
 
@@ -488,6 +493,97 @@ export default function MapCanvas({
       }
     }
   }, [vanishedPlaces, selectedVanished, ready]);
+
+  // Area Lore Places Layer (Toponymy)
+  const areaPlacesMarkersRef = useRef(new Map());
+  const onSelectAreaRef = useRef(onSelectArea);
+  useEffect(() => {
+    onSelectAreaRef.current = onSelectArea;
+  }, [onSelectArea]);
+
+  useEffect(() => {
+    const L = LRef.current, layer = areaPlacesLayerRef.current, map = mapRef.current;
+    if (!L || !layer || !map) return;
+
+    if (!areaPlaces || !areaPlaces.length) {
+      for (const item of areaPlacesMarkersRef.current.values()) {
+        layer.removeLayer(item.marker);
+      }
+      areaPlacesMarkersRef.current.clear();
+      return;
+    }
+
+    const nextAreaIds = new Set();
+    areaPlaces.forEach((area) => {
+      if (!area.coordinates?.lat || !area.coordinates?.lng) return;
+      nextAreaIds.add(area.id);
+      const active = selectedAreaId === area.id;
+      const stateKey = `${area.id}:${active}`;
+      const existing = areaPlacesMarkersRef.current.get(area.id);
+
+      const html = `<div class="area-place-marker${active ? " active" : ""}"><span class="area-place-dot"></span><span class="area-place-name">${area.name}</span></div>`;
+
+      if (existing) {
+        if (existing.key !== stateKey) {
+          const icon = L.divIcon({
+            className: "",
+            iconSize: null,
+            iconAnchor: [30, 14],
+            html,
+          });
+          existing.marker.setIcon(icon);
+          existing.marker.setZIndexOffset(active ? 2000 : 900);
+          existing.key = stateKey;
+        }
+      } else {
+        const icon = L.divIcon({
+          className: "",
+          iconSize: null,
+          iconAnchor: [30, 14],
+          html,
+        });
+        const m = L.marker([area.coordinates.lat, area.coordinates.lng], {
+          icon,
+          zIndexOffset: active ? 2000 : 900,
+        }).on("click", () => {
+          onSelectAreaRef.current?.(area);
+        });
+
+        const rootsStr = (area.roots || []).map((r) => `<b>${r.term}</b> (${r.meaning})`).join(" · ");
+        const popupHtml = `
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px;">
+            ${area.name} ${area.teluguName ? `<span style="font-family:'Outfit',sans-serif;font-size:11px;color:var(--accent-deep);font-weight:600;margin-left:4px;">${area.teluguName}</span>` : ""}
+          </div>
+          ${rootsStr ? `<div style="font-size:10.5px;color:var(--muted);margin-bottom:6px;line-height:1.35;">${rootsStr}</div>` : ""}
+          <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.45;margin-bottom:8px;">${area.summary}</div>
+          ${area.relatedSiteId ? `<div style="font-size:10.5px;color:var(--accent-deep);font-weight:700;">Landmark: ${area.relatedSiteId}</div>` : ""}
+        `;
+        m.bindPopup(popupHtml, { maxWidth: 260, offset: [0, -10] });
+
+        m.addTo(layer);
+        areaPlacesMarkersRef.current.set(area.id, { marker: m, key: stateKey });
+      }
+    });
+
+    for (const [id, item] of areaPlacesMarkersRef.current.entries()) {
+      if (!nextAreaIds.has(id)) {
+        layer.removeLayer(item.marker);
+        areaPlacesMarkersRef.current.delete(id);
+      }
+    }
+  }, [areaPlaces, selectedAreaId, ready]);
+
+  // Reactive flyTo when selectedAreaId is updated
+  useEffect(() => {
+    if (!selectedAreaId || !mapRef.current || !areaPlaces?.length) return;
+    const target = areaPlaces.find((a) => a.id === selectedAreaId);
+    if (!target?.coordinates) return;
+    mapRef.current.flyTo([target.coordinates.lat, target.coordinates.lng], 15, { animate: true, duration: 0.85 });
+    const existing = areaPlacesMarkersRef.current.get(selectedAreaId);
+    if (existing) {
+      setTimeout(() => existing.marker.openPopup(), 400);
+    }
+  }, [selectedAreaId, areaPlaces, ready]);
 
   // Route Polyline and numbered badges
   useEffect(() => {

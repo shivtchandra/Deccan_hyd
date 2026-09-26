@@ -1,0 +1,8 @@
+# Walkable neighbourhood assets — pending integration
+
+Generated with built-in imagegen on 2026-09-24. Artistic interpretation of circa-1985 Hyderabad, not archival evidence. Existing playable scene is unchanged.
+
+- `game-street.png`: continuous 3:1 illustrated panorama, generated at 2172×724. Intended logical world: 4608×1536. Prompt: elevated orthographic Hyderabad street; Charminar and chai frontage left, bangle market middle, delivery/radio shops and residential courtyard right; continuous horizontal cobbled walking street; two reconnecting upper alleys; warm ink/gouache; no people, animals, text, or modern devices. Actual illustrated road is approximately y610–700 in normalized 1024-height coordinates. Navigation geometry currently represents the planned layout and MUST be aligned to actual pixels before enabling the renderer. The side alleys do not establish visible full loops in the generated image; resolve architecture and collision geometry together.
+- `game-residents.png`: transparent 4-column × 3-row atlas, 12 distinct appearances. Prompt requested a consistent elevated view and separate fully visible people: teal-shirt player with satchel; older chai seller; burgundy-sari seller; mustard-shirt parcel carrier; teal-sari elder; boy in russet shirt; gray-waistcoat elder; mustard salwar/green dupatta shopper; blue-shirt newspaper reader; lavender-sari woman; rust-shirt cricketer; indigo-sari basket carrier. This is an appearance atlas, not a completed directional animation atlas. Additional walk/action frames remain required.
+
+No assets have been wired into the existing live renderer. No claims of seamless gameplay or finished animation are made.

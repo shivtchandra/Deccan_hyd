@@ -26,7 +26,7 @@ export default function FilterBar({ filter, setFilter }) {
           fontWeight: 700,
         }}
       >
-        <span>⏳ What Used to Be Here?</span>
+        <span>What Used to Be Here?</span>
       </button>
 
       {/* Karthik's Lesser Known Gems filter */}
@@ -41,7 +41,7 @@ export default function FilterBar({ filter, setFilter }) {
           fontWeight: 700,
         }}
       >
-        <span>📜 Lesser Known Gems (37)</span>
+        <span>Lesser Known Gems (37)</span>
       </button>
 
       <button

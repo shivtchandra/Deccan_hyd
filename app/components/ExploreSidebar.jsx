@@ -31,6 +31,8 @@ export default function ExploreSidebar({
   explorersData,
   onSelectSite,
   onFlyToLocation,
+  selectedAreaId,
+  onSelectArea,
 }) {
   const [catFilter, setCatFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -93,7 +95,7 @@ export default function ExploreSidebar({
               cursor: "pointer",
             }}
           >
-            <span style={{ fontSize: 13 }}>🏷️</span>
+            <Icon name="map" size={13} color={activeTab === "area-names" ? "var(--accent)" : "currentColor"} />
             Area Lore
           </button>
           <button
@@ -319,18 +321,28 @@ export default function ExploreSidebar({
                 No area name matching &ldquo;{areaQuery}&rdquo;
               </div>
             ) : (
-              filteredAreas.map((area) => (
-                <div
-                  key={area.id}
-                  style={{
-                    marginBottom: 12,
-                    padding: "12px 14px",
-                    borderRadius: "var(--r-md, 10px)",
-                    background: "#fff",
-                    border: "1px solid var(--line)",
-                    boxShadow: "var(--e1)",
-                  }}
-                >
+              filteredAreas.map((area) => {
+                const isSelected = selectedAreaId === area.id;
+                return (
+                  <div
+                    key={area.id}
+                    onClick={() => {
+                      onSelectArea?.(area);
+                      if (area.coordinates) {
+                        onFlyToLocation?.(area.coordinates, area.id);
+                      }
+                    }}
+                    style={{
+                      marginBottom: 12,
+                      padding: "12px 14px",
+                      borderRadius: "var(--r-md, 10px)",
+                      background: isSelected ? "var(--accent-wash)" : "#fff",
+                      border: isSelected ? "1.5px solid var(--accent)" : "1px solid var(--line)",
+                      boxShadow: isSelected ? "var(--e2)" : "var(--e1)",
+                      cursor: "pointer",
+                      transition: "all 0.15s ease",
+                    }}
+                  >
                   {/* Title & Scripts */}
                   <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 6 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -409,7 +421,7 @@ export default function ExploreSidebar({
                         marginBottom: 8,
                       }}
                     >
-                      <span style={{ fontWeight: 700 }}>💡 Myth Check: </span>
+                      <span style={{ fontWeight: 700 }}>Myth Check: </span>
                       {area.mythDebunked}
                     </div>
                   )}
@@ -434,14 +446,17 @@ export default function ExploreSidebar({
                           gap: 4,
                         }}
                       >
-                        <span>📍</span>
                         View Monument
                       </button>
                     )}
                     {area.coordinates && (
                       <button
-                        className="dhm-btn ghost pressable-sm"
-                        onClick={() => onFlyToLocation?.(area.coordinates)}
+                        className={`dhm-btn pressable-sm ${isSelected ? "primary" : "ghost"}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectArea?.(area);
+                          onFlyToLocation?.(area.coordinates, area.id);
+                        }}
                         style={{
                           fontSize: 11,
                           padding: "4px 10px",
@@ -453,13 +468,13 @@ export default function ExploreSidebar({
                           gap: 4,
                         }}
                       >
-                        <span>🗺️</span>
                         Fly to Area
                       </button>
                     )}
                   </div>
                 </div>
-              ))
+              );
+            })
             )}
           </div>
         </div>
@@ -517,8 +532,8 @@ export default function ExploreSidebar({
                     boxShadow: "var(--e1)",
                   }}
                 >
-                  <span style={{ width: 20, textAlign: "center", fontWeight: 800, fontSize: 12, color: i < 3 ? "var(--accent-deep)" : "var(--muted)" }}>
-                    {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : i + 1}
+                  <span style={{ width: 22, textAlign: "center", fontWeight: 800, fontSize: 11, color: i < 3 ? "var(--accent-deep)" : "var(--muted)" }}>
+                    #{i + 1}
                   </span>
                   <span style={{ flex: 1, fontWeight: 600, fontSize: 13, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {p.uid === explorersData.uid ? "You" : p.name}

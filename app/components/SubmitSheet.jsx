@@ -116,7 +116,7 @@ export default function SubmitSheet({ pin, onRequestPin, onClose, onDone }) {
                     {ERAS[submittedData.era]?.label || submittedData.era}
                   </span>
                   <span style={{ fontSize: 11.5, padding: "3px 8px", borderRadius: 6, background: "rgba(43, 33, 25, 0.05)", color: "var(--ink-soft)", fontFamily: "JetBrains Mono" }}>
-                    📍 {submittedData.lat.toFixed(4)}°, {submittedData.lng.toFixed(4)}°
+                    {submittedData.lat.toFixed(4)}°, {submittedData.lng.toFixed(4)}°
                   </span>
                 </div>
                 {submittedData.note && (
@@ -127,7 +127,7 @@ export default function SubmitSheet({ pin, onRequestPin, onClose, onDone }) {
               </div>
 
               <div style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.5, background: "rgba(42, 157, 143, 0.08)", padding: 12, borderRadius: 10, border: "1px solid rgba(42, 157, 143, 0.2)" }}>
-                💡 <b>What happens next?</b> An editor will verify the architectural details and coordinates. Once approved in the CMS, this monument will go live on the public atlas with documentary photography.
+                <b>What happens next?</b> An editor will verify the architectural details and coordinates. Once approved in the CMS, this monument will go live on the public atlas with documentary photography.
               </div>
 
               <div className="actions" style={{ marginTop: 8, display: "flex", gap: 10 }}>

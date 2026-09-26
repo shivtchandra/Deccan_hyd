@@ -23,6 +23,7 @@ import { VANISHED_PLACES, HISTORICAL_MAPS, HISTORICAL_PERIODS, HERITAGE_TRAILS, 
 import YearScrubber from "./components/YearScrubber.jsx";
 import TimeTravelSidebar from "./components/TimeTravelSidebar.jsx";
 import ExploreSidebar from "./components/ExploreSidebar.jsx";
+import { AREA_ETYMOLOGIES } from "../lib/areaEtymology.js";
 import EraGuide from "./components/EraGuide.jsx";
 import EraTransition from "./components/EraTransition.jsx";
 // Disabled for now — 2.5D Charminar puzzle / street experience
@@ -218,6 +219,7 @@ export default function Page() {
   const [activeDiorama, setActiveDiorama] = useState(null);
   const [exploreSubTab, setExploreSubTab] = useState("origins");
   const [selectedOriginId, setSelectedOriginId] = useState(null);
+  const [selectedAreaId, setSelectedAreaId] = useState(null);
   const [explorersData, setExplorersData] = useState(null);
   const [showReel, setShowReel] = useState(false);
 
@@ -761,6 +763,8 @@ export default function Page() {
             onTabChange={setExploreSubTab}
             selectedOriginId={selectedOriginId}
             onSelectOrigin={(id) => setSelectedOriginId(id)}
+            selectedAreaId={selectedAreaId}
+            onSelectArea={(area) => setSelectedAreaId(area?.id || null)}
             tab={tab}
             onNavTabChange={handleTabChange}
             visitedCount={visitedCount}
@@ -769,8 +773,8 @@ export default function Page() {
               handleSelect(siteId);
               handleTabChange("map");
             }}
-            onFlyToLocation={(coords) => {
-              handleTabChange("map");
+            onFlyToLocation={(coords, areaId) => {
+              if (areaId) setSelectedAreaId(areaId);
               if (mapApi.current && coords) mapApi.current.flyTo(coords.lat, coords.lng, 15);
             }}
           />
@@ -853,7 +857,6 @@ export default function Page() {
               }}
               title="Watch 30s Cinematic Reel (Video-Shotcraft)"
             >
-              <span style={{ fontSize: 15 }}>🎬</span>
               <span style={{ fontFamily: "var(--font-serif)", fontSize: 12.5, color: "var(--accent-deep)", fontWeight: 700 }}>
                 Watch Reel
               </span>
@@ -895,7 +898,6 @@ export default function Page() {
               }}
               title="Play The Nizam's Lost Heirloom Box Mystery in 1985 Charminar"
             >
-              <span style={{ fontSize: 16 }}>🕵️‍♂️</span>
               <span style={{ fontFamily: "var(--font-serif)", fontSize: 13, color: "var(--accent-deep)", fontWeight: 700 }}>
                 Charminar Mystery
               </span>
@@ -949,6 +951,9 @@ export default function Page() {
             }}
             baseTile={baseTile}
             isTimeTravel={selectedYear !== null}
+            areaPlaces={(tab === "explore" && exploreSubTab === "area-names") || (selectedAreaId && tab === "map") ? AREA_ETYMOLOGIES : []}
+            selectedAreaId={selectedAreaId}
+            onSelectArea={(area) => setSelectedAreaId(area?.id || null)}
           />
         )}
 
@@ -1183,10 +1188,10 @@ export default function Page() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--pop)", display: "inline-block", marginBottom: 2 }}>
-                  ⏳ What Used to Be Here? ({selectedVanished.start_year} — {selectedVanished.end_year})
+                  What Used to Be Here? ({selectedVanished.start_year} — {selectedVanished.end_year})
                 </span>
                 <h3 style={{ margin: "2px 0 0 0", fontSize: 19, fontFamily: "var(--font-serif)", color: "var(--ink)", lineHeight: 1.25 }}>{selectedVanished.name}</h3>
-                <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>📍 {selectedVanished.current_location}</div>
+                <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>{selectedVanished.current_location}</div>
               </div>
               <button
                 onClick={() => dispatch({ type: "SELECT_VANISHED", vanishedId: null })}
@@ -1285,16 +1290,18 @@ export default function Page() {
           />
         )}
 
-        {/* Explore Tab (Origins & Explorers) */}
+        {/* Explore Tab (Origins & Explorers) - Mobile full-screen view only; desktop uses ExploreSidebar + MapCanvas */}
         {tab === "explore" && (
-          <LeaderboardPanel
-            activeTab={exploreSubTab}
-            onTabChange={setExploreSubTab}
-            selectedOriginId={selectedOriginId}
-            onSelectOriginId={setSelectedOriginId}
-            onChapterChange={setOriginChapterOpen}
-            onExplorerStateReady={setExplorersData}
-          />
+          <div className="dhm-mobile-only">
+            <LeaderboardPanel
+              activeTab={exploreSubTab}
+              onTabChange={setExploreSubTab}
+              selectedOriginId={selectedOriginId}
+              onSelectOriginId={setSelectedOriginId}
+              onChapterChange={setOriginChapterOpen}
+              onExplorerStateReady={setExplorersData}
+            />
+          </div>
         )}
 
         {/* Passport Tab */}

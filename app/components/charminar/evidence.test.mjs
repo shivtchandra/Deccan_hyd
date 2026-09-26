@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {OBJECTS,inspectEvidence,restoreEvidence} from './evidence.mjs';
+const inspect=(p,id)=>{const o=OBJECTS.find(x=>x.id===id);return inspectEvidence(p,id,o);};
+test('real objects require proximity and evidence order',()=>{let p={step:0,seen:[]};assert.equal(inspectEvidence(p,'scrap',{x:0,y:0}).step,0);assert.equal(inspect(p,'door-home').step,0);for(const id of ['scrap','display-moon','moon-mark','door-home'])p=inspect(p,id);assert.equal(p.step,4);assert.equal(inspect(p,'door-home').step,4);});
+test('decoys add useful notes without losing progress',()=>{let p=inspect({step:0,seen:[]},'scrap');p=inspect(p,'display-sun');assert.equal(p.step,1);assert.ok(p.feedback.includes('reversed'));assert.deepEqual(restoreEvidence(JSON.stringify(p)).seen,p.seen);assert.equal(restoreEvidence('bad').step,0);});

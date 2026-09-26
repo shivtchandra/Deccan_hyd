@@ -80,7 +80,7 @@ export default function PassportPanel({ sites, passport, onPick }) {
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
                 {passport.badges?.['master-sleuth-charminar'] && (
                   <div style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.15), rgba(180,83,9,0.15))", border: "1.5px solid #d4af37", borderRadius: 20, padding: "7px 13px", display: "flex", alignItems: "center", gap: 7, fontSize: 12.5, fontWeight: 700, color: "#b45309" }}>
-                    <span>🦪</span> Master Sleuth (Charminar)
+                    <Icon name="trophy" size={14} width={2} color="#b45309" /> Master Sleuth (Charminar)
                   </div>
                 )}
                 {earned.map((m) => (
@@ -98,7 +98,7 @@ export default function PassportPanel({ sites, passport, onPick }) {
               <div className="t-over" style={{ color: "var(--muted)", margin: "20px 0 10px" }}>Special Honors</div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
                 <div style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.15), rgba(180,83,9,0.15))", border: "1.5px solid #d4af37", borderRadius: 20, padding: "7px 13px", display: "flex", alignItems: "center", gap: 7, fontSize: 12.5, fontWeight: 700, color: "#b45309" }}>
-                  <span>🦪</span> Master Sleuth (Charminar Heirloom Box)
+                  <Icon name="trophy" size={14} width={2} color="#b45309" /> Master Sleuth (Charminar Heirloom Box)
                 </div>
               </div>
             </>

@@ -167,20 +167,20 @@ export default function DetailSheet({
                   className={`dhm-hero-mode-pill ${heroTab === "photo" ? "active" : ""}`}
                   onClick={() => setHeroTab("photo")}
                 >
-                  📷 Photo
+                  Photo
                 </button>
                 <button
                   className={`dhm-hero-mode-pill ${heroTab === "fieldnote" ? "active" : ""}`}
                   onClick={() => setHeroTab("fieldnote")}
                 >
-                  ✒️ Field Note
+                  Field Note
                 </button>
                 {hasThenNow && (
                   <button
                     className={`dhm-hero-mode-pill ${heroTab === "thennow" ? "active" : ""}`}
                     onClick={() => setHeroTab("thennow")}
                   >
-                    ⏳ Then & Now
+                    Then & Now
                   </button>
                 )}
               </div>
@@ -266,7 +266,7 @@ export default function DetailSheet({
                     </div>
                   )}
                   <div className="dhm-hero-expand-badge">
-                    <span>🎴 Open Postcard</span>
+                    <span>Open Postcard</span>
                   </div>
                 </div>
               ) : (
@@ -299,7 +299,7 @@ export default function DetailSheet({
                   <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%)`, pointerEvents: "none" }} />
                   {site.photos?.[0]?.url && (
                     <div className="dhm-hero-expand-badge">
-                      <span>⛶ Full photo</span>
+                      <span>Full photo</span>
                     </div>
                   )}
                 </div>
@@ -358,7 +358,9 @@ export default function DetailSheet({
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span style={{ fontSize: 28 }}>🕵️‍♂️</span>
+                    <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#FDE68A", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Icon name="compass" size={20} color="#92400E" />
+                    </div>
                     <div>
                       <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                         <span style={{ fontSize: 13.5, fontWeight: 800, color: "#92400E" }}>
@@ -536,7 +538,6 @@ export default function DetailSheet({
                   onClick={() => setPostcardOpen(true)}
                   title="Generate Vintage Postcard"
                 >
-                  <span style={{ fontSize: 13 }}>🎴</span>
                   Postcard
                 </button>
                 <button className="dhm-btn ghost pressable-sm" onClick={() => onAddToRoute(site.id)} disabled={inRoute}>
@@ -561,7 +562,6 @@ export default function DetailSheet({
                 >
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 6 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <span style={{ fontSize: 15 }}>📜</span>
                       <span style={{ fontSize: 12, fontWeight: 700, color: "var(--accent-deep, #c2603a)", letterSpacing: "0.02em" }}>
                         Curated by {site.curatedBy}
                       </span>
