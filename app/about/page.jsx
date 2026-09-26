@@ -82,6 +82,30 @@ export default function About() {
       </section>
 
       <section style={{ marginBottom: 40 }}>
+        <h2 style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: 10 }}>Curator Credits & Community Collections</h2>
+        <p>
+          Special thanks to <strong>Karthik Vatsavayi</strong> for compiling and sharing the curated collection{" "}
+          <a
+            href="https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "#c2603a", fontWeight: 600 }}
+          >
+            &ldquo;(Lesser Known) Historic Sites of Hyderabad&rdquo; ↗
+          </a>
+          . His meticulous fieldwork brought 37 rare, overlooked monuments&mdash;including 2,300-year-old Iron Age cairns,
+          the 1417 CE Telunganaapura inscription, pre-Charminar Qutb Shahi tombs, and 200-year-old stepwells&mdash;onto this map.
+        </p>
+        <p style={{ marginTop: 10 }}>
+          We also thank the Hyderabad heritage community on{" "}
+          <a href="https://reddit.com/r/hyderabad" target="_blank" rel="noreferrer" style={{ color: "#c2603a" }}>
+            r/hyderabad
+          </a>{" "}
+          for photographic documentation of the restored Gachibowli stepwell and rich discussions on city toponymy.
+        </p>
+      </section>
+
+      <section style={{ marginBottom: 40 }}>
         <h2 style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: 10 }}>Corrections</h2>
         <p>
           Many records are marked unverified. If a date, location, or status is wrong&mdash;or a

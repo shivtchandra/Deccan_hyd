@@ -248,8 +248,9 @@ export default function IsometricDiorama({ onClose }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          flexWrap: "wrap",
           pointerEvents: "none",
-          gap: 10,
+          gap: "8px 10px",
         }}
       >
         {/* Left: Back to Heritage Map */}
@@ -270,6 +271,7 @@ export default function IsometricDiorama({ onClose }) {
             fontSize: 12,
             fontWeight: 700,
             cursor: "pointer",
+            flexShrink: 0,
           }}
         >
           <span>←</span>
@@ -288,7 +290,9 @@ export default function IsometricDiorama({ onClose }) {
             background: "#FAF4E9",
             border: "1px solid rgba(142, 119, 93, 0.45)",
             boxShadow: "0 4px 18px rgba(0, 0, 0, 0.22)",
-            maxWidth: "min(440px, calc(100% - 150px))",
+            flex: "1 1 200px",
+            minWidth: 0,
+            maxWidth: 440,
             cursor: "pointer",
           }}
           onClick={() => setActiveSecretModal(currentTarget)}
@@ -389,6 +393,8 @@ export default function IsometricDiorama({ onClose }) {
             display: "flex",
             alignItems: "center",
             gap: 6,
+            flexShrink: 0,
+            marginLeft: "auto",
           }}
         >
           {/* Day / Dusk / Lights Mode Toggle */}
@@ -574,11 +580,11 @@ export default function IsometricDiorama({ onClose }) {
             fontWeight: 700,
             pointerEvents: "none",
             letterSpacing: "0.02em",
-            maxWidth: "calc(100% - 120px)",
+            maxWidth: "calc(100% - 32px)",
             textAlign: "center",
           }}
         >
-          ✨ Hover over people, pushcarts & shops to speak · Click to interact & hear bazaar sounds
+          ✨ Tap people & shops to hear the bazaar
         </div>
       </div>
 

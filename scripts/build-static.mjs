@@ -37,6 +37,8 @@ const index = sites.map((s) => ({
   area: s.area || "",
   hasPhoto: existsSync(join(photosDir, `${s.id}.jpg`)) && statSync(join(photosDir, `${s.id}.jpg`)).size > 0,
   needsReview: !!s.needsReview,
+  curatedBy: s.curatedBy || null,
+  curatorNote: s.curatorNote || null,
 }));
 
 const detail = {};

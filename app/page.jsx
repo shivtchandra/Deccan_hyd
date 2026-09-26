@@ -25,7 +25,9 @@ import TimeTravelSidebar from "./components/TimeTravelSidebar.jsx";
 import ExploreSidebar from "./components/ExploreSidebar.jsx";
 import EraGuide from "./components/EraGuide.jsx";
 import EraTransition from "./components/EraTransition.jsx";
-// import IsometricDiorama from "./components/IsometricDiorama.jsx";
+// Disabled for now — 2.5D Charminar puzzle / street experience
+// import CharminarExperience from "./components/charminar/CharminarExperience.jsx";
+import ReelPlayer from "./components/reel/ReelPlayer.jsx";
 import { ERA_NARRATIVES } from "../lib/eraNarratives.js";
 
 const initialHeritageState = {
@@ -178,6 +180,7 @@ const emptyFilter = () => ({
   atRiskOnly: false,
   getawaysOnly: false,
   vanishedOnly: false,
+  curatedOnly: false,
   q: "",
 });
 
@@ -216,6 +219,7 @@ export default function Page() {
   const [exploreSubTab, setExploreSubTab] = useState("origins");
   const [selectedOriginId, setSelectedOriginId] = useState(null);
   const [explorersData, setExplorersData] = useState(null);
+  const [showReel, setShowReel] = useState(false);
 
   // Central Heritage State using reducer with initial URL state
   const [heritageState, dispatch] = useReducer(heritageReducer, null, getInitialHeritageState);
@@ -262,7 +266,7 @@ export default function Page() {
   // ---- load & restore persisted state ----
   useEffect(() => {
     setPassport(getState());
-    fetch("/sites-index.json")
+    fetch(`/sites-index.json?v=${Date.now()}`, { cache: "no-store" })
       .then((r) => r.json())
       .then((rows) => {
         setSites(Array.isArray(rows) ? rows : []);
@@ -288,18 +292,22 @@ export default function Page() {
     const site = sp.get("site") || (hasExplicitUrlParams ? null : savedState.site);
     const period = sp.get("period") || (hasExplicitUrlParams ? null : savedState.period);
     const trail = sp.get("trail");
-    const diorama = sp.get("diorama") || savedState.diorama;
+    // const diorama = sp.get("diorama") || savedState.diorama; // 2.5D puzzle disabled
     const origin = sp.get("origin") || savedState.origin;
     const r = decodeRoute(sp.get("r"));
 
     if (urlTab) {
       setTab(urlTab);
     }
-    if (diorama) {
-      setActiveDiorama(diorama);
-    }
+    // if (diorama) {
+    //   setActiveDiorama(diorama);
+    // }
     if (origin) {
       setOriginChapterOpen(true);
+    }
+    const reel = sp.get("reel");
+    if (reel === "true" || reel === "1") {
+      setShowReel(true);
     }
     if (period) {
       const found = HISTORICAL_PERIODS.find((p) => p.id === period || p.name === period || p.short_title === period);
@@ -334,7 +342,7 @@ export default function Page() {
     if (tab && tab !== "map") params.set("tab", tab);
     if (selectedId) params.set("site", selectedId);
     if (selectedPeriodId) params.set("period", selectedPeriodId);
-    if (activeDiorama) params.set("diorama", activeDiorama);
+    // if (activeDiorama) params.set("diorama", activeDiorama); // 2.5D puzzle disabled
     if (originChapterOpen) params.set("origin", "true");
     if (activeTrail?.id) params.set("trail", activeTrail.id);
 
@@ -348,7 +356,7 @@ export default function Page() {
         tab,
         site: selectedId,
         period: selectedPeriodId,
-        diorama: activeDiorama,
+        // diorama: activeDiorama, // 2.5D puzzle disabled
         origin: Boolean(originChapterOpen),
         trail: activeTrail?.id,
       }));
@@ -757,6 +765,14 @@ export default function Page() {
             onNavTabChange={handleTabChange}
             visitedCount={visitedCount}
             explorersData={explorersData}
+            onSelectSite={(siteId) => {
+              handleSelect(siteId);
+              handleTabChange("map");
+            }}
+            onFlyToLocation={(coords) => {
+              handleTabChange("map");
+              if (mapApi.current && coords) mapApi.current.flyTo(coords.lat, coords.lng, 15);
+            }}
           />
         ) : (
           <>
@@ -797,6 +813,107 @@ export default function Page() {
                 dispatch({ type: "SELECT_VANISHED", vanishedId: null });
               }}
             />
+          </div>
+        )}
+
+        {/* Floating Controls: Charminar Mystery & Video-Shotcraft Reel */}
+        {tab === "map" && selectedYear === null && (
+          <div
+            style={{
+              position: "absolute",
+              top: 14,
+              right: 14,
+              zIndex: 800,
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              flexWrap: "wrap",
+              justifyContent: "flex-end",
+            }}
+          >
+            {/* Reel Launcher */}
+            <button
+              type="button"
+              onClick={() => setShowReel(true)}
+              className="pressable"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                background: "var(--cream-hi)",
+                border: "1.5px solid var(--accent)",
+                borderRadius: "var(--r-pill)",
+                padding: "6px 12px",
+                color: "var(--ink)",
+                fontFamily: "var(--font-sans)",
+                fontWeight: 700,
+                fontSize: 12,
+                boxShadow: "var(--e2)",
+                cursor: "pointer",
+              }}
+              title="Watch 30s Cinematic Reel (Video-Shotcraft)"
+            >
+              <span style={{ fontSize: 15 }}>🎬</span>
+              <span style={{ fontFamily: "var(--font-serif)", fontSize: 12.5, color: "var(--accent-deep)", fontWeight: 700 }}>
+                Watch Reel
+              </span>
+              <span
+                style={{
+                  background: "var(--accent-deep)",
+                  color: "#fff",
+                  fontSize: 9.5,
+                  padding: "1px 6px",
+                  borderRadius: 8,
+                  fontWeight: 800,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                30s
+              </span>
+            </button>
+
+            {/* Mystery Launcher — 2.5D Charminar puzzle disabled for now
+            <button
+              type="button"
+              onClick={() => setActiveDiorama("charminar")}
+              className="pressable"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "var(--cream-hi)",
+                border: "1.5px solid var(--accent)",
+                borderRadius: "var(--r-pill)",
+                padding: "6px 14px",
+                color: "var(--ink)",
+                fontFamily: "var(--font-sans)",
+                fontWeight: 700,
+                fontSize: 12.5,
+                boxShadow: "var(--e2)",
+                cursor: "pointer",
+              }}
+              title="Play The Nizam's Lost Heirloom Box Mystery in 1985 Charminar"
+            >
+              <span style={{ fontSize: 16 }}>🕵️‍♂️</span>
+              <span style={{ fontFamily: "var(--font-serif)", fontSize: 13, color: "var(--accent-deep)", fontWeight: 700 }}>
+                Charminar Mystery
+              </span>
+              <span
+                style={{
+                  background: "var(--pop)",
+                  color: "#fff",
+                  fontSize: 10,
+                  padding: "2px 7px",
+                  borderRadius: 10,
+                  fontWeight: 800,
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                }}
+              >
+                4 Ciphers
+              </span>
+            </button>
+            */}
           </div>
         )}
 
@@ -1130,14 +1247,20 @@ export default function Page() {
               dispatch({ type: "SELECT_SITE", siteId: null });
             }}
             userLoc={userLoc}
-            onOpenDiorama={(id) => setActiveDiorama(id)}
+            // onOpenDiorama={(id) => setActiveDiorama(id)} // 2.5D puzzle disabled
           />
         )}
 
-        {/* 2.5D Isometric Illustrated Diorama Modal — commented out for now */}
-        {/* {activeDiorama && (
-          <IsometricDiorama onClose={() => setActiveDiorama(null)} />
-        )} */}
+        {/* 2.5D Isometric Illustrated Diorama Modal — disabled for now
+        {activeDiorama && (
+          <CharminarExperience onClose={() => setActiveDiorama(null)} />
+        )}
+        */}
+
+        {/* Video-Shotcraft 9:16 Cinematic Promotional Reel Modal */}
+        {showReel && (
+          <ReelPlayer onClose={() => setShowReel(false)} />
+        )}
 
         {/* Routes Tab */}
         {tab === "routes" && (

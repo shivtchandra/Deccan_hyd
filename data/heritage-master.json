@@ -781,9 +781,77 @@
       ],
       "published": true,
       "featured": true
+    },
+    {
+      "id": "karthik-lesser-known-hyd",
+      "title": "Lesser Known Heritage of Hyderabad",
+      "slug": "karthik-lesser-known-hyd",
+      "subtitle": "Curated by Karthik Vatsavayi",
+      "description": "An expedition across forgotten jewels of the Deccan — prehistoric megalithic cairns, 700-year-old Kakatiya hero stones, cave temples, historic stepwells, and ancient rock art.",
+      "period_id": "1591-foundation",
+      "hero_image": "/photos/gachibowli-stepwell.jpg",
+      "distance_km": 28.5,
+      "estimated_duration_min": 360,
+      "difficulty": "Multi-stop driving and walking expedition",
+      "stops": [
+        {
+          "site_id": "gachibowli-stepwell",
+          "order": 1,
+          "title": "Gachibowli Stepwell",
+          "narrative": "The 200-year-old limestone-masonry stepwell that gave the iconic neighbourhood of Gachibowli its name, restored in 2021."
+        },
+        {
+          "site_id": "khajaguda-cave-temple",
+          "order": 2,
+          "title": "Anantha Padmanabha Swamy Cave Temple",
+          "narrative": "An 800-year-old rock-cut cave shrine nestled within the prehistoric Khajaguda granite rock formations."
+        },
+        {
+          "site_id": "shaikpet-sarai",
+          "order": 3,
+          "title": "Shaikpet Sarai & Mosque",
+          "narrative": "A monumental 30-room stone caravanserai built during the reign of Abdullah Qutb Shah for royal travelers."
+        },
+        {
+          "site_id": "telunganaapura-tellapur-inscription",
+          "order": 4,
+          "title": "Telunganaapura Inscription (1417 CE)",
+          "narrative": "The earliest known Telugu stone epigraph containing the word 'Telangana', recording a public stepwell."
+        },
+        {
+          "site_id": "amin-khan-tomb-patancheru",
+          "order": 5,
+          "title": "Amin Khan Tomb (1568)",
+          "narrative": "Built 23 years before Charminar, this octagonal tomb of Ibrahim Qutb Shah's minister is one of the oldest in the region."
+        },
+        {
+          "site_id": "hasmathpet-cairns",
+          "order": 6,
+          "title": "Hasmathpet Megalithic Cairns",
+          "narrative": "2,300-year-old Iron Age stone circles and cists documenting Hyderabad's deep prehistoric roots."
+        }
+      ],
+      "sources": [
+        {
+          "title": "(Lesser Known) Historic Sites of Hyderabad",
+          "author": "Karthik Vatsavayi",
+          "year": 2026,
+          "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
+        }
+      ],
+      "published": true,
+      "featured": true
     }
   ],
   "sources": [
+    {
+      "id": "src-karthik-vatsavayi",
+      "title": "(Lesser Known) Historic Sites of Hyderabad",
+      "publisher": "Karthik Vatsavayi (Google Maps Heritage Curation)",
+      "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw",
+      "source_type": "Curated Community Dataset",
+      "notes": "Field documentation and geotagged collection of 37 lesser-known prehistoric, medieval, and Asaf Jahi monuments across Hyderabad."
+    },
     {
       "id": "src-asi",
       "title": "Archaeological Survey of India (ASI) Hyderabad Circle Records",

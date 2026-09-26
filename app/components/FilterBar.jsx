@@ -29,6 +29,21 @@ export default function FilterBar({ filter, setFilter }) {
         <span>⏳ What Used to Be Here?</span>
       </button>
 
+      {/* Karthik's Lesser Known Gems filter */}
+      <button
+        className="chip pressable-sm"
+        data-on={filter.curatedOnly}
+        onClick={() => setFilter((f) => ({ ...f, curatedOnly: !f.curatedOnly }))}
+        style={{
+          borderColor: filter.curatedOnly ? "var(--accent-deep)" : "#D97706",
+          background: filter.curatedOnly ? "var(--accent-deep)" : "#FEF3C7",
+          color: filter.curatedOnly ? "#FFF" : "#92400E",
+          fontWeight: 700,
+        }}
+      >
+        <span>📜 Lesser Known Gems (37)</span>
+      </button>
+
       <button
         className="chip danger pressable-sm"
         data-on={filter.atRiskOnly}

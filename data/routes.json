@@ -26,5 +26,12 @@
     "era": "british-residency",
     "siteIds": ["secunderabad-clock-tower", "st-johns-church-secunderabad", "all-saints-church", "spanish-mosque", "bansilalpet-stepwell"],
     "notes": "~2 hrs, some legs need an auto. Garrison churches, the parade-ground clock tower and a restored baoli."
+  },
+  {
+    "id": "lesser-known-west",
+    "title": "Lesser Known Western Trail",
+    "era": "earlier",
+    "siteIds": ["gachibowli-stepwell", "khajaguda-cave-temple", "shaikpet-sarai", "telunganaapura-tellapur-inscription", "amin-khan-tomb-patancheru"],
+    "notes": "Curated by Karthik Vatsavayi. From 200-year-old stepwells and 800-year cave shrines to early epigraphs and pre-Charminar tombs."
   }
 ]

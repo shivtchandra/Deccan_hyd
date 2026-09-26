@@ -336,8 +336,8 @@ export default function DetailSheet({
                 )}
               </div>
 
-              {/* 2.5D Isometric Diorama Exploration Trigger — commented out for now
-              {site.id === "charminar" && onOpenDiorama && (
+              {/* 2.5D Charminar puzzle / diorama trigger disabled for now */}
+              {false && site.id === "charminar" && onOpenDiorama && (
                 <button
                   type="button"
                   onClick={() => onOpenDiorama(site.id)}
@@ -347,31 +347,35 @@ export default function DetailSheet({
                     alignItems: "center",
                     justifyContent: "space-between",
                     width: "100%",
-                    padding: "12px 16px",
+                    padding: "14px 16px",
                     margin: "0 0 16px",
                     borderRadius: "var(--r-md)",
-                    background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)",
-                    border: "1.5px solid var(--accent)",
-                    boxShadow: "var(--e1)",
+                    background: "linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%)",
+                    border: "2px solid #D97706",
+                    boxShadow: "0 4px 14px rgba(217, 119, 6, 0.18)",
                     cursor: "pointer",
                     textAlign: "left",
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span style={{ fontSize: 24 }}>🏰</span>
+                    <span style={{ fontSize: 28 }}>🕵️‍♂️</span>
                     <div>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: "var(--accent-deep)" }}>
-                        Explore 2.5D Living Diorama
+                      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                        <span style={{ fontSize: 13.5, fontWeight: 800, color: "#92400E" }}>
+                          Play: The Nizam's Heirloom Mystery
+                        </span>
+                        <span style={{ fontSize: 10, fontWeight: 800, background: "#D97706", color: "#FFF", padding: "1px 6px", borderRadius: 4, letterSpacing: 0.5 }}>
+                          PUZZLE GAME
+                        </span>
                       </div>
-                      <div style={{ fontSize: 11, color: "var(--ink-soft)" }}>
-                        Illustrated isometric precinct & Wimmelbild quest
+                      <div style={{ fontSize: 11.5, color: "#78350F", marginTop: 2 }}>
+                        Walk 1985 Charminar bazaar & crack 4 tactile cipher locks · +150 pts
                       </div>
                     </div>
                   </div>
-                  <span style={{ fontSize: 16, color: "var(--accent-deep)", fontWeight: 800 }}>→</span>
+                  <span style={{ fontSize: 18, color: "#92400E", fontWeight: 800 }}>→</span>
                 </button>
               )}
-              */}
 
               {site.summary && (
                 <div style={{ marginBottom: 14 }}>
@@ -540,6 +544,70 @@ export default function DetailSheet({
                   {inRoute ? "In route" : "Add to route"}
                 </button>
               </div>
+
+              {/* Curator Credit Badge & Field Note */}
+              {site.curatedBy && (
+                <div
+                  style={{
+                    margin: "14px 0 10px",
+                    padding: "12px 14px",
+                    borderRadius: "var(--r-md, 10px)",
+                    background: "linear-gradient(135deg, rgba(194,96,58,0.08) 0%, rgba(217,119,6,0.06) 100%)",
+                    border: "1px solid rgba(194,96,58,0.22)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 6,
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 6 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <span style={{ fontSize: 15 }}>📜</span>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: "var(--accent-deep, #c2603a)", letterSpacing: "0.02em" }}>
+                        Curated by {site.curatedBy}
+                      </span>
+                    </div>
+                    {site.curationUrl && (
+                      <a
+                        href={site.curationUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 600,
+                          color: "var(--accent-deep, #c2603a)",
+                          textDecoration: "underline",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 3,
+                        }}
+                        title="View list on Google Maps"
+                      >
+                        Google Maps List ↗
+                      </a>
+                    )}
+                  </div>
+                  {site.curatorNote && (
+                    <div
+                      style={{
+                        fontSize: 12.5,
+                        fontStyle: "italic",
+                        color: "var(--ink, #2b2119)",
+                        lineHeight: 1.45,
+                        paddingLeft: 8,
+                        borderLeft: "2.5px solid var(--accent, #c2603a)",
+                        margin: "4px 0 2px",
+                      }}
+                    >
+                      &ldquo;{site.curatorNote}&rdquo;
+                    </div>
+                  )}
+                  {site.curationSource && (
+                    <div style={{ fontSize: 10.5, color: "var(--muted, #7c6f5e)", fontWeight: 500 }}>
+                      Collection: <em>{site.curationSource}</em>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Sources */}
               {(site.sources?.length > 0 || site.wikipedia) && (

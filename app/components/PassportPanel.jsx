@@ -78,11 +78,28 @@ export default function PassportPanel({ sites, passport, onPick }) {
             <>
               <div className="t-over" style={{ color: "var(--muted)", margin: "20px 0 10px" }}>Badges</div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
+                {passport.badges?.['master-sleuth-charminar'] && (
+                  <div style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.15), rgba(180,83,9,0.15))", border: "1.5px solid #d4af37", borderRadius: 20, padding: "7px 13px", display: "flex", alignItems: "center", gap: 7, fontSize: 12.5, fontWeight: 700, color: "#b45309" }}>
+                    <span>🦪</span> Master Sleuth (Charminar)
+                  </div>
+                )}
                 {earned.map((m) => (
                   <div key={m.n} style={{ background: "var(--cream-hi)", border: "1.5px solid var(--pop)", borderRadius: 20, padding: "7px 13px", display: "flex", alignItems: "center", gap: 7, fontSize: 12.5, fontWeight: 600, color: "var(--pop-deep)" }}>
                     <Icon name={m.icon} size={14} width={2} color="var(--pop-deep)" /> {m.label}
                   </div>
                 ))}
+              </div>
+            </>
+          )}
+
+          {/* Master Sleuth badge if no milestone badges yet */}
+          {earned.length === 0 && passport.badges?.['master-sleuth-charminar'] && (
+            <>
+              <div className="t-over" style={{ color: "var(--muted)", margin: "20px 0 10px" }}>Special Honors</div>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
+                <div style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.15), rgba(180,83,9,0.15))", border: "1.5px solid #d4af37", borderRadius: 20, padding: "7px 13px", display: "flex", alignItems: "center", gap: 7, fontSize: 12.5, fontWeight: 700, color: "#b45309" }}>
+                  <span>🦪</span> Master Sleuth (Charminar Heirloom Box)
+                </div>
               </div>
             </>
           )}

@@ -1,6 +1,11 @@
 // Living Illustrated Wimmelbild City Atlas Engine for Old Hyderabad
 // Built upon uclab-potsdam/wimmelvis discovery architecture, singhanat/isometric-city navigation,
 // and whereismrkim.com aesthetic materiality and micro-vignette interactions.
+//
+// The background plate (charminar_plate.jpg) is deliberately EMPTY — not a single
+// person is painted into it. Every human in the scene is a sprite placed and moved
+// by this file. That's the whole reason the crowd can actually walk: nothing is ever
+// pasted on top of a frozen painted crowd.
 
 import {
   WIMMEL_RELICS,
@@ -9,6 +14,72 @@ import {
   SCENE_WIDTH,
   SCENE_HEIGHT,
 } from "./charminarCityData.js";
+
+// The 16 cut-out pedestrians. `faces` is the direction the figure is drawn
+// walking; sprites are mirrored when their path sends them the other way.
+// `scale` is natural height relative to the median figure (keeps the child small
+// and the cart-pusher bulky instead of normalising everyone to one height).
+const PEOPLE = [
+  { name: "person_01", faces: "left", scale: 1.18 },
+  { name: "person_02", faces: "left", scale: 1.14 },
+  { name: "person_03", faces: "right", scale: 1.13 },
+  { name: "person_04", faces: "left", scale: 1.14 },
+  { name: "person_05", faces: "right", scale: 1.06 },
+  { name: "person_06", faces: "left", scale: 0.81 },
+  { name: "person_07", faces: "right", scale: 1.08 },
+  { name: "person_08", faces: "left", scale: 1.26 },
+  { name: "person_09", faces: "left", scale: 1.02 },
+  { name: "person_10", faces: "right", scale: 1.03 },
+  { name: "person_11", faces: "right", scale: 1.03 },
+  { name: "person_12", faces: "right", scale: 1.02 },
+  { name: "person_13", faces: "right", scale: 1.05 },
+  { name: "person_14", faces: "left", scale: 1.0 },
+  { name: "person_15", faces: "right", scale: 0.99 },
+  { name: "person_16", faces: "left", scale: 1.02 },
+];
+
+// Where the six findable shopkeepers stand. Each is a stationary sprite drawn
+// onto the plate, so a relic's hit position is exact rather than eyeballed off
+// a painted figure. Their footprints are punched out of the walkable mask so
+// pedestrians walk around them instead of through them.
+// `x`/`y` is where the sprite's feet sit; `hitLift` raises the tap target to
+// the figure's body so clicking what you see registers. This is the ONLY place
+// relic positions are defined — the hit test derives from it too, so the drawn
+// stall and its tap target can never drift apart.
+const RELIC_PLACEMENTS = [
+  { id: "osmania_biscuit", x: 470, y: 880, height: 118, hitLift: 50 },
+  { id: "irani_chai_cup", x: 300, y: 1010, height: 104, hitLift: 45 },
+  { id: "lac_bangle", x: 690, y: 500, height: 96, hitLift: 40 },
+  { id: "ittar_vial", x: 1430, y: 345, height: 128, hitLift: 55 },
+  { id: "pearl_necklace", x: 1560, y: 585, height: 104, hitLift: 45 },
+  { id: "bidri_hookah", x: 1300, y: 900, height: 92, hitLift: 40 },
+];
+const RELIC_HIT_RADIUS = 52;
+
+const CROWD_SIZE = 330;
+// keep route seeds this far apart (scene units) so the crowd spreads over the
+// plaza instead of piling into clumps
+const MIN_SEED_GAP = 38;
+// 2:1 isometric street axes — walking along these reads as following the grid
+// of the painted streets rather than cutting across them.
+const ISO_DIRS = [
+  [2, 1],
+  [2, -1],
+  [-2, 1],
+  [-2, -1],
+].map(([x, y]) => {
+  const l = Math.hypot(x, y);
+  return [x / l, y / l];
+});
+
+// Deterministic PRNG so the crowd lays out identically on every load.
+function seededRandom(seed) {
+  let s = seed >>> 0;
+  return () => {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 4294967296;
+  };
+}
 
 export class IsometricCityEngine {
   constructor(canvasEl, callbacks = {}) {
@@ -35,8 +106,14 @@ export class IsometricCityEngine {
     this.hoverBuilding = null;
     this.focusedTarget = null;
 
-    // Master Illustrated Artwork
+    // Master Illustrated Artwork (empty plate) + the sprite crowd drawn over it
     this.wimmelImg = null;
+    this.peopleImgs = {};
+    this.relicImgs = {};
+    this.crowd = [];
+    this.mask = null;
+    this.maskW = 0;
+    this.maskH = 0;
     this.isLoaded = false;
     this.isDestroyed = false;
     this.animFrameId = null;
@@ -45,19 +122,7 @@ export class IsometricCityEngine {
     this.foundSecrets = new Set();
     this.timeMode = "day"; // "day", "golden", "night"
 
-    // Living Ambient Actors & Particles
-    this.steamPuffs = [];
-    this.pigeons = [];
-    this.dustMotes = [];
     this.pulseRipples = [];
-    this.autoExhaustPuffs = [];
-    this.sparkles = [];
-
-    // Dynamic Moving Actors (whereismrkim.com motion engine)
-    this.movingVehicles = [];
-    this.walkingPedestrians = [];
-    this.craftsmenVignettes = [];
-    this.animals = [];
 
     // Touch gesture pinch state
     this.initialPinchDistance = null;
@@ -66,22 +131,50 @@ export class IsometricCityEngine {
 
   // Initialize engine, load master artwork, populate ambient actors & motion graph, start 60fps loop
   async init() {
-    this.initAmbientParticles();
-    this.initLivingActors();
+    const loadImage = (src) =>
+      new Promise((resolve) => {
+        const im = new Image();
+        im.src = src;
+        im.onload = () => resolve(im);
+        im.onerror = () => resolve(null);
+      });
 
-    // Load authentic master Wimmelbild artwork
-    const img = new Image();
-    img.src = "/wimmelbild/hyderabad_wimmelbild.jpg";
-    await new Promise((resolve) => {
-      img.onload = () => {
-        this.wimmelImg = img;
-        this.isLoaded = true;
-        resolve();
-      };
-      img.onerror = () => {
-        resolve();
-      };
+    const [plate, maskImg, ...sprites] = await Promise.all([
+      loadImage("/wimmelbild/charminar_plate.jpg"),
+      loadImage("/wimmelbild/walkable_mask.png"),
+      ...PEOPLE.map((p) => loadImage(`/wimmelbild/people/${p.name}.png`)),
+      ...RELIC_PLACEMENTS.map((r) => loadImage(`/wimmelbild/relics/${r.id}.png`)),
+    ]);
+
+    this.wimmelImg = plate;
+    this.isLoaded = Boolean(plate);
+    PEOPLE.forEach((p, i) => {
+      if (sprites[i]) this.peopleImgs[p.name] = sprites[i];
     });
+    RELIC_PLACEMENTS.forEach((r, i) => {
+      const img = sprites[PEOPLE.length + i];
+      if (img) this.relicImgs[r.id] = img;
+    });
+
+    // Decode the walkable mask into a flat byte array once.
+    if (maskImg) {
+      const mc = document.createElement("canvas");
+      mc.width = maskImg.naturalWidth;
+      mc.height = maskImg.naturalHeight;
+      const mctx = mc.getContext("2d", { willReadFrequently: true });
+      mctx.drawImage(maskImg, 0, 0);
+      const px = mctx.getImageData(0, 0, mc.width, mc.height).data;
+      this.maskW = mc.width;
+      this.maskH = mc.height;
+      this.mask = new Uint8Array(mc.width * mc.height);
+      for (let i = 0; i < this.mask.length; i++) {
+        this.mask[i] = px[i * 4] > 127 ? 1 : 0;
+      }
+      // stalls occupy ground: keep the crowd out of them
+      RELIC_PLACEMENTS.forEach((r) => this.blockMaskEllipse(r.x, r.y, 60, 34));
+    }
+
+    this.initCrowd();
 
     if (this.isDestroyed) return;
 
@@ -91,301 +184,120 @@ export class IsometricCityEngine {
     this.startLoop();
   }
 
-  // Initialize living ambient particles
-  initAmbientParticles() {
-    // 1. Chai steam puffs at Nimrah Cafe samovar (x: 250, y: 720) & bakery oven (x: 340, y: 760)
-    this.steamPuffs = Array.from({ length: 9 }).map((_, i) => ({
-      originX: i % 2 === 0 ? 250 + (Math.random() * 14 - 7) : 340 + (Math.random() * 14 - 7),
-      originY: i % 2 === 0 ? 720 : 755,
-      x: 250,
-      y: 720 - (i % 5) * 12,
-      alpha: 0.65 - (i % 5) * 0.1,
-      size: 6 + (i % 5) * 2.2,
-      drift: (Math.random() - 0.4) * 0.35,
-    }));
-
-    // 2. Pigeons circling Charminar upper minarets in 3D perspective
-    this.pigeons = Array.from({ length: 9 }).map((_, i) => ({
-      angle: (i / 9) * Math.PI * 2,
-      radiusX: 120 + (i % 3) * 28,
-      radiusY: 60 + (i % 3) * 14,
-      speed: 0.016 + (i % 3) * 0.004,
-      altitudeOffset: (i % 4) * 12,
-      wingCycle: Math.random() * Math.PI * 2,
-    }));
-
-    // 3. Auto-rickshaw idling exhaust puffs at x: 740, y: 780 and x: 390, y: 550
-    this.autoExhaustPuffs = Array.from({ length: 6 }).map((_, i) => ({
-      originX: i < 3 ? 710 : 365,
-      originY: i < 3 ? 810 : 575,
-      x: i < 3 ? 710 : 365,
-      y: i < 3 ? 810 : 575,
-      alpha: 0.5 - (i % 3) * 0.12,
-      size: 4 + (i % 3) * 1.5,
-      vx: -(0.3 + Math.random() * 0.3),
-      vy: -(0.2 + Math.random() * 0.2),
-    }));
-
-    // 4. Glitter sparkles on Laad Bazaar bangles & Basra pearls
-    this.sparkles = [
-      { x: 540, y: 460, phase: 0 },
-      { x: 480, y: 430, phase: 1.5 },
-      { x: 420, y: 480, phase: 3.0 },
-      { x: 1400, y: 215, phase: 4.5 },
-      { x: 1480, y: 350, phase: 2.2 },
-    ];
-
-    // 5. Deccan sunlight golden dust motes
-    this.dustMotes = Array.from({ length: 22 }).map(() => ({
-      x: Math.random() * this.sceneWidth,
-      y: Math.random() * this.sceneHeight,
-      vx: (Math.random() - 0.3) * 0.4,
-      vy: (Math.random() - 0.5) * 0.3,
-      alpha: 0.2 + Math.random() * 0.4,
-      size: 1.5 + Math.random() * 2,
-    }));
+  // Mask lookup — is this scene coordinate real, standable pavement?
+  isWalkable(x, y) {
+    if (!this.mask) return true;
+    const mx = (x / this.sceneWidth) * this.maskW;
+    const my = (y / this.sceneHeight) * this.maskH;
+    if (mx < 0 || my < 0 || mx >= this.maskW || my >= this.maskH) return false;
+    return this.mask[(my | 0) * this.maskW + (mx | 0)] === 1;
   }
 
-  // Initialize Living Dynamic Motion Graph (whereismrkim.com actors & corridors)
-  initLivingActors() {
-    // 1. Moving Auto-Rickshaws along Waypoint Corridors
-    this.movingVehicles = [
-      {
-        id: "auto_east_west",
-        points: [
-          { x: 100, y: 810 },
-          { x: 450, y: 810 },
-          { x: 740, y: 810 },
-          { x: 1050, y: 810 },
-          { x: 1400, y: 810 },
-          { x: 1900, y: 810 },
-        ],
-        speed: 0.85,
-        progress: 0.1,
-        x: 100,
-        y: 810,
-        heading: 0,
-        color: "#EAB308", // Yellow Bajaj hood
-        exhaustTimer: 0,
-      },
-      {
-        id: "auto_north_south",
-        points: [
-          { x: 1040, y: 120 },
-          { x: 1040, y: 380 },
-          { x: 1040, y: 620 },
-          { x: 1040, y: 880 },
-          { x: 1040, y: 1050 },
-        ],
-        speed: 0.7,
-        progress: 0.45,
-        x: 1040,
-        y: 400,
-        heading: Math.PI / 2,
-        color: "#F59E0B",
-        exhaustTimer: 0,
-      },
-      {
-        id: "auto_laad_bazaar",
-        points: [
-          { x: 1800, y: 810 },
-          { x: 1350, y: 810 },
-          { x: 800, y: 810 },
-          { x: 300, y: 810 },
-        ],
-        speed: 0.65,
-        progress: 0.7,
-        x: 1350,
-        y: 810,
-        heading: Math.PI,
-        color: "#EF4444",
-        exhaustTimer: 0,
-      },
-    ];
+  // Punch a relic's footprint out of the walkable mask so the crowd flows
+  // around the stall rather than straight through it.
+  blockMaskEllipse(cx, cy, rx, ry) {
+    if (!this.mask) return;
+    const sx = this.maskW / this.sceneWidth;
+    const sy = this.maskH / this.sceneHeight;
+    const x0 = Math.max(0, Math.floor((cx - rx) * sx));
+    const x1 = Math.min(this.maskW - 1, Math.ceil((cx + rx) * sx));
+    const y0 = Math.max(0, Math.floor((cy - ry) * sy));
+    const y1 = Math.min(this.maskH - 1, Math.ceil((cy + ry) * sy));
+    for (let my = y0; my <= y1; my++) {
+      for (let mx = x0; mx <= x1; mx++) {
+        const dx = (mx / sx - cx) / rx;
+        const dy = (my / sy - cy) / ry;
+        if (dx * dx + dy * dy <= 1) this.mask[my * this.maskW + mx] = 0;
+      }
+    }
+  }
 
-    // 2. Navigating Pedestrians (Walking villagers, shoppers, scholars, tea waiters)
-    this.walkingPedestrians = [
-      {
-        id: "ped_burqa_laad",
-        type: "burqa",
-        name: "Laad Bangle Shopper",
-        color: "#1E293B",
-        points: [
-          { x: 220, y: 480 },
-          { x: 380, y: 480 },
-          { x: 550, y: 500 },
-          { x: 720, y: 520 },
-        ],
-        speed: 0.45,
-        progress: 0.0,
-        x: 220,
-        y: 480,
-        stepTimer: 0,
-        heading: 0,
-      },
-      {
-        id: "ped_kurta_pathargatti",
-        type: "kurta",
-        name: "Granite Arcade Elder",
-        color: "#F8FAFC",
-        turbanColor: "#059669",
-        points: [
-          { x: 1120, y: 150 },
-          { x: 1120, y: 380 },
-          { x: 1120, y: 600 },
-        ],
-        speed: 0.38,
-        progress: 0.3,
-        x: 1120,
-        y: 280,
-        stepTimer: 0,
-        heading: Math.PI / 2,
-      },
-      {
-        id: "ped_saree_saffron",
-        type: "saree",
-        name: "Flower Thali Devotee",
-        color: "#D97706",
-        points: [
-          { x: 1180, y: 680 },
-          { x: 1260, y: 720 },
-          { x: 1360, y: 750 },
-          { x: 1200, y: 700 },
-        ],
-        speed: 0.4,
-        progress: 0.6,
-        x: 1260,
-        y: 720,
-        stepTimer: 0,
-        heading: 0,
-      },
-      {
-        id: "ped_tea_wallah",
-        type: "tea_wallah",
-        name: "Nimrah Irani Tea Runner",
-        color: "#2563EB",
-        points: [
-          { x: 250, y: 730 },
-          { x: 330, y: 750 },
-          { x: 420, y: 760 },
-          { x: 330, y: 750 },
-        ],
-        speed: 0.52,
-        progress: 0.15,
-        x: 250,
-        y: 730,
-        stepTimer: 0,
-        heading: 0,
-      },
-      {
-        id: "ped_sherwani_chowk",
-        type: "sherwani",
-        name: "Chowk Haveli Gentleman",
-        color: "#475569",
-        capColor: "#991B1B",
-        points: [
-          { x: 1400, y: 280 },
-          { x: 1540, y: 320 },
-          { x: 1680, y: 360 },
-          { x: 1540, y: 320 },
-        ],
-        speed: 0.36,
-        progress: 0.5,
-        x: 1540,
-        y: 320,
-        stepTimer: 0,
-        heading: 0,
-      },
-      {
-        id: "ped_saree_teal",
-        type: "saree",
-        name: "Attar Buyer",
-        color: "#0D9488",
-        points: [
-          { x: 920, y: 280 },
-          { x: 920, y: 440 },
-          { x: 920, y: 280 },
-        ],
-        speed: 0.42,
-        progress: 0.8,
-        x: 920,
-        y: 380,
-        stepTimer: 0,
-        heading: Math.PI / 2,
-      },
-    ];
+  // Walk outward from a seed along a direction until the pavement runs out.
+  // Every route is validated against the mask once, here — so at draw time a
+  // walker can never be standing on the monument, a cart or a rooftop.
+  carveRoute(sx, sy, dx, dy) {
+    const step = 5;
+    let ax = sx;
+    let ay = sy;
+    for (let i = 0; i < 500; i++) {
+      const nx = ax + dx * step;
+      const ny = ay + dy * step;
+      if (!this.isWalkable(nx, ny)) break;
+      ax = nx;
+      ay = ny;
+    }
+    let bx = sx;
+    let by = sy;
+    for (let i = 0; i < 500; i++) {
+      const nx = bx - dx * step;
+      const ny = by - dy * step;
+      if (!this.isWalkable(nx, ny)) break;
+      bx = nx;
+      by = ny;
+    }
+    // pull the ends in so nobody finishes their walk hard against a kerb
+    const len = Math.hypot(ax - bx, ay - by);
+    if (len < 70) return null;
+    const inset = Math.min(14, len * 0.12) / len;
+    return {
+      ax: ax - (ax - bx) * inset,
+      ay: ay - (ay - by) * inset,
+      bx: bx + (ax - bx) * inset,
+      by: by + (ay - by) * inset,
+    };
+  }
 
-    // 3. Micro-Vignette Animated Craftsmen (Live artisans performing crafts)
-    this.craftsmenVignettes = [
-      {
-        id: "vignette_chai_master",
-        name: "Ustad Irani Chai Master",
-        x: 245,
-        y: 715,
-        type: "chai_master",
-        actionPhase: 0,
-      },
-      {
-        id: "vignette_bangle_craftsman",
-        name: "Lac Bangle Artisan",
-        x: 480,
-        y: 440,
-        type: "bangle_craftsman",
-        actionPhase: 0,
-      },
-      {
-        id: "vignette_perfumer",
-        name: "Pathargatti Perfumer",
-        x: 940,
-        y: 350,
-        type: "perfumer",
-        actionPhase: 0,
-      },
-      {
-        id: "vignette_baker",
-        name: "Osmania Biscuit Baker",
-        x: 345,
-        y: 755,
-        type: "baker",
-        actionPhase: 0,
-      },
-      {
-        id: "vignette_pigeon_feeder",
-        name: "Mecca Masjid Bird Feeder",
-        x: 1300,
-        y: 780,
-        type: "pigeon_feeder",
-        actionPhase: 0,
-      },
-    ];
+  // Build the crowd: scatter seeds on walkable ground, carve each one a route
+  // along an isometric street axis, and keep the ones that fit.
+  initCrowd() {
+    const rand = seededRandom(20260921);
+    this.crowd = [];
+    const seeds = [];
+    let attempts = 0;
+    while (this.crowd.length < CROWD_SIZE && attempts < CROWD_SIZE * 60) {
+      attempts++;
+      const sx = rand() * this.sceneWidth;
+      const sy = rand() * this.sceneHeight;
+      if (!this.isWalkable(sx, sy)) continue;
+      let tooClose = false;
+      for (const s of seeds) {
+        if (Math.hypot(s[0] - sx, s[1] - sy) < MIN_SEED_GAP) {
+          tooClose = true;
+          break;
+        }
+      }
+      if (tooClose) continue;
+      const [dx, dy] = ISO_DIRS[(rand() * ISO_DIRS.length) | 0];
+      const route = this.carveRoute(sx, sy, dx, dy);
+      if (!route) continue;
+      const person = PEOPLE[(rand() * PEOPLE.length) | 0];
+      const len = Math.hypot(route.ax - route.bx, route.ay - route.by);
+      seeds.push([sx, sy]);
+      this.crowd.push({
+        ...route,
+        person,
+        phase: rand(),
+        // pace is roughly constant, so longer routes take proportionally longer.
+        // The divisor is scene units walked per second — lower is a slower stroll.
+        duration: (len / 11) * (0.8 + rand() * 0.6),
+        reverse: rand() < 0.5,
+        bobPhase: rand() * Math.PI * 2,
+      });
+    }
+  }
 
-    // 4. Alleyway Animals (Trotting stray dogs & pecking chickens)
-    this.animals = [
-      {
-        id: "dog_curb",
-        type: "dog",
-        x: 680,
-        y: 825,
-        vx: 0.5,
-        minX: 620,
-        maxX: 760,
-        tailPhase: 0,
-      },
-      {
-        id: "chicken_cart_1",
-        type: "chicken",
-        x: 380,
-        y: 840,
-        peckTimer: 0,
-      },
-      {
-        id: "chicken_cart_2",
-        type: "chicken",
-        x: 395,
-        y: 848,
-        peckTimer: 1.5,
-      },
-    ];
+  // A walker's position is a pure function of the clock: no per-frame state to
+  // advance, desync or get stuck.
+  walkerAt(w, nowSec) {
+    let t = ((w.phase + nowSec / w.duration) % 1 + 1) % 1;
+    // ping-pong so they pace the street instead of teleporting back to the start
+    const forward = t < 0.5;
+    const tri = forward ? t * 2 : 2 - t * 2;
+    const x = w.bx + (w.ax - w.bx) * tri;
+    const y = w.by + (w.ay - w.by) * tri;
+    const dirRight = w.ax > w.bx;
+    const movingRight = forward ? dirRight : !dirRight;
+    return { x, y, movingRight };
   }
 
   // Center camera directly on Charminar with full-bleed screen coverage
@@ -393,13 +305,17 @@ export class IsometricCityEngine {
     const viewW = this.canvas.width / (window.devicePixelRatio || 1);
     const viewH = this.canvas.height / (window.devicePixelRatio || 1);
 
-    // Fill the screen completely without empty letterbox margins
+    // Fill the screen completely without empty letterbox margins. On a
+    // portrait phone this still crops a lot of width (a wide panorama vs a
+    // tall screen), but letterboxing instead just trades that for large
+    // empty parchment margins top/bottom, which reads worse. A smaller
+    // overshoot than before leaves a bit more of the scene visible either way.
     const scaleX = viewW / this.sceneWidth;
     const scaleY = viewH / this.sceneHeight;
     const fillZoom = Math.max(scaleX, scaleY);
 
     this.minZoom = fillZoom * 0.95;
-    this.zoom = fillZoom * 1.15;
+    this.zoom = fillZoom * 1.05;
     this.maxZoom = 3.5;
 
     const targetX = 1040;
@@ -473,53 +389,9 @@ export class IsometricCityEngine {
     this.animFrameId = requestAnimationFrame(renderFrame);
   }
 
-  // Advance ambient simulation (steam, pigeons, dust, exhaust, pulse)
+  // The crowd needs no simulation step — each walker's position is derived from
+  // the clock at draw time. Only the tap discovery ripple carries state.
   updateSimulation() {
-    // 1. Steam rising from Nimrah Chai samovar & ovens
-    this.steamPuffs.forEach((sp) => {
-      sp.y -= 0.5;
-      sp.x += sp.drift;
-      sp.alpha -= 0.007;
-      sp.size += 0.04;
-      if (sp.alpha <= 0 || sp.y < sp.originY - 70) {
-        sp.y = sp.originY;
-        sp.x = sp.originX + (Math.random() * 18 - 9);
-        sp.alpha = 0.6;
-        sp.size = 6;
-      }
-    });
-
-    // 2. Auto rickshaw exhaust puffs
-    this.autoExhaustPuffs.forEach((ep) => {
-      ep.x += ep.vx;
-      ep.y += ep.vy;
-      ep.alpha -= 0.012;
-      ep.size += 0.06;
-      if (ep.alpha <= 0) {
-        ep.x = ep.originX;
-        ep.y = ep.originY;
-        ep.alpha = 0.45;
-        ep.size = 4;
-      }
-    });
-
-    // 3. Pigeons orbiting Charminar minarets
-    this.pigeons.forEach((pg) => {
-      pg.angle += pg.speed;
-      pg.wingCycle += 0.28;
-    });
-
-    // 4. Dust motes drifting in sunlight
-    this.dustMotes.forEach((dm) => {
-      dm.x += dm.vx;
-      dm.y += dm.vy;
-      if (dm.x < 0) dm.x = this.sceneWidth;
-      if (dm.x > this.sceneWidth) dm.x = 0;
-      if (dm.y < 0) dm.y = this.sceneHeight;
-      if (dm.y > this.sceneHeight) dm.y = 0;
-    });
-
-    // 5. whereismrkim-style discovery pulse ripples
     if (this.pulseRipples.length > 0) {
       this.pulseRipples.forEach((pr) => {
         pr.radius += 2.6;
@@ -527,78 +399,6 @@ export class IsometricCityEngine {
       });
       this.pulseRipples = this.pulseRipples.filter((pr) => pr.alpha > 0);
     }
-
-    // 6. ADVANCE LIVING VEHICLES (Interpolate along multi-point waypoint paths)
-    this.movingVehicles.forEach((v) => {
-      v.progress += v.speed * 0.0012;
-      if (v.progress >= 1.0) v.progress = 0.0;
-
-      const numSegs = v.points.length - 1;
-      const totalT = v.progress * numSegs;
-      const segIdx = Math.min(Math.floor(totalT), numSegs - 1);
-      const segT = totalT - segIdx;
-
-      const p1 = v.points[segIdx];
-      const p2 = v.points[segIdx + 1];
-      if (p1 && p2) {
-        v.x = p1.x + (p2.x - p1.x) * segT;
-        v.y = p1.y + (p2.y - p1.y) * segT;
-        v.heading = Math.atan2(p2.y - p1.y, p2.x - p1.x);
-
-        // Spawn exhaust puff behind vehicle occasionally
-        v.exhaustTimer += 1;
-        if (v.exhaustTimer % 18 === 0) {
-          this.autoExhaustPuffs.push({
-            originX: v.x,
-            originY: v.y,
-            x: v.x - Math.cos(v.heading) * 15,
-            y: v.y - Math.sin(v.heading) * 15,
-            alpha: 0.5,
-            size: 4,
-            vx: -Math.cos(v.heading) * 0.4,
-            vy: -0.2,
-          });
-          if (this.autoExhaustPuffs.length > 25) this.autoExhaustPuffs.shift();
-        }
-      }
-    });
-
-    // 7. ADVANCE LIVING PEDESTRIANS (Interpolate along waypoint corridors with step bounce)
-    this.walkingPedestrians.forEach((ped) => {
-      ped.progress += ped.speed * 0.0008;
-      if (ped.progress >= 1.0) ped.progress = 0.0;
-
-      const numSegs = ped.points.length - 1;
-      const totalT = ped.progress * numSegs;
-      const segIdx = Math.min(Math.floor(totalT), numSegs - 1);
-      const segT = totalT - segIdx;
-
-      const p1 = ped.points[segIdx];
-      const p2 = ped.points[segIdx + 1];
-      if (p1 && p2) {
-        ped.x = p1.x + (p2.x - p1.x) * segT;
-        ped.y = p1.y + (p2.y - p1.y) * segT;
-        ped.heading = Math.atan2(p2.y - p1.y, p2.x - p1.x);
-        ped.stepTimer += 0.16;
-      }
-    });
-
-    // 8. ADVANCE CRAFTSMEN VIGNETTE PHASES
-    const nowSec = Date.now() / 1000;
-    this.craftsmenVignettes.forEach((craft) => {
-      craft.actionPhase = nowSec * 2.5;
-    });
-
-    // 9. ADVANCE ALLEYWAY ANIMALS
-    this.animals.forEach((an) => {
-      if (an.type === "dog") {
-        an.x += an.vx;
-        an.tailPhase += 0.25;
-        if (an.x > an.maxX || an.x < an.minX) an.vx *= -1;
-      } else if (an.type === "chicken") {
-        an.peckTimer += 0.1;
-      }
-    });
   }
 
   // Render complete living scene
@@ -630,137 +430,51 @@ export class IsometricCityEngine {
       drawH
     );
 
-    // 2. GATHER DYNAMIC ACTORS & Y-SORT FOR DEPTH OCCLUSION
     const nowSec = Date.now() / 1000;
-    const renderActors = [];
 
-    // Add vehicles
-    this.movingVehicles.forEach((v) => {
-      renderActors.push({ type: "vehicle", y: v.y, data: v });
-    });
+    // 2. Draw everyone standing on the plate — the walking crowd and the six
+    // stationary shopkeepers — in one y-sorted pass, so nearer figures
+    // correctly overlap further ones. Nobody is painted into the plate itself.
+    const frames = [];
+    for (const w of this.crowd) {
+      const pos = this.walkerAt(w, nowSec);
+      frames.push({ kind: "walker", w, ...pos });
+    }
+    for (const r of RELIC_PLACEMENTS) {
+      frames.push({ kind: "relic", relic: r, x: r.x, y: r.y });
+    }
+    frames.sort((a, b) => a.y - b.y);
 
-    // Add walking pedestrians
-    this.walkingPedestrians.forEach((p) => {
-      renderActors.push({ type: "pedestrian", y: p.y, data: p });
-    });
-
-    // Add craftsmen vignettes
-    this.craftsmenVignettes.forEach((c) => {
-      renderActors.push({ type: "craftsman", y: c.y, data: c });
-    });
-
-    // Add animals
-    this.animals.forEach((a) => {
-      renderActors.push({ type: "animal", y: a.y, data: a });
-    });
-
-    // SORT BY Y COORDINATE FOR ACCURATE ISO DEPTH
-    renderActors.sort((a, b) => a.y - b.y);
-
-    // RENDER ALL ACTORS IN ISO ORDER
-    renderActors.forEach((actor) => {
-      if (actor.type === "vehicle") {
-        this.drawAutoRickshaw(actor.data);
-      } else if (actor.type === "pedestrian") {
-        this.drawPedestrian(actor.data);
-      } else if (actor.type === "craftsman") {
-        this.drawCraftsman(actor.data, nowSec);
-      } else if (actor.type === "animal") {
-        this.drawAnimal(actor.data, nowSec);
+    for (const f of frames) {
+      const p = this.sceneToScreen(f.x, f.y);
+      if (f.kind === "relic") {
+        const img = this.relicImgs[f.relic.id];
+        if (!img) continue;
+        const h = f.relic.height * this.zoom;
+        const wdt = h * (img.naturalWidth / img.naturalHeight);
+        this.ctx.drawImage(img, p.x - wdt / 2, p.y - h, wdt, h);
+        continue;
       }
-    });
-
-    // 2. Draw Living Ambient Steam Puffs at Nimrah Cafe
-    this.steamPuffs.forEach((sp) => {
-      const p = this.sceneToScreen(sp.x, sp.y);
+      const img = this.peopleImgs[f.w.person.name];
+      if (!img) continue;
+      // mild depth cue: people lower in the scene are nearer, so slightly larger
+      const depth = 0.86 + 0.28 * (f.y / this.sceneHeight);
+      const h = 52 * f.w.person.scale * depth * this.zoom;
+      const wdt = h * (img.naturalWidth / img.naturalHeight);
+      // a gentle vertical bob sells the walk without needing animation frames
+      const bob = Math.sin(nowSec * 1.5 + f.w.bobPhase) * 0.8 * this.zoom;
       this.ctx.save();
-      this.ctx.fillStyle = `rgba(255, 248, 235, ${sp.alpha})`;
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, sp.size * this.zoom, 0, Math.PI * 2);
-      this.ctx.fill();
+      this.ctx.translate(p.x, p.y + bob);
+      const mirror = f.movingRight !== (f.w.person.faces === "right");
+      if (mirror) this.ctx.scale(-1, 1);
+      this.ctx.drawImage(img, -wdt / 2, -h, wdt, h);
       this.ctx.restore();
-    });
-
-    // 3. Draw Auto Rickshaw Exhaust Puffs
-    this.autoExhaustPuffs.forEach((ep) => {
-      const p = this.sceneToScreen(ep.x, ep.y);
-      this.ctx.save();
-      this.ctx.fillStyle = `rgba(215, 205, 190, ${ep.alpha * 0.7})`;
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, ep.size * this.zoom, 0, Math.PI * 2);
-      this.ctx.fill();
-      this.ctx.restore();
-    });
-
-    // 4. Draw Twinkling Sparkles on Bangles & Pearls
-    this.sparkles.forEach((spk) => {
-      const p = this.sceneToScreen(spk.x, spk.y);
-      const twinkle = (Math.sin(nowSec * 3 + spk.phase) + 1) / 2;
-      if (twinkle > 0.6) {
-        const starSize = (twinkle - 0.6) * 14 * this.zoom;
-        this.ctx.save();
-        this.ctx.fillStyle = `rgba(255, 250, 220, ${(twinkle - 0.6) * 2.5})`;
-        this.ctx.beginPath();
-        this.ctx.arc(p.x, p.y, starSize * 0.5, 0, Math.PI * 2);
-        this.ctx.fill();
-
-        // 4-point star ray
-        this.ctx.strokeStyle = `rgba(255, 235, 160, ${(twinkle - 0.6) * 2})`;
-        this.ctx.lineWidth = 1.2;
-        this.ctx.beginPath();
-        this.ctx.moveTo(p.x - starSize, p.y);
-        this.ctx.lineTo(p.x + starSize, p.y);
-        this.ctx.moveTo(p.x, p.y - starSize);
-        this.ctx.lineTo(p.x, p.y + starSize);
-        this.ctx.stroke();
-        this.ctx.restore();
-      }
-    });
-
-    // 5. Draw Circling Pigeons over Charminar with Flapping Wings
-    const charminarTop = this.sceneToScreen(1040, 320);
-    this.pigeons.forEach((pg) => {
-      const px = charminarTop.x + Math.cos(pg.angle) * (pg.radiusX * this.zoom);
-      const py = charminarTop.y + Math.sin(pg.angle) * (pg.radiusY * this.zoom) - pg.altitudeOffset * this.zoom;
-      const wingSpan = (3.5 + Math.sin(pg.wingCycle) * 2.0) * this.zoom;
-
-      this.ctx.save();
-      this.ctx.fillStyle = "#333D47";
-      this.ctx.beginPath();
-      // Flapping bird silhouette
-      this.ctx.ellipse(px, py, 3.5 * this.zoom, 2.0 * this.zoom, pg.angle, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Wing strokes
-      this.ctx.strokeStyle = "#4A5568";
-      this.ctx.lineWidth = 1.2 * this.zoom;
-      this.ctx.beginPath();
-      this.ctx.moveTo(px - wingSpan, py - 2 * this.zoom);
-      this.ctx.lineTo(px, py);
-      this.ctx.lineTo(px + wingSpan, py - 2 * this.zoom);
-      this.ctx.stroke();
-      this.ctx.restore();
-    });
-
-    // 6. Draw Ambient Deccan Sunlight Dust Motes
-    if (this.timeMode !== "night") {
-      this.dustMotes.forEach((dm) => {
-        const p = this.sceneToScreen(dm.x, dm.y);
-        if (p.x > 0 && p.x < cw && p.y > 0 && p.y < ch) {
-          this.ctx.save();
-          this.ctx.fillStyle = `rgba(255, 245, 215, ${dm.alpha * (this.timeMode === "golden" ? 0.7 : 0.35)})`;
-          this.ctx.beginPath();
-          this.ctx.arc(p.x, p.y, dm.size * this.zoom, 0, Math.PI * 2);
-          this.ctx.fill();
-          this.ctx.restore();
-        }
-      });
     }
 
     // 7. Draw Permanent Golden Discovery Badges for Found Relics
-    WIMMEL_RELICS.forEach((r) => {
+    RELIC_PLACEMENTS.forEach((r) => {
       if (this.foundSecrets.has(r.id)) {
-        const p = this.sceneToScreen(r.x, r.y);
+        const p = this.sceneToScreen(r.x, r.y - r.hitLift);
         this.ctx.save();
         this.ctx.strokeStyle = "rgba(217, 119, 6, 0.9)";
         this.ctx.lineWidth = 2.2 * this.zoom;
@@ -981,285 +695,6 @@ export class IsometricCityEngine {
     this.ctx.restore();
   }
 
-  // PROCEDURAL 2D CANVAS DRAWING ROUTINES FOR LIVING ACTORS
-
-  // Draw 2:1 Isometric Auto-Rickshaw with spinning wheels & headlights
-  drawAutoRickshaw(v) {
-    const p = this.sceneToScreen(v.x, v.y);
-    const z = this.zoom;
-    const isFacingLeft = Math.cos(v.heading) < 0;
-
-    this.ctx.save();
-    this.ctx.translate(p.x, p.y);
-
-    // Contact shadow
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
-    this.ctx.beginPath();
-    this.ctx.ellipse(0, 4 * z, 18 * z, 8 * z, 0, 0, Math.PI * 2);
-    this.ctx.fill();
-
-    // Auto Body Chassis (Black base + Yellow Hood)
-    this.ctx.fillStyle = "#1E293B"; // Dark chassis
-    this.ctx.beginPath();
-    this.ctx.roundRect(-14 * z, -12 * z, 28 * z, 14 * z, 3 * z);
-    this.ctx.fill();
-
-    // Bright Canvas Hood (Yellow / Orange)
-    this.ctx.fillStyle = v.color || "#EAB308";
-    this.ctx.beginPath();
-    this.ctx.roundRect(-13 * z, -24 * z, 26 * z, 14 * z, 5 * z);
-    this.ctx.fill();
-
-    // Windshield frame
-    this.ctx.fillStyle = "#94A3B8";
-    const wsX = isFacingLeft ? -11 * z : 3 * z;
-    this.ctx.fillRect(wsX, -22 * z, 8 * z, 10 * z);
-
-    // Wheels (Black rubber + silver hub)
-    [-10 * z, 10 * z].forEach((wx) => {
-      this.ctx.fillStyle = "#0F172A";
-      this.ctx.beginPath();
-      this.ctx.arc(wx, 2 * z, 4 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-      this.ctx.fillStyle = "#CBD5E1";
-      this.ctx.beginPath();
-      this.ctx.arc(wx, 2 * z, 1.5 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-    });
-
-    // Night / Golden Headlights
-    if (this.timeMode === "night" || this.timeMode === "golden") {
-      const hlX = isFacingLeft ? -16 * z : 16 * z;
-      this.ctx.fillStyle = "#FEF08A";
-      this.ctx.beginPath();
-      this.ctx.arc(hlX, -6 * z, 3 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Light beam cone
-      this.ctx.fillStyle = "rgba(254, 240, 138, 0.25)";
-      this.ctx.beginPath();
-      this.ctx.moveTo(hlX, -6 * z);
-      const coneDir = isFacingLeft ? -1 : 1;
-      this.ctx.lineTo(hlX + coneDir * 40 * z, -16 * z);
-      this.ctx.lineTo(hlX + coneDir * 40 * z, 10 * z);
-      this.ctx.closePath();
-      this.ctx.fill();
-    }
-
-    this.ctx.restore();
-  }
-
-  // Draw 2:1 Isometric Walking Pedestrian with step cycle bounce
-  drawPedestrian(ped) {
-    const p = this.sceneToScreen(ped.x, ped.y);
-    const z = this.zoom;
-    const stepBounce = Math.abs(Math.sin(ped.stepTimer * 7)) * 2.2 * z;
-    const legSwing = Math.sin(ped.stepTimer * 7) * 4 * z;
-
-    this.ctx.save();
-    this.ctx.translate(p.x, p.y - stepBounce);
-
-    // Contact shadow
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.22)";
-    this.ctx.beginPath();
-    this.ctx.ellipse(0, stepBounce + 2 * z, 6 * z, 3 * z, 0, 0, Math.PI * 2);
-    this.ctx.fill();
-
-    // Legs
-    this.ctx.strokeStyle = "#1E293B";
-    this.ctx.lineWidth = 2 * z;
-    this.ctx.beginPath();
-    this.ctx.moveTo(-2 * z, -4 * z);
-    this.ctx.lineTo(-2 * z - legSwing, 0);
-    this.ctx.moveTo(2 * z, -4 * z);
-    this.ctx.lineTo(2 * z + legSwing, 0);
-    this.ctx.stroke();
-
-    // Main Torso / Garment
-    this.ctx.fillStyle = ped.color || "#2563EB";
-    if (ped.type === "burqa") {
-      this.ctx.beginPath();
-      this.ctx.moveTo(-5 * z, 0);
-      this.ctx.lineTo(0, -18 * z);
-      this.ctx.lineTo(5 * z, 0);
-      this.ctx.closePath();
-      this.ctx.fill();
-    } else {
-      this.ctx.beginPath();
-      this.ctx.roundRect(-4.5 * z, -16 * z, 9 * z, 12 * z, 2 * z);
-      this.ctx.fill();
-    }
-
-    // Head
-    this.ctx.fillStyle = "#D97706"; // Skin tone
-    this.ctx.beginPath();
-    this.ctx.arc(0, -19 * z, 3.5 * z, 0, Math.PI * 2);
-    this.ctx.fill();
-
-    // Headgear (Topi / Turban / Dupatta)
-    if (ped.turbanColor) {
-      this.ctx.fillStyle = ped.turbanColor;
-      this.ctx.beginPath();
-      this.ctx.arc(0, -21 * z, 3.8 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-    } else if (ped.capColor) {
-      this.ctx.fillStyle = ped.capColor;
-      this.ctx.fillRect(-3 * z, -23 * z, 6 * z, 3 * z);
-    }
-
-    // Special prop: Tea runner carrying brass tray
-    if (ped.type === "tea_wallah") {
-      this.ctx.fillStyle = "#CA8A04"; // Brass tray
-      this.ctx.fillRect(4 * z, -12 * z, 7 * z, 2 * z);
-      this.ctx.fillStyle = "#FAF4E9"; // Chai glass
-      this.ctx.fillRect(5 * z, -15 * z, 2 * z, 3 * z);
-      this.ctx.fillRect(8 * z, -15 * z, 2 * z, 3 * z);
-    }
-
-    this.ctx.restore();
-  }
-
-  // Draw Animated Craftsman Vignettes (Chai pouring, Bangle shaping, Attar sampling, Biscuit baking, Pigeon feeding)
-  drawCraftsman(craft, timeSec) {
-    const p = this.sceneToScreen(craft.x, craft.y);
-    const z = this.zoom;
-
-    this.ctx.save();
-    this.ctx.translate(p.x, p.y);
-
-    if (craft.type === "chai_master") {
-      // Nimrah Irani Chai Master with waving tea stream between two brass vessels
-      const waveOffset = Math.sin(timeSec * 6) * 5 * z;
-
-      // Samovar Base
-      this.ctx.fillStyle = "#B45309"; // Copper samovar
-      this.ctx.beginPath();
-      this.ctx.roundRect(-10 * z, -14 * z, 20 * z, 14 * z, 3 * z);
-      this.ctx.fill();
-
-      // Top Brass Vessel (Pouring pot)
-      this.ctx.fillStyle = "#EAB308";
-      this.ctx.beginPath();
-      this.ctx.arc(-8 * z, -24 * z + waveOffset * 0.3, 4 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Bottom Brass Cup
-      this.ctx.beginPath();
-      this.ctx.arc(6 * z, -6 * z, 3.5 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Waving Irani Chai Stream (Golden liquid)
-      this.ctx.strokeStyle = "#F59E0B";
-      this.ctx.lineWidth = 2.2 * z;
-      this.ctx.beginPath();
-      this.ctx.moveTo(-6 * z, -20 * z + waveOffset * 0.3);
-      this.ctx.quadraticCurveTo(0, -12 * z + waveOffset, 6 * z, -6 * z);
-      this.ctx.stroke();
-    } else if (craft.type === "bangle_craftsman") {
-      // Lac Bangle Artisan shaping hot lacquer over fire pot
-      const glow = (Math.sin(timeSec * 8) + 1) / 2;
-
-      // Fire Pot Glow
-      this.ctx.fillStyle = `rgba(239, 68, 68, ${0.4 + glow * 0.4})`;
-      this.ctx.beginPath();
-      this.ctx.arc(0, -4 * z, 10 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Fire coals
-      this.ctx.fillStyle = "#F97316";
-      this.ctx.beginPath();
-      this.ctx.arc(0, -4 * z, 4 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Glowing hot bangle ring
-      this.ctx.strokeStyle = "#FEF08A";
-      this.ctx.lineWidth = 2.5 * z;
-      this.ctx.beginPath();
-      this.ctx.arc(Math.sin(timeSec * 4) * 3 * z, -12 * z, 5 * z, 0, Math.PI * 2);
-      this.ctx.stroke();
-    } else if (craft.type === "perfumer") {
-      // Pathargatti Perfumer sampling Mitti Attar
-      const dipY = Math.sin(timeSec * 3) * 4 * z;
-
-      // Crystal Decanter
-      this.ctx.fillStyle = "#38BDF8";
-      this.ctx.beginPath();
-      this.ctx.roundRect(-6 * z, -10 * z, 12 * z, 10 * z, 2 * z);
-      this.ctx.fill();
-
-      // Attar Swab Rod
-      this.ctx.strokeStyle = "#F59E0B";
-      this.ctx.lineWidth = 1.5 * z;
-      this.ctx.beginPath();
-      this.ctx.moveTo(0, -18 * z + dipY);
-      this.ctx.lineTo(0, -6 * z);
-      this.ctx.stroke();
-    } else if (craft.type === "pigeon_feeder") {
-      // Mecca Masjid Pigeon Feeder scattering grain + hopping ground pigeons
-      this.ctx.fillStyle = "#D97706";
-      this.ctx.beginPath();
-      this.ctx.arc(0, -16 * z, 3.5 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Scattering grain specks
-      this.ctx.fillStyle = "#FEF08A";
-      for (let i = 0; i < 5; i++) {
-        const gx = Math.cos(timeSec * 4 + i) * 14 * z;
-        const gy = Math.sin(timeSec * 4 + i) * 8 * z;
-        this.ctx.fillRect(gx, gy, 1.5 * z, 1.5 * z);
-      }
-
-      // Ground Pigeons hopping & pecking
-      for (let i = 0; i < 3; i++) {
-        const px = -18 * z + i * 14 * z + Math.sin(timeSec * 5 + i) * 2 * z;
-        const py = 4 * z + Math.abs(Math.sin(timeSec * 8 + i)) * -3 * z;
-        this.ctx.fillStyle = "#64748B";
-        this.ctx.beginPath();
-        this.ctx.ellipse(px, py, 3 * z, 2 * z, 0, 0, Math.PI * 2);
-        this.ctx.fill();
-      }
-    }
-
-    this.ctx.restore();
-  }
-
-  // Draw Animals (Trotting stray dogs & pecking chickens)
-  drawAnimal(an, timeSec) {
-    const p = this.sceneToScreen(an.x, an.y);
-    const z = this.zoom;
-
-    this.ctx.save();
-    this.ctx.translate(p.x, p.y);
-
-    if (an.type === "dog") {
-      const tailWag = Math.sin(an.tailPhase) * 3 * z;
-      this.ctx.fillStyle = "#D97706"; // Golden-brown stray dog
-      this.ctx.beginPath();
-      this.ctx.ellipse(0, -4 * z, 7 * z, 4 * z, 0, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Tail
-      this.ctx.strokeStyle = "#B45309";
-      this.ctx.lineWidth = 1.8 * z;
-      this.ctx.beginPath();
-      this.ctx.moveTo(-6 * z, -4 * z);
-      this.ctx.lineTo(-10 * z, -6 * z + tailWag);
-      this.ctx.stroke();
-    } else if (an.type === "chicken") {
-      const peck = Math.abs(Math.sin(an.peckTimer)) * 2 * z;
-      this.ctx.fillStyle = "#F59E0B"; // White/gold chicken
-      this.ctx.beginPath();
-      this.ctx.arc(0, -3 * z + peck, 3 * z, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      // Red comb
-      this.ctx.fillStyle = "#EF4444";
-      this.ctx.fillRect(-1 * z, -6 * z + peck, 2 * z, 2 * z);
-    }
-
-    this.ctx.restore();
-  }
-
   // Pointer & Gesture Navigation Handlers
   bindEvents() {
     this._onPointerDown = (e) => this.handlePointerDown(e);
@@ -1447,17 +882,32 @@ export class IsometricCityEngine {
 
   // Hit-detection & Click Handlers for ALL 35+ Living Hotspots & Landmarks
   handleClick(screenX, screenY) {
-    // 1. Check ALL 35+ Living Hotspots (People, Shops, Pushcarts, Relics, Vehicles)
+    // 1. Relics first, positioned from RELIC_PLACEMENTS — the same data that
+    // draws the sprite — so the tap target always sits on what you can see.
+    // Checked ahead of ambient hotspots so a relic always wins.
+    for (const placement of RELIC_PLACEMENTS) {
+      const hitY = placement.y - placement.hitLift;
+      const p = this.sceneToScreen(placement.x, hitY);
+      const dist = Math.hypot(screenX - p.x, screenY - p.y);
+      if (dist <= Math.max(30, RELIC_HIT_RADIUS * this.zoom)) {
+        const relic = WIMMEL_RELICS.find((r) => r.id === placement.id);
+        if (!relic) continue;
+        this.triggerPulse(placement.x, hitY);
+        if (this.callbacks.onSecretClick) this.callbacks.onSecretClick(relic);
+        return;
+      }
+    }
+
+    // 2. Ambient hotspots. `isRelic` entries are stale duplicates of the six
+    // relics left over from the old painted artwork — the loop above owns
+    // relics now, so they're skipped here.
     for (const h of BAZAAR_HOTSPOTS) {
+      if (h.isRelic) continue;
       const p = this.sceneToScreen(h.x, h.y);
       const dist = Math.hypot(screenX - p.x, screenY - p.y);
       if (dist <= Math.max(28, (h.radius || 30) * this.zoom)) {
         this.triggerPulse(h.x, h.y);
-        if (h.isRelic && this.callbacks.onSecretClick) {
-          this.callbacks.onSecretClick(h);
-        } else if (this.callbacks.onHotspotClick) {
-          this.callbacks.onHotspotClick(h);
-        }
+        if (this.callbacks.onHotspotClick) this.callbacks.onHotspotClick(h);
         return;
       }
     }
