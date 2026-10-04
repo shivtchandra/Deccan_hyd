@@ -5,7 +5,7 @@ import { eraLabel, eraColor } from "../../lib/heritage.js";
 import { Icon } from "../components/Icons.jsx";
 
 export const metadata = {
-  title: "Top Heritage Weekend Getaways from Hyderabad (40km–200km) | Deccan Heritage",
+  title: "Top Heritage Weekend Getaways from Hyderabad (40km–200km)",
   description:
     "Explore historical weekend getaways, hill forts, Kakatiya temples, and Bahmani sultanate citadels near Hyderabad — Bhongir Fort, Bidar Fort, Warangal, Ramappa UNESCO Temple, Medak Fort, and Ananthagiri.",
   keywords:
@@ -103,15 +103,25 @@ export default function GetawaysPage() {
                     {s.name}
                   </h2>
                   <p style={{ fontSize: 13, color: "var(--ink-soft)", lineHeight: 1.5, flex: 1, margin: "0 0 14px" }}>
-                    Explore history, architecture, and driving distance for {s.name}.
+                    {s.summary ? (s.summary.length > 130 ? s.summary.slice(0, 127) + "..." : s.summary) : `Explore history, architecture, and visiting details for ${s.name}.`}
                   </p>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "var(--accent-deep)" }}>
                     View Site Details &rarr;
                   </div>
                 </div>
               </Link>
             );
           })}
+        </div>
+
+        {/* ── Footer Navigation ── */}
+        <div style={{ marginTop: 60, paddingTop: 28, borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+          <Link href="/about" style={{ color: "var(--ink)", fontWeight: 600, fontSize: 14, textDecoration: "none" }}>
+            &larr; View All 85 Heritage Sites Directory
+          </Link>
+          <Link href="/" style={{ color: "var(--accent-deep)", fontWeight: 700, fontSize: 14, textDecoration: "none" }}>
+            Explore on Interactive Map &rarr;
+          </Link>
         </div>
       </main>
     </div>

@@ -147,8 +147,17 @@ export async function generateMetadata({ params }) {
 
   const era = eraLabel(site.era);
   const type = typeLabel(site.type);
-  const title = `${site.name} — ${era} ${type} in ${site.area} | Deccan Heritage Map`;
-  const description = `${site.summary} Discover history, photos, era details, and walking routes for ${site.name} in ${site.area}.`;
+  const locality = site.area && !site.name.toLowerCase().includes(site.area.toLowerCase())
+    ? `${site.area}, Hyderabad`
+    : "Hyderabad";
+  const title = `${site.name} (${locality}) — Map, History & Guide`;
+
+  const cleanSummary = (site.summary || "").replace(/\s+/g, " ").trim();
+  let description = `${cleanSummary} Explore interactive map, photos, architectural history & visiting guide.`;
+  if (description.length > 158) {
+    description = `${cleanSummary.slice(0, 92).trim()}... Explore interactive map, photos, architectural history & visiting guide.`;
+  }
+
   const canonical = `https://heritage.mapmyhyd.com/sites/${site.id}`;
   const image = site.photos?.[0]?.url || photoUrl(site.id);
 
@@ -278,6 +287,10 @@ export default async function SitePage({ params }) {
           "addressCountry": "IN",
         },
         "image": photo ? `https://heritage.mapmyhyd.com${photo.url}` : undefined,
+        "hasMap": `https://heritage.mapmyhyd.com/?site=${site.id}`,
+        "isAccessibleForFree": site.access === "free" || site.access === "public" || site.access === "open",
+        "publicAccess": site.access !== "private" && site.access !== "restricted",
+        "touristType": ["Heritage", "History", "Architecture", "Monuments"],
         "sameAs": [
           site.wikipedia,
           site.wikidata ? `https://www.wikidata.org/wiki/${site.wikidata}` : null,
@@ -311,6 +324,36 @@ export default async function SitePage({ params }) {
           },
         ],
       },
+      {
+        "@type": "FAQPage",
+        "@id": `https://heritage.mapmyhyd.com/sites/${site.id}#faq`,
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": `Where is ${site.name} located?`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": `${site.name} is located in ${site.area || "Hyderabad"}, Telangana, India (Coordinates: ${site.lat?.toFixed(4)}° N, ${site.lng?.toFixed(4)}° E). You can view its exact pin and walking routes on the Deccan Heritage Map.`
+            }
+          },
+          {
+            "@type": "Question",
+            "name": `When was ${site.name} built and what era does it belong to?`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": `${site.name} was built ${site.yearBuilt ? `around ${site.yearBuilt}` : "in historical times"} during the ${eraLabel(site.era)} period (${statusLabel(site.status)}).`
+            }
+          },
+          {
+            "@type": "Question",
+            "name": `How can I visit or explore ${site.name}?`,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": `Access is listed as ${site.access || "public"}. You can explore ${site.name} along with historical photos, stories, and connected heritage monuments on the interactive Deccan Heritage Map at https://heritage.mapmyhyd.com/?site=${site.id}.`
+            }
+          }
+        ]
+      },
     ],
   };
 
@@ -341,15 +384,44 @@ export default async function SitePage({ params }) {
         {/* ── Title & Meta Header ── */}
         <div style={{ marginBottom: 24 }}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 14 }}>
-            <span style={{ background: color, color: "#fff", padding: "4px 12px", borderRadius: 999, fontSize: 11.5, fontWeight: 700, letterSpacing: "0.4px" }}>
-              {eraLabel(site.era)}
-            </span>
-            <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--ink-soft)", padding: "3px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 600 }}>
-              {typeLabel(site.type)}
-            </span>
+            <Link href={`/eras/${site.era}`} style={{ textDecoration: "none" }}>
+              <span style={{ background: color, color: "#fff", padding: "4px 12px", borderRadius: 999, fontSize: 11.5, fontWeight: 700, letterSpacing: "0.4px", display: "inline-flex", alignItems: "center", gap: 4 }}>
+                <span>{eraLabel(site.era)}</span>
+                <span style={{ opacity: 0.8 }}>→</span>
+              </span>
+            </Link>
+            <Link href={`/types/${site.type === "palace" || site.type === "mansion" ? "palaces" : site.type === "baoli" || site.id.includes("stepwell") ? "stepwells" : site.type === "fort" ? "forts" : site.type === "tomb" || site.type === "cemetery" ? "tombs" : site.type === "mosque" ? "mosques" : site.type === "temple" ? "temples" : site.type === "museum" ? "museums" : site.type === "tank" || site.type === "water" ? "lakes" : "civic"}`} style={{ textDecoration: "none" }}>
+              <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--ink-soft)", padding: "3px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 4 }}>
+                <span>{typeLabel(site.type)}</span>
+                <span style={{ opacity: 0.6 }}>→</span>
+              </span>
+            </Link>
             <span style={{ background: "var(--cream-hi)", border: "1px solid var(--line)", color: "var(--muted)", padding: "3px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 4 }}>
               <Icon name="pin" size={12} color="var(--muted)" /> {site.area}
             </span>
+          </div>
+
+          {/* ── Organic-to-Passport Funnel Banner ── */}
+          <div style={{ background: "linear-gradient(135deg, #2b2119 0%, #3e3025 100%)", borderRadius: 14, padding: "14px 18px", marginBottom: 24, color: "#FAF6EE", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, boxShadow: "var(--e2)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <span style={{ fontSize: 24, lineHeight: 1 }}>🏛️</span>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: 14.5, color: "#fff" }}>
+                  Visiting {site.name}?
+                </div>
+                <div style={{ fontSize: 12.5, color: "#d6ccc2", lineHeight: 1.4 }}>
+                  Check in on the map, claim discovery points &amp; stamp your Deccan Heritage Passport.
+                </div>
+              </div>
+            </div>
+            <Link
+              href={`/?site=${site.id}&tab=passport`}
+              className="pressable-sm"
+              style={{ background: color, color: "#fff", padding: "8px 16px", borderRadius: 999, fontWeight: 700, textDecoration: "none", fontSize: 13, whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 6, boxShadow: "0 2px 6px rgba(0,0,0,0.2)" }}
+            >
+              <span>Stamp Passport</span>
+              <span>→</span>
+            </Link>
           </div>
           <h1 style={{ fontFamily: "Fraunces, serif", fontSize: "clamp(34px, 5.5vw, 50px)", fontWeight: 700, color: "var(--ink)", margin: "0 0 8px", lineHeight: 1.15, letterSpacing: "-0.025em" }}>
             {site.name}
@@ -565,9 +637,20 @@ export default async function SitePage({ params }) {
         <p style={{ margin: "0 0 16px", fontSize: 13, opacity: 0.75, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
           Mapping Hyderabad's built heritage across 500 years from the Qutb Shahi Sultanate to the modern era.
         </p>
-        <Link href="/" style={{ display: "inline-block", background: color, color: "#fff", padding: "9px 22px", borderRadius: 999, fontSize: 13, fontWeight: 700, textDecoration: "none" }}>
-          Explore the Interactive Map →
-        </Link>
+        <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", alignItems: "center", marginBottom: 18 }}>
+          <Link href="/" style={{ display: "inline-block", background: color, color: "#fff", padding: "9px 22px", borderRadius: 999, fontSize: 13, fontWeight: 700, textDecoration: "none" }}>
+            Explore the Interactive Map →
+          </Link>
+        </div>
+        <div style={{ display: "flex", gap: 18, justifyContent: "center", flexWrap: "wrap", fontSize: 13, opacity: 0.85 }}>
+          <Link href="/about" style={{ color: "var(--cream)", textDecoration: "underline" }}>
+            All 85 Heritage Sites Directory
+          </Link>
+          <span style={{ opacity: 0.4 }}>•</span>
+          <Link href="/getaways" style={{ color: "var(--cream)", textDecoration: "underline" }}>
+            Heritage Weekend Getaways
+          </Link>
+        </div>
       </footer>
     </div>
   );

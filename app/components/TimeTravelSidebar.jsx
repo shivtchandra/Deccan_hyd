@@ -129,7 +129,7 @@ export default function TimeTravelSidebar({
               <div className="dhm-tt-site-thumb">
                 {s.hasPhoto ? (
                   <img
-                    src={thumbUrl(s.id)}
+                    src={s.thumb || thumbUrl(s.id)}
                     width="50"
                     height="50"
                     alt={s.name}

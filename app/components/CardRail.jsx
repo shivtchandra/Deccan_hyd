@@ -61,7 +61,7 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
               <div className="dhm-card-list-thumb">
                 {s.hasPhoto ? (
                   <img
-                    src={thumbUrl(s.id)}
+                    src={s.thumb || thumbUrl(s.id)}
                     width="52"
                     height="52"
                     alt={s.name}
@@ -155,7 +155,7 @@ export default function CardRail({ sites, selectedId, onSelect, onOpen, userLoc,
             <div style={{ height: 96, background: color, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
               {s.hasPhoto ? (
                 <img
-                  src={thumbUrl(s.id)}
+                  src={s.thumb || thumbUrl(s.id)}
                   width="224"
                   height="96"
                   alt={s.name}

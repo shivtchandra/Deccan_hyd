@@ -228,7 +228,7 @@ export default function MapCanvas({
 
           if (!areaMarkersRef.current.has(clusterKey)) {
             const inner = ps.hasPhoto
-              ? `<div class="cluster-pin-thumb"><img src="${thumbUrl(ps.id)}" width="48" height="48" alt="${ps.name || ''}" loading="lazy"/></div>`
+              ? `<div class="cluster-pin-thumb"><img src="${ps.thumb || thumbUrl(ps.id)}" width="48" height="48" alt="${ps.name || ''}" loading="lazy"/></div>`
               : `<div class="cluster-pin-thumb noimg" style="--c:${eraC}">${glyphSvg(ps.type, "#fff")}</div>`;
             const icon = L.divIcon({
               className: "",
@@ -279,7 +279,7 @@ export default function MapCanvas({
             const active = s.id === selectedId;
             const size = 46;
             const inner = s.hasPhoto
-              ? `<div class="photo-pin-img"><img src="${thumbUrl(s.id)}" width="42" height="42" alt="${s.name || ''}" loading="lazy"/></div>`
+              ? `<div class="photo-pin-img"><img src="${s.thumb || thumbUrl(s.id)}" width="42" height="42" alt="${s.name || ''}" loading="lazy"/></div>`
               : `<div class="photo-pin-img noimg" style="--c:${eraC}">${glyphSvg(s.type, "#fff")}</div>`;
             const icon = L.divIcon({
               className: "",
@@ -328,7 +328,7 @@ export default function MapCanvas({
       if (existing) {
         if (existing.key !== stateKey) {
           const inner = s.hasPhoto
-            ? `<div class="photo-pin-img"><img src="${thumbUrl(s.id)}" width="48" height="48" alt="${s.name || ''}" loading="lazy"/></div>`
+            ? `<div class="photo-pin-img"><img src="${s.thumb || thumbUrl(s.id)}" width="48" height="48" alt="${s.name || ''}" loading="lazy"/></div>`
             : `<div class="photo-pin-img noimg" style="--c:${c}">${glyphSvg(s.type, "#fff")}</div>`;
           const icon = L.divIcon({
             className: "",
@@ -343,7 +343,7 @@ export default function MapCanvas({
       } else {
         // NEW marker popping up on the map for the first time
         const inner = s.hasPhoto
-          ? `<div class="photo-pin-img"><img src="${thumbUrl(s.id)}" width="48" height="48" alt="${s.name || ''}" loading="lazy"/></div>`
+          ? `<div class="photo-pin-img"><img src="${s.thumb || thumbUrl(s.id)}" width="48" height="48" alt="${s.name || ''}" loading="lazy"/></div>`
           : `<div class="photo-pin-img noimg" style="--c:${c}">${glyphSvg(s.type, "#fff")}</div>`;
         const anim = isTimeTravel
           ? "markerTimelapsePop 0.4s cubic-bezier(0.34,1.56,0.64,1) backwards"

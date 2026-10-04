@@ -39,6 +39,9 @@ const index = sites.map((s) => ({
   needsReview: !!s.needsReview,
   curatedBy: s.curatedBy || null,
   curatorNote: s.curatorNote || null,
+  verifiedAt: s.verifiedAt || null,
+  isGetaway: !!s.isGetaway,
+  summary: s.summary || "",
 }));
 
 const detail = {};

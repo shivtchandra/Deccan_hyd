@@ -75,7 +75,7 @@
     "lat": 17.3604,
     "lng": 78.4736,
     "era": "qutb-shahi",
-    "yearBuilt": "1617\u20131694",
+    "yearBuilt": "1617–1694",
     "type": "mosque",
     "status": "state-protected",
     "access": "free",
@@ -216,7 +216,7 @@
     "lat": 17.3949,
     "lng": 78.3927,
     "era": "qutb-shahi",
-    "yearBuilt": "1543\u20131672",
+    "yearBuilt": "1543–1672",
     "type": "tomb",
     "status": "asi-protected",
     "access": "ticketed",
@@ -294,7 +294,7 @@
     "lat": 17.3582,
     "lng": 78.4704,
     "era": "asaf-jahi",
-    "yearBuilt": "1750s\u20131869",
+    "yearBuilt": "1750s–1869",
     "type": "palace",
     "status": "intach-listed",
     "access": "ticketed",
@@ -703,7 +703,7 @@
     "access": "free",
     "area": "Malakpet",
     "summary": "Commissioned by the Paigah noble Iqbal-ud-Daula after travels in Spain. Octagonal spires and Moorish arches modelled on Cordoba, the only mosque of this style in India.",
-    "story": "The Paigah noble Iqbal-ud-Daula returned from travels in Andalusia captivated by the Mezquita of C\u00f3rdoba and commissioned a mosque in its Moorish spirit: octagonal minarets, horseshoe arches, and decorative tilework that have no precedent in Hyderabad's Islamic tradition. The result is the only mosque in India built in the Spanish-Moorish style, an emblem of the Hyderabadi aristocracy's cosmopolitan reach in the final decades before accession. Local craftsmen interpreted the Andalusian vocabulary through Deccani materials.",
+    "story": "The Paigah noble Iqbal-ud-Daula returned from travels in Andalusia captivated by the Mezquita of Córdoba and commissioned a mosque in its Moorish spirit: octagonal minarets, horseshoe arches, and decorative tilework that have no precedent in Hyderabad's Islamic tradition. The result is the only mosque in India built in the Spanish-Moorish style, an emblem of the Hyderabadi aristocracy's cosmopolitan reach in the final decades before accession. Local craftsmen interpreted the Andalusian vocabulary through Deccani materials.",
     "architect": "Local craftsmen; Spanish Moorish stylistic influence",
     "people": [
       {
@@ -804,7 +804,7 @@
         "url": "https://asi.nic.in/"
       },
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -836,7 +836,7 @@
     "lat": 17.3837,
     "lng": 78.4848,
     "era": "british-residency",
-    "yearBuilt": "1803\u20131806",
+    "yearBuilt": "1803–1806",
     "type": "residency",
     "status": "at-risk",
     "access": "restricted",
@@ -910,7 +910,7 @@
     "lat": 17.3729,
     "lng": 78.4735,
     "era": "nizam-civic",
-    "yearBuilt": "1919\u20131925",
+    "yearBuilt": "1919–1925",
     "type": "civic",
     "status": "at-risk",
     "access": "public",
@@ -985,7 +985,7 @@
     "lat": 17.3692,
     "lng": 78.472,
     "era": "nizam-civic",
-    "yearBuilt": "1915\u20131919",
+    "yearBuilt": "1915–1919",
     "type": "civic",
     "status": "state-protected",
     "access": "public",
@@ -1118,7 +1118,7 @@
     "access": "public",
     "area": "Kachiguda",
     "summary": "Terminus built for the Nizam's Guaranteed State Railway in a domed Gothic-Mughal blend. Restored by South Central Railway with its cream-and-red colour scheme intact.",
-    "story": "The Nizam's Guaranteed State Railway was one of the finest private rail networks in India, built using bonds raised in London and managed with British engineering expertise. Kachiguda was its city terminus when the main railway ran through Secunderabad, and the building's triple domes and Gothic-Mughal arched porte-coch\u00e8re announced the modernity of Hyderabad state. Restored by South Central Railway, the station retains its cream-and-terracotta colour scheme and remains in active daily use.",
+    "story": "The Nizam's Guaranteed State Railway was one of the finest private rail networks in India, built using bonds raised in London and managed with British engineering expertise. Kachiguda was its city terminus when the main railway ran through Secunderabad, and the building's triple domes and Gothic-Mughal arched porte-cochère announced the modernity of Hyderabad state. Restored by South Central Railway, the station retains its cream-and-terracotta colour scheme and remains in active daily use.",
     "architect": "Nizam's Railway engineers",
     "people": [
       {
@@ -1458,7 +1458,7 @@
         "url": "https://en.wikipedia.org/wiki/Jubilee_Hall,_Hyderabad"
       },
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -1485,7 +1485,7 @@
     "lat": 17.3845,
     "lng": 78.4751,
     "era": "nizam-civic",
-    "yearBuilt": "1933\u20131935",
+    "yearBuilt": "1933–1935",
     "type": "civic",
     "status": "state-protected",
     "access": "public",
@@ -1596,7 +1596,7 @@
         "url": "http://intachhyderabad.org/"
       },
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -1668,7 +1668,7 @@
         "url": "https://en.wikipedia.org/wiki/Michel_Raymond"
       },
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -1959,7 +1959,7 @@
         "url": "https://en.wikipedia.org/wiki/Moula_Ali_Dargah"
       },
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -2315,7 +2315,7 @@
     "curationUrl": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ]
@@ -2327,7 +2327,7 @@
     "lat": 17.3713,
     "lng": 78.4804,
     "era": "asaf-jahi",
-    "yearBuilt": "collection assembled 19th\u201320th c.; present building 1968",
+    "yearBuilt": "collection assembled 19th–20th c.; present building 1968",
     "type": "museum",
     "status": "state-protected",
     "access": "ticketed",
@@ -2511,7 +2511,7 @@
         "url": "https://en.wikipedia.org/wiki/Tomb_of_Saidani_Ma"
       },
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -3088,7 +3088,8 @@
         "licence": "CC BY-SA",
         "source": "https://commons.wikimedia.org"
       }
-    ]
+    ],
+    "isGetaway": true
   },
   {
     "id": "khairatabad-ganesh",
@@ -3265,7 +3266,7 @@
         "url": "https://www.larsentoubro.com/"
       },
       {
-        "label": "PIB India Archives (1998\u20132000)",
+        "label": "PIB India Archives (1998–2000)",
         "url": "https://archive.pib.gov.in/"
       },
       {
@@ -3612,7 +3613,7 @@
     "lat": 17.3795,
     "lng": 78.3796,
     "era": "qutb-shahi",
-    "yearBuilt": "c. 1560\u20131610",
+    "yearBuilt": "c. 1560–1610",
     "type": "mosque",
     "status": "state-protected",
     "access": "free",
@@ -3717,7 +3718,7 @@
     "curatorNote": "200 year old step well that lent its name to Gachibowli",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -3753,14 +3754,14 @@
     "access": "open",
     "area": "Patancheru",
     "summary": "An octagonal granite and stucco tomb built in 1568 by Amin Khan, high minister under Ibrahim Qutb Shah. It predates Charminar by 23 years.",
-    "story": "Erected during the reign of Ibrahim Qutb Shah (reigned 1550\u20131580), this tomb is one of the earliest standing monuments of the Qutb Shahi dynasty. Amin Khan was an aristocratic administrator who built an expansive walled complex complete with an orchard, caravanserai, well, and mosque along the historic trade highway to Bidar. The tomb features fine stucco calligraphy and bulbous dome arches.",
+    "story": "Erected during the reign of Ibrahim Qutb Shah (reigned 1550–1580), this tomb is one of the earliest standing monuments of the Qutb Shahi dynasty. Amin Khan was an aristocratic administrator who built an expansive walled complex complete with an orchard, caravanserai, well, and mosque along the historic trade highway to Bidar. The tomb features fine stucco calligraphy and bulbous dome arches.",
     "curatedBy": "Karthik Vatsavayi",
     "curationSource": "(Lesser Known) Historic Sites of Hyderabad",
     "curationUrl": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw",
     "curatorNote": "Tomb from 1568 that is older than the Charminar",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -3792,10 +3793,10 @@
     "curatedBy": "Karthik Vatsavayi",
     "curationSource": "(Lesser Known) Historic Sites of Hyderabad",
     "curationUrl": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw",
-    "curatorNote": "First Telugu inscription to contain the word \u201cTelangana\u201d",
+    "curatorNote": "First Telugu inscription to contain the word “Telangana”",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -3822,7 +3823,7 @@
     "status": "unprotected",
     "access": "open",
     "area": "Patancheru",
-    "summary": "An 800\u20131200 year old Rashtrakuta / Western Chalukyan carved Jain pillared mandapam surviving in the heart of old Patancheru.",
+    "summary": "An 800–1200 year old Rashtrakuta / Western Chalukyan carved Jain pillared mandapam surviving in the heart of old Patancheru.",
     "story": "In medieval history, Patancheru was known as 'Pottalakere', a prominent political and religious capital under the Western Chalukyas and Rashtrakutas. It was a thriving center of Jainism with royal patronage. This surviving open mandapa in Qureshi Mohalla features finely chiselled stone pillars with lotus medallions and Tirthankara relief icons.",
     "curatedBy": "Karthik Vatsavayi",
     "curationSource": "(Lesser Known) Historic Sites of Hyderabad",
@@ -3830,7 +3831,7 @@
     "curatorNote": "Historic 800-1200 year old Jain mandapam",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -3865,7 +3866,7 @@
     "curatorNote": "700 year old temple with hero stones and statues",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -3896,7 +3897,7 @@
     "curatorNote": "Cairns, or prehistoric burial site, from 2,300 years ago",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -3931,7 +3932,7 @@
     "curatorNote": "Considered the oldest, 4500 year old Iron Age site",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -3954,25 +3955,26 @@
     "status": "asi-protected",
     "access": "open",
     "area": "Keesaragutta",
-    "summary": "Excavated 5th\u20136th century CE capital ruins of the Vishnukundina dynasty, featuring brick residential complexes, fortified walls, and rock-cut shrines.",
-    "story": "Extensive excavations on the Keesaragutta plateau uncovered a royal fortified citadel of the Vishnukundina kings (c. 450\u2013620 CE). The ruins feature monumental burnt-brick palace foundations, square stone-paved courtyards, defensive ramparts, and pottery inscribed with early Telugu-Brahmi script.",
+    "summary": "Excavated 5th–6th century CE capital ruins of the Vishnukundina dynasty, featuring brick residential complexes, fortified walls, and rock-cut shrines.",
+    "story": "Extensive excavations on the Keesaragutta plateau uncovered a royal fortified citadel of the Vishnukundina kings (c. 450–620 CE). The ruins feature monumental burnt-brick palace foundations, square stone-paved courtyards, defensive ramparts, and pottery inscribed with early Telugu-Brahmi script.",
     "curatedBy": "Karthik Vatsavayi",
     "curationSource": "(Lesser Known) Historic Sites of Hyderabad",
     "curationUrl": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw",
     "curatorNote": "Remains of a 6th century Vishnukundina temple",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
-        "label": "ASI Excavation Reports: Keesaragutta (1975\u20131985)",
+        "label": "ASI Excavation Reports: Keesaragutta (1975–1985)",
         "url": "https://asi.nic.in"
       }
     ],
     "addedBy": "karthik-collection",
     "verifiedAt": "2026-09-25",
-    "needsReview": false
+    "needsReview": false,
+    "isGetaway": true
   },
   {
     "id": "keesaragutta-ancient-shiva-temple",
@@ -3997,13 +3999,14 @@
     "curatorNote": "Ancient temple. Walk up the hill behind the temple to find more hero stones and some ruins.",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
     "addedBy": "karthik-collection",
     "verifiedAt": "2026-09-25",
-    "needsReview": false
+    "needsReview": false,
+    "isGetaway": true
   },
   {
     "id": "shaikpet-sarai",
@@ -4028,7 +4031,7 @@
     "curatorNote": "Old caravanserai or resting place during trade routes",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -4063,7 +4066,7 @@
     "curatorNote": "Old Qutub Shahi era mosque lying in neglect",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4094,7 +4097,7 @@
     "curatorNote": "Historic 8 century old cave temple dedicated to Lord Vishnu",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -4129,7 +4132,7 @@
     "curatorNote": "Hero stones found here, along with petroglyphs behind it",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4160,13 +4163,14 @@
     "curatorNote": "Home to ancient rock art",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
     "addedBy": "karthik-collection",
     "verifiedAt": "2026-09-25",
-    "needsReview": false
+    "needsReview": false,
+    "isGetaway": true
   },
   {
     "id": "gundlapochampally-rock-art",
@@ -4183,7 +4187,7 @@
     "status": "at-risk",
     "access": "open",
     "area": "Gundlapochampally",
-    "summary": "Granite hillocks housing 2,000\u20133,000-year-old ochre cave paintings alongside medieval Shaivite hero stones and cisterns.",
+    "summary": "Granite hillocks housing 2,000–3,000-year-old ochre cave paintings alongside medieval Shaivite hero stones and cisterns.",
     "story": "The rocky hillocks around Gundlapochampally preserve multiple archaeological layers. Red and white ochre pictographs depicting human figures, deer, and symbolic designs date to the late Megalithic epoch, while surrounding terraces feature medieval temple foundations and hero stones.",
     "curatedBy": "Karthik Vatsavayi",
     "curationSource": "(Lesser Known) Historic Sites of Hyderabad",
@@ -4191,7 +4195,7 @@
     "curatorNote": "Cave painting at several sites, from 2000-3000 years ago. Also home to a lot of medieval Hindu heritage",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4222,7 +4226,7 @@
     "curatorNote": "Old stepwell in Kondapur",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4245,7 +4249,7 @@
     "status": "asi-protected",
     "access": "ticketed",
     "area": "Kondapur (Sangareddy)",
-    "summary": "An ASI museum showcasing antiquities from an extensive 2,000\u20133,000-year-old Satavahana urban trading and Buddhist settlement.",
+    "summary": "An ASI museum showcasing antiquities from an extensive 2,000–3,000-year-old Satavahana urban trading and Buddhist settlement.",
     "story": "Excavated in the 1940s by Ghulam Yazdani under the Nizam's Archaeological Department, Kondapur was a major Satavahana regional capital. The site museum exhibits Roman gold and silver coins, clay bullae, Buddhist chaitya relics, terracotta figurines, and iron tools establishing direct 1st-century trade links with Rome.",
     "curatedBy": "Karthik Vatsavayi",
     "curationSource": "(Lesser Known) Historic Sites of Hyderabad",
@@ -4253,7 +4257,7 @@
     "curatorNote": "Contains remains of a 2,000-3,000 year old large settlement",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -4263,7 +4267,8 @@
     ],
     "addedBy": "karthik-collection",
     "verifiedAt": "2026-09-25",
-    "needsReview": false
+    "needsReview": false,
+    "isGetaway": true
   },
   {
     "id": "rachakonda-cave-temple",
@@ -4288,13 +4293,14 @@
     "curatorNote": "Cave temple of Lord Narasimha with intricate carvings",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
     "addedBy": "karthik-collection",
     "verifiedAt": "2026-09-25",
-    "needsReview": false
+    "needsReview": false,
+    "isGetaway": true
   },
   {
     "id": "rachakonda-rama-temple",
@@ -4319,13 +4325,14 @@
     "curatorNote": "Beautiful ancient temple of Lord Rama",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
     "addedBy": "karthik-collection",
     "verifiedAt": "2026-09-25",
-    "needsReview": false
+    "needsReview": false,
+    "isGetaway": true
   },
   {
     "id": "khursheed-jah-devdi",
@@ -4350,7 +4357,7 @@
     "curatorNote": "Unique piece of European architecture in Hyderabad",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -4385,7 +4392,7 @@
     "curatorNote": "Old Asaf Jahi palace",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4416,7 +4423,7 @@
     "curatorNote": "Historic centuries old temple dedicated to Lord Vishnu",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4447,7 +4454,7 @@
     "curatorNote": "Historic temple dedicated to Lord Vishnu",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -4482,7 +4489,7 @@
     "curatorNote": "17th century hero stone and burial site",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4513,7 +4520,7 @@
     "curatorNote": "Site where ancient rock tools were found",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4544,7 +4551,7 @@
     "curatorNote": "ACCESS RESTRICTED. Grand Asaf Jahi castle on the hill",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       },
       {
@@ -4579,7 +4586,7 @@
     "curatorNote": "Historic 200 year old temple dedicated to Lord Vishnu",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4610,7 +4617,7 @@
     "curatorNote": "Watch tower from the Asaf Jahi era for military outposts",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4641,7 +4648,7 @@
     "curatorNote": "Kakatiya Herostones (Veeragallulu) from the 14th century",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],
@@ -4672,7 +4679,7 @@
     "curatorNote": "Contains ruins of a 14th century Kakatiya temple",
     "sources": [
       {
-        "label": "Karthik Vatsavayi \u2014 (Lesser Known) Historic Sites of Hyderabad",
+        "label": "Karthik Vatsavayi — (Lesser Known) Historic Sites of Hyderabad",
         "url": "https://www.google.com/maps/placelists/list/e9usIPiETfqUE9foaxV6Qw"
       }
     ],

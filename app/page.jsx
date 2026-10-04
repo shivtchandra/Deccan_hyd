@@ -268,10 +268,17 @@ export default function Page() {
   // ---- load & restore persisted state ----
   useEffect(() => {
     setPassport(getState());
-    fetch(`/sites-index.json?v=${Date.now()}`, { cache: "no-store" })
-      .then((r) => r.json())
-      .then((rows) => {
-        setSites(Array.isArray(rows) ? rows : []);
+    // Static index + live field findings (logged from /admin/field, no rebuild needed).
+    Promise.all([
+      fetch(`/sites-index.json?v=${Date.now()}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch("/api/findings", { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : { findings: [] }))
+        .catch(() => ({ findings: [] })),
+    ])
+      .then(([rows, { findings }]) => {
+        const base = Array.isArray(rows) ? rows : [];
+        const ids = new Set(base.map((s) => s.id));
+        setSites([...base, ...(findings || []).filter((f) => !ids.has(f.id))]);
         setLoading(false);
       })
       .catch(() => setLoading(false));

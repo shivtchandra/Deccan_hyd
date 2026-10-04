@@ -3,6 +3,7 @@
 
 import { readFileSync, existsSync } from "fs";
 import { join } from "path";
+import { getFinding } from "../../../../lib/findingsStore.js";
 
 export const dynamic = "force-dynamic";
 
@@ -51,7 +52,11 @@ export async function GET(req, context) {
     }
 
     const map = load();
-    const site = map ? map[id] : null;
+    let site = map ? map[id] : null;
+    if (!site && id.startsWith("field-")) {
+      const finding = await getFinding(id).catch(() => null);
+      if (finding && !finding.hidden) site = finding;
+    }
 
     if (!site) {
       return Response.json({ error: "not-found" }, { status: 404 });
@@ -60,7 +65,7 @@ export async function GET(req, context) {
     return Response.json(site, {
       headers: {
         "content-type": "application/json",
-        "cache-control": "public, max-age=600",
+        "cache-control": site.isFinding ? "no-store" : "public, max-age=600",
       },
     });
   } catch (err) {
