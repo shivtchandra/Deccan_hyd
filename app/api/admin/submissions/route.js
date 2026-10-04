@@ -8,14 +8,14 @@
 // `npm run seed:merge` then folds it into data/sites.json before the next build.
 
 import { getAdminDb } from "../../../../lib/firebaseAdmin.js";
+import { editorFromRequest } from "../../../../lib/findingsStore.js";
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 
 export const dynamic = "force-dynamic";
 
 function authOk(req) {
-  const secret = process.env.ADMIN_SECRET || "mapping-hyd-admin";
-  return (req.headers.get("authorization") || "") === `Bearer ${secret}`;
+  return !!editorFromRequest(req);
 }
 
 function slug(s) {

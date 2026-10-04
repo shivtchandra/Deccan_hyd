@@ -98,6 +98,7 @@ export default function AdminHeritageCMS() {
   const [saving, setSaving] = useState(false);
   const [locating, setLocating] = useState(false);
 
+  const [editorName, setEditorName] = useState("Editorial Contributor");
   const [notification, setNotification] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -108,8 +109,10 @@ export default function AdminHeritageCMS() {
   };
 
   const loadSubmissions = (sec) => {
+    const bearer = sec || secret;
+    if (!bearer) return;
     fetch("/api/admin/submissions?state=pending", {
-      headers: { Authorization: `Bearer ${sec || secret || "mapping-hyd-admin"}` },
+      headers: { Authorization: `Bearer ${bearer}` },
     })
       .then((r) => (r.ok ? r.json() : { submissions: [] }))
       .then((d) => setSubmissions(d.submissions || []))
@@ -131,11 +134,22 @@ export default function AdminHeritageCMS() {
   };
 
   useEffect(() => {
-    const s = sessionStorage.getItem("dhm_admin") || "";
+    const s = sessionStorage.getItem("dhm_editor_key") || "";
     if (s) {
       setSecret(s);
-      setAuthed(true);
-      loadSubmissions(s);
+      fetch("/api/admin/auth", { headers: { Authorization: `Bearer ${s}` } })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          if (data && data.ok) {
+            setEditorName(data.name || "Editorial Contributor");
+            setAuthed(true);
+            loadSubmissions(s);
+            loadAllSites();
+          } else {
+            sessionStorage.removeItem("dhm_editor_key");
+          }
+        })
+        .catch(() => {});
     }
     loadAllSites();
   }, []);
@@ -143,32 +157,39 @@ export default function AdminHeritageCMS() {
   const handleLogin = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
     setLoginError("");
-    const key = (secret || "").trim() || "mapping-hyd-admin";
+    const key = (secret || "").trim();
+    if (!key) {
+      setLoginError("Please enter your editorial access key.");
+      return;
+    }
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/submissions?state=pending", {
+      const res = await fetch("/api/admin/auth", {
         headers: { Authorization: `Bearer ${key}` },
       });
-      if (res.status === 401) {
-        setLoginError("Invalid passcode. The default passcode is: mapping-hyd-admin");
+      if (res.status === 401 || !res.ok) {
+        setLoginError("Invalid editorial access key. Please check with your administrator.");
         setLoading(false);
         return;
       }
-      sessionStorage.setItem("dhm_admin", key);
-      setSecret(key);
-      setAuthed(true);
-      const data = await res.json().catch(() => ({}));
-      setSubmissions(data.submissions || []);
-      loadAllSites();
-    } catch {
-      sessionStorage.setItem("dhm_admin", key);
+      const data = await res.json();
+      sessionStorage.setItem("dhm_editor_key", key);
+      setEditorName(data.name || "Editorial Contributor");
       setSecret(key);
       setAuthed(true);
       loadSubmissions(key);
       loadAllSites();
+    } catch {
+      setLoginError("Network error verifying access key. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSignOut = () => {
+    sessionStorage.removeItem("dhm_editor_key");
+    setSecret("");
+    setAuthed(false);
   };
 
   const handleSubmissionAction = async (id, action) => {
@@ -177,7 +198,7 @@ export default function AdminHeritageCMS() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${secret || "mapping-hyd-admin"}`,
+          Authorization: `Bearer ${secret}`,
         },
         body: JSON.stringify({ id, action }),
       });
@@ -258,7 +279,7 @@ export default function AdminHeritageCMS() {
 
       const res = await fetch(url, {
         method: isFinding ? "PATCH" : "POST",
-        headers: { Authorization: `Bearer ${secret || "mapping-hyd-admin"}` },
+        headers: { Authorization: `Bearer ${secret}` },
         body: fd,
       });
 
@@ -305,7 +326,7 @@ export default function AdminHeritageCMS() {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${secret || "mapping-hyd-admin"}`,
+            Authorization: `Bearer ${secret}`,
           },
           body: JSON.stringify({ hidden: true }),
         });
@@ -383,42 +404,23 @@ export default function AdminHeritageCMS() {
           </div>
 
           <p style={{ margin: 0, fontSize: 13.5, color: "var(--ink-soft, #6b5d4c)", lineHeight: 1.55 }}>
-            Manage heritage monuments, review community submissions, and curate chronological periods for the Deccan Heritage Atlas.
+            Authorized portal for editorial collaborators. Enter your access key to add and curate heritage landmarks, review submissions, and manage atlas content.
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 12 }}>
-              <span style={{ color: "var(--ink-soft, #6b5d4c)", fontWeight: 600 }}>Passcode / Key</span>
-              <button
-                type="button"
-                onClick={() => {
-                  setSecret("mapping-hyd-admin");
-                  setLoginError("");
-                }}
-                style={{
-                  background: "var(--accent-wash, #f6e2d6)",
-                  border: "1px solid var(--line, #ddd0b8)",
-                  color: "var(--accent-deep, #8b3a1a)",
-                  borderRadius: 6,
-                  padding: "3px 8px",
-                  fontSize: 11,
-                  fontFamily: "JetBrains Mono, monospace",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                }}
-              >
-                Use default: mapping-hyd-admin
-              </button>
-            </div>
+            <label style={{ fontSize: 13, fontWeight: 600, color: "var(--ink, #2b2119)" }}>
+              Editorial Access Key
+            </label>
             <input
               type="password"
-              placeholder="Enter ADMIN_SECRET"
+              placeholder="Enter your editorial access key"
               value={secret}
               onChange={(e) => {
                 setSecret(e.target.value);
                 setLoginError("");
               }}
               autoFocus
+              required
               style={{
                 padding: "12px 14px",
                 borderRadius: 10,
@@ -467,7 +469,7 @@ export default function AdminHeritageCMS() {
               boxShadow: "0 2px 8px rgba(194, 96, 58, 0.35)",
             }}
           >
-            {loading ? "Verifying..." : "Enter Heritage CMS →"}
+            {loading ? "Verifying..." : "Access Editorial Desk →"}
           </button>
         </form>
       </div>
@@ -515,11 +517,26 @@ export default function AdminHeritageCMS() {
             }}
           />
           <div>
-            <div style={{ fontSize: 11, fontFamily: "JetBrains Mono, monospace", color: "var(--accent-deep, #8b3a1a)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>
-              Heritage Editorial Management System
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: 11, fontFamily: "JetBrains Mono, monospace", color: "var(--accent-deep, #8b3a1a)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>
+                Editorial Desk
+              </span>
+              <span
+                style={{
+                  fontSize: 10.5,
+                  padding: "2px 8px",
+                  borderRadius: 999,
+                  background: "var(--butter, #f3e7cc)",
+                  color: "var(--ink, #2b2119)",
+                  fontWeight: 600,
+                  border: "1px solid var(--line, #ddd0b8)",
+                }}
+              >
+                {editorName}
+              </span>
             </div>
             <h1 style={{ margin: "2px 0 0 0", fontSize: 24, fontFamily: "var(--font-serif, Fraunces, Georgia, serif)", color: "var(--ink, #2b2119)" }}>
-              Deccan Heritage CMS Dashboard
+              Deccan Heritage Content Desk
             </h1>
           </div>
         </div>
@@ -541,10 +558,7 @@ export default function AdminHeritageCMS() {
             ← View Public Atlas
           </a>
           <button
-            onClick={() => {
-              sessionStorage.removeItem("dhm_admin");
-              setAuthed(false);
-            }}
+            onClick={handleSignOut}
             style={{
               padding: "8px 16px",
               borderRadius: 999,
