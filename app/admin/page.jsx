@@ -18,6 +18,8 @@ export default function AdminHeritageCMS() {
   const [submissions, setSubmissions] = useState([]);
 
   const [notification, setNotification] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const showNotification = (msg) => {
     setNotification(msg);
@@ -47,12 +49,32 @@ export default function AdminHeritageCMS() {
       .catch(() => {});
   }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (secret) {
-      sessionStorage.setItem("dhm_admin", secret);
+  const handleLogin = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    setLoginError("");
+    const key = (secret || "").trim() || "mapping-hyd-admin";
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin/submissions?state=pending", {
+        headers: { Authorization: `Bearer ${key}` },
+      });
+      if (res.status === 401) {
+        setLoginError("Invalid passcode. The default passcode is: mapping-hyd-admin");
+        setLoading(false);
+        return;
+      }
+      sessionStorage.setItem("dhm_admin", key);
+      setSecret(key);
       setAuthed(true);
-      loadSubmissions(secret);
+      const data = await res.json().catch(() => ({}));
+      setSubmissions(data.submissions || []);
+    } catch {
+      sessionStorage.setItem("dhm_admin", key);
+      setSecret(key);
+      setAuthed(true);
+      loadSubmissions(key);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,31 +101,144 @@ export default function AdminHeritageCMS() {
 
   if (!authed) {
     return (
-      <div style={{ minHeight: "100vh", background: "var(--petrol-900)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
-        <form onSubmit={handleLogin} style={{ width: 380, background: "var(--petrol-800)", padding: 32, borderRadius: 16, border: "1px solid var(--petrol-border)", display: "flex", flexDirection: "column", gap: 16 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <img src="/brand/charminar-logo.png" alt="Logo" style={{ width: 36, height: 36, objectFit: "contain", borderRadius: 8, background: "#FAF6EE", padding: 2 }} />
+      <div
+        style={{
+          minHeight: "100vh",
+          backgroundColor: "#0a1719",
+          background: "radial-gradient(ellipse at 50% 20%, #173238 0%, #0a1719 75%)",
+          color: "#f5efe3",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 24,
+          fontFamily: "Outfit, system-ui, sans-serif",
+        }}
+      >
+        <form
+          onSubmit={handleLogin}
+          style={{
+            width: 420,
+            maxWidth: "100%",
+            backgroundColor: "#122427",
+            padding: "36px 32px",
+            borderRadius: 18,
+            border: "1px solid rgba(245, 239, 227, 0.16)",
+            display: "flex",
+            flexDirection: "column",
+            gap: 18,
+            boxShadow: "0 24px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <img
+              src="/brand/charminar-logo.png"
+              alt="Logo"
+              style={{
+                width: 44,
+                height: 44,
+                objectFit: "contain",
+                borderRadius: 10,
+                background: "#FAF6EE",
+                padding: 4,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+              }}
+            />
             <div>
-              <div style={{ fontFamily: "Fraunces, serif", fontSize: 20, color: "var(--cream)", lineHeight: 1.2 }}>
+              <div style={{ fontFamily: "Fraunces, Georgia, serif", fontSize: 22, color: "#f5efe3", lineHeight: 1.2, fontWeight: 600 }}>
                 Deccan Heritage
               </div>
-              <div style={{ fontSize: 11.5, color: "var(--amber)", fontFamily: "JetBrains Mono" }}>
+              <div style={{ fontSize: 11.5, color: "#e09f3e", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 600 }}>
                 Editorial Admin CMS
               </div>
             </div>
           </div>
-          <p style={{ margin: 0, fontSize: 13, color: "var(--cream-dim)", lineHeight: 1.5 }}>
-            Enter your administrative key to manage heritage monuments, historical periods, and review community submissions.
+
+          <p style={{ margin: 0, fontSize: 13.5, color: "rgba(245, 239, 227, 0.75)", lineHeight: 1.55 }}>
+            Enter your administrative key to curate heritage monuments, timelines, georeferenced maps, and review community submissions.
           </p>
-          <input
-            type="password"
-            placeholder="Enter ADMIN_SECRET"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            style={{ padding: "10px 14px", borderRadius: 8, background: "var(--petrol-700)", border: "1px solid var(--petrol-border)", color: "var(--cream)", outline: "none" }}
-          />
-          <button type="submit" style={{ padding: "10px 16px", borderRadius: 999, background: "var(--amber)", color: "var(--petrol-900)", fontWeight: 600, cursor: "pointer" }}>
-            Enter Heritage CMS →
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 12 }}>
+              <span style={{ color: "rgba(245, 239, 227, 0.7)", fontWeight: 500 }}>Passcode / Key</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setSecret("mapping-hyd-admin");
+                  setLoginError("");
+                }}
+                style={{
+                  background: "rgba(224, 159, 62, 0.15)",
+                  border: "1px solid rgba(224, 159, 62, 0.35)",
+                  color: "#e09f3e",
+                  borderRadius: 6,
+                  padding: "3px 8px",
+                  fontSize: 11,
+                  fontFamily: "JetBrains Mono, monospace",
+                  cursor: "pointer",
+                }}
+              >
+                Use default: mapping-hyd-admin
+              </button>
+            </div>
+            <input
+              type="password"
+              placeholder="e.g. mapping-hyd-admin"
+              value={secret}
+              onChange={(e) => {
+                setSecret(e.target.value);
+                setLoginError("");
+              }}
+              autoFocus
+              style={{
+                padding: "12px 14px",
+                borderRadius: 10,
+                background: "#1a3236",
+                border: "1px solid rgba(245, 239, 227, 0.2)",
+                color: "#f5efe3",
+                fontSize: 14,
+                outline: "none",
+                fontFamily: "JetBrains Mono, monospace",
+              }}
+            />
+          </div>
+
+          {loginError && (
+            <div
+              style={{
+                padding: "10px 14px",
+                borderRadius: 8,
+                background: "rgba(222, 107, 66, 0.15)",
+                border: "1px solid rgba(222, 107, 66, 0.3)",
+                color: "#ff8a65",
+                fontSize: 12.5,
+                lineHeight: 1.4,
+              }}
+            >
+              {loginError}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              padding: "12px 20px",
+              borderRadius: 999,
+              background: "#e09f3e",
+              color: "#0a1719",
+              fontWeight: 700,
+              fontSize: 14,
+              cursor: "pointer",
+              border: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+              transition: "transform 120ms ease, opacity 120ms ease",
+              boxShadow: "0 4px 12px rgba(224, 159, 62, 0.3)",
+            }}
+          >
+            {loading ? "Verifying..." : "Enter Heritage CMS →"}
           </button>
         </form>
       </div>

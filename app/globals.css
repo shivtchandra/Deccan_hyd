@@ -29,6 +29,17 @@
 
   --danger: #b23b2e;
 
+  /* Petrol / Editorial Dark Palette (Admin CMS, Story Mode, Overlays) */
+  --petrol-900: #0a1719;
+  --petrol-800: #122427;
+  --petrol-700: #1a3236;
+  --petrol-600: #25464c;
+  --petrol-border: rgba(245, 239, 227, 0.15);
+  --cream-dim: rgba(245, 239, 227, 0.72);
+  --amber: #e09f3e;
+  --terracotta: #c2603a;
+  --terracotta-bright: #de6b42;
+
   /* Era marks (also in lib/heritage.js) */
   --era-earlier: #8E44AD;
   --era-qutb-shahi: #0097A7;
