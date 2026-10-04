@@ -1,78 +1,23 @@
 "use client";
 
-// Field desk: a trusted field editor logs new findings (name, description, pin).
+// Field desk: a phone-friendly page for logging new findings on site (name, description, pin).
 // Each save goes live on the public map immediately; "My findings" is
-// the editor's history with edit / hide controls. Keys come from FIELD_EDITORS.
+// the editor's history with edit / hide controls. Keys come from FIELD_EDITORS
+// (ADMIN_SECRET / EDITOR_SECRET also work and see everyone's findings).
+// The full editorial desk is /admin.
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import PinPicker from "../PinPicker.jsx";
 import { ERAS, TYPES, ACCESS } from "../../../lib/heritage.js";
 
-const HYD_CENTER = [17.385, 78.4867];
 const KEY_STORE = "dhm_field_key";
 
 const EMPTY = { name: "", description: "", type: "civic", era: "asaf-jahi", yearBuilt: "", area: "", access: "open", lat: "", lng: "" };
 
-function PinPicker({ lat, lng, onChange }) {
-  const elRef = useRef(null);
-  const mapRef = useRef(null);
-  const markerRef = useRef(null);
-  const LRef = useRef(null);
-  const onChangeRef = useRef(onChange);
-  onChangeRef.current = onChange;
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const L = (await import("leaflet")).default;
-      if (cancelled || !elRef.current || mapRef.current) return;
-      LRef.current = L;
-      const map = L.map(elRef.current, { zoomControl: true }).setView(HYD_CENTER, 12);
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap contributors",
-        maxZoom: 19,
-      }).addTo(map);
-      map.on("click", (e) => onChangeRef.current(e.latlng.lat, e.latlng.lng));
-      mapRef.current = map;
-    })();
-    return () => {
-      cancelled = true;
-      mapRef.current?.remove();
-      mapRef.current = null;
-      markerRef.current = null;
-    };
-  }, []);
-
-  useEffect(() => {
-    const L = LRef.current;
-    const map = mapRef.current;
-    const la = Number(lat);
-    const ln = Number(lng);
-    if (!L || !map) return;
-    if (lat === "" || lng === "" || !Number.isFinite(la) || !Number.isFinite(ln)) {
-      markerRef.current?.remove();
-      markerRef.current = null;
-      return;
-    }
-    if (!markerRef.current) {
-      const icon = L.divIcon({ className: "", html: '<div class="field-pin"></div>', iconSize: [26, 26], iconAnchor: [13, 26] });
-      markerRef.current = L.marker([la, ln], { draggable: true, icon }).addTo(map);
-      markerRef.current.on("dragend", (e) => {
-        const p = e.target.getLatLng();
-        onChangeRef.current(p.lat, p.lng);
-      });
-      map.setView([la, ln], Math.max(map.getZoom(), 16));
-    } else {
-      markerRef.current.setLatLng([la, ln]);
-      if (!map.getBounds().contains([la, ln])) map.panTo([la, ln]);
-    }
-  }, [lat, lng]);
-
-  return <div ref={elRef} className="field-map" />;
-}
-
 export default function FieldDesk() {
   const [key, setKey] = useState("");
   const [editor, setEditor] = useState(null);
+  const [role, setRole] = useState(null);
   const [loginError, setLoginError] = useState("");
   const [view, setView] = useState("new"); // 'new' | 'history'
   const [history, setHistory] = useState([]);
@@ -89,6 +34,7 @@ export default function FieldDesk() {
     if (res.status === 401) throw new Error("unauthorized");
     const data = await res.json();
     setEditor(data.editor);
+    setRole(data.role);
     setHistory(data.findings || []);
     return data;
   };
@@ -240,6 +186,7 @@ export default function FieldDesk() {
         </div>
         <div className="field-head-actions">
           <a href="/" className="field-btn ghost">Map ↗</a>
+          {role !== "field" && <a href="/admin" className="field-btn ghost">Editorial desk</a>}
           <button onClick={signOut} className="field-btn ghost">Sign out</button>
         </div>
       </header>
@@ -319,7 +266,7 @@ export default function FieldDesk() {
               </button>
             </div>
             <p className="field-hint">Tap the map to drop the pin, drag it to fine-tune.</p>
-            <PinPicker lat={form.lat} lng={form.lng} onChange={setPin} />
+            <PinPicker lat={form.lat} lng={form.lng} onChange={setPin} className="field-map" />
             <div className="field-row">
               <label>
                 Latitude
@@ -370,7 +317,7 @@ export default function FieldDesk() {
                 <div className="field-item-meta">
                   Added {new Date(f.createdAt).toLocaleString()}
                   {f.updatedAt && f.updatedAt !== f.createdAt ? ` · edited ${new Date(f.updatedAt).toLocaleString()}` : ""}
-                  {editor === "Admin" && f.addedBy !== "Admin" ? ` · by ${f.addedBy}` : ""}
+                  {role !== "field" && f.addedBy !== editor ? ` · by ${f.addedBy}` : ""}
                 </div>
                 <p>{f.summary}</p>
                 <div className="field-item-actions">
@@ -414,7 +361,6 @@ export default function FieldDesk() {
         @media (max-width: 480px) { .field-row { flex-direction: column; } }
         .field-hint { font-size: 12px; color: var(--muted); font-weight: 400; margin: 0; }
         .field-map { height: 300px; border-radius: 10px; border: 1px solid var(--line); overflow: hidden; z-index: 0; }
-        .field-pin { width: 26px; height: 26px; background: var(--accent); border: 3px solid #fff; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 2px 6px rgba(0,0,0,0.35); }
         .field-actions { display: flex; justify-content: flex-end; gap: 8px; position: sticky; bottom: 0; padding: 12px 0; background: linear-gradient(transparent, var(--paper) 35%); }
         .field-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--cream-hi); color: var(--ink); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; }
         .field-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }

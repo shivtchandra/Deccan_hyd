@@ -268,17 +268,21 @@ export default function Page() {
   // ---- load & restore persisted state ----
   useEffect(() => {
     setPassport(getState());
-    // Static index + live field findings (logged from /admin/field, no rebuild needed).
+    // Static index + the live editorial layer from /admin (no rebuild needed):
+    // edits/hides of built-in sites, and newly added sites.
     Promise.all([
       fetch(`/sites-index.json?v=${Date.now()}`, { cache: "no-store" }).then((r) => r.json()),
       fetch("/api/findings", { cache: "no-store" })
-        .then((r) => (r.ok ? r.json() : { findings: [] }))
-        .catch(() => ({ findings: [] })),
+        .then((r) => (r.ok ? r.json() : {}))
+        .catch(() => ({})),
     ])
-      .then(([rows, { findings }]) => {
-        const base = Array.isArray(rows) ? rows : [];
+      .then(([rows, { findings = [], edits = [] }]) => {
+        const patches = new Map(edits.map((e) => [e.id, e]));
+        const base = (Array.isArray(rows) ? rows : [])
+          .filter((s) => !patches.get(s.id)?.hidden)
+          .map((s) => (patches.has(s.id) ? { ...s, ...patches.get(s.id) } : s));
         const ids = new Set(base.map((s) => s.id));
-        setSites([...base, ...(findings || []).filter((f) => !ids.has(f.id))]);
+        setSites([...base, ...findings.filter((f) => !ids.has(f.id))]);
         setLoading(false);
       })
       .catch(() => setLoading(false));

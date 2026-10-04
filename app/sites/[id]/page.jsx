@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ERAS, TYPES, STATUS, eraLabel, typeLabel, statusLabel, eraColor, photoUrl } from "../../../lib/heritage.js";
 import SiteBottomNav from "../../components/SiteBottomNav.jsx";
 import { Icon } from "../../components/Icons.jsx";
+import { getPublicSite } from "../../../lib/siteEdits.js";
 
 // Load sites helper
 function getSitesIndex() {
@@ -13,11 +14,6 @@ function getSitesIndex() {
   return JSON.parse(data);
 }
 
-function getSitesDetail() {
-  const file = path.join(process.cwd(), "public", "sites-detail.json");
-  const data = fs.readFileSync(file, "utf8");
-  return JSON.parse(data);
-}
 
 // Generate SSG static paths for all 50+ sites and getaways
 export async function generateStaticParams() {
@@ -135,8 +131,7 @@ function buildNicheKeywords(site) {
 // Generate rich SEO & OpenGraph metadata
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const details = getSitesDetail();
-  const site = details[id];
+  const site = await getPublicSite(id);
 
   if (!site) {
     return {
@@ -204,9 +199,10 @@ export async function generateMetadata({ params }) {
 
 export default async function SitePage({ params }) {
   const { id } = await params;
-  const details = getSitesDetail();
+  // Built-in record with editorial-desk edits applied, or a desk-added site.
+  // Desk saves call revalidatePath, so this static page regenerates on change.
+  const site = await getPublicSite(id);
   const allSites = getSitesIndex();
-  const site = details[id];
 
   if (!site) {
     notFound();
