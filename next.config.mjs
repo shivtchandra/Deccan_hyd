@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
+// HYD_STATIC_EXPORT=1 (CI only, scripts/build-static.sh) builds the whole site
+// as static files for Cloudflare Pages.
+const staticExport = process.env.HYD_STATIC_EXPORT === "1";
+
 const nextConfig = {
+  ...(staticExport ? { output: "export", images: { unoptimized: true } } : {}),
   compress: true,
   reactStrictMode: true,
   webpack: (config, { dev }) => {

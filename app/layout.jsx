@@ -120,8 +120,8 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
-        <Analytics />
-        <SpeedInsights />
+        {process.env.HYD_STATIC_EXPORT !== "1" && <Analytics />}
+        {process.env.HYD_STATIC_EXPORT !== "1" && <SpeedInsights />}
       </body>
     </html>
   );
