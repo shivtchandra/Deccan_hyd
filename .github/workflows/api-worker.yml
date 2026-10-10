@@ -1,0 +1,59 @@
+name: API worker (Cloudflare)
+
+# Deploys api-worker/ (the site's own app/api route handlers bundled for
+# Cloudflare Workers) and syncs its secrets from this repo's secrets.
+# Free tier: 100k requests/day; responses are edge- and Firestore-cached.
+on:
+  push:
+    branches: [main]
+    paths: ["api-worker/**", "app/api/**", "lib/**", ".github/workflows/api-worker.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: api-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            api-worker/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm ci
+        working-directory: api-worker
+
+      - name: Deploy
+        working-directory: api-worker
+        run: npx wrangler deploy
+
+      - name: Sync secrets
+        working-directory: api-worker
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
+          EDITOR_SECRET: ${{ secrets.EDITOR_SECRET }}
+          FIELD_EDITORS: ${{ secrets.FIELD_EDITORS }}
+          FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          OSRM_FOOT_URL: ${{ secrets.OSRM_FOOT_URL }}
+        run: |
+          node -e '
+            const names = ["FIREBASE_SERVICE_ACCOUNT","ADMIN_SECRET","EDITOR_SECRET","FIELD_EDITORS","FIREBASE_STORAGE_BUCKET","CRON_SECRET","OSRM_FOOT_URL"];
+            const out = {};
+            for (const n of names) if (process.env[n]) out[n] = process.env[n];
+            require("fs").writeFileSync("secrets.json", JSON.stringify(out));
+            console.log("syncing", Object.keys(out).join(", ") || "(none)");
+          '
+          [ "$(cat secrets.json)" = "{}" ] || npx wrangler secret bulk secrets.json
+          rm -f secrets.json
