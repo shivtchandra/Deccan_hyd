@@ -547,7 +547,7 @@ export default function DetailSheet({
               </div>
 
               {/* Curator Credit Badge & Field Note */}
-              {site.curatedBy && (
+              {(site.curatedBy || site.curatorNote) && (
                 <div
                   style={{
                     margin: "14px 0 10px",
@@ -563,7 +563,7 @@ export default function DetailSheet({
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 6 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                       <span style={{ fontSize: 12, fontWeight: 700, color: "var(--accent-deep, #c2603a)", letterSpacing: "0.02em" }}>
-                        Curated by {site.curatedBy}
+                        {site.curatedBy ? `Curated by ${site.curatedBy}` : "Key Historical Fact"}
                       </span>
                     </div>
                     {site.curationUrl && (

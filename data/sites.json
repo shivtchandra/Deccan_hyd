@@ -3041,27 +3041,33 @@
     "status": "state-protected",
     "access": "public",
     "area": "Gandipet",
-    "summary": "A major reservoir on the Musi built after the 1908 flood to supply Hyderabad with clean water. Named for Nizam VII; its construction displaced several villages.",
-    "story": "The catastrophic 1908 Musi flood, which killed 15,000 people and destroyed entire neighbourhoods, made it impossible to continue taking water from the river. The City Improvement Board commissioned two large reservoirs to supply the city and regulate future flooding. Osman Sagar, named for the seventh Nizam, was built by damming the Musi at Gandipet, displacing several villages in the process. Its construction represented both a triumph of engineering and a transformation of the river's upper valley.",
-    "architect": "City Improvement Board engineers",
+    "summary": "A monumental flood-control reservoir on the Musi River engineered by Sir M. Visvesvaraya following the 1908 flood. While requested by and named after Nizam VII, the primary engineering credit belongs to Visvesvaraya.",
+    "story": "The catastrophic 1908 Musi flood killed 15,000 people and destroyed entire neighbourhoods. Following the disaster, the Nizam's administration invited legendary engineer Sir M. Visvesvaraya to devise a permanent flood prevention scheme. Visvesvaraya surveyed the river basin and authored the definitive 1909 engineering blueprint, proposing two massive balancing reservoirs — Osman Sagar on the Musi and Himayat Sagar on the Esa — to hold back monsoon torrents before reaching Hyderabad. While the reservoir was funded by the seventh Nizam Mir Osman Ali Khan and bears his name, the technical genius and larger credit belongs to Sir Visvesvaraya, whose hydraulic dam design protected the city for over a century and provided its primary drinking water.",
+    "architect": "Sir M. Visvesvaraya (Chief Consulting Engineer) & City Improvement Board",
+    "curatorNote": "Historical Fact: While popularly credited to the Nizam because he commissioned the project and the lake bears his name, the true engineer and mastermind behind the Musi dam was Sir M. Visvesvaraya. The Nizam requested his services after the disastrous 1908 flood, but the hydraulic calculations, dam location, and flood-mitigation architecture were entirely Visvesvaraya's work.",
+    "curatedBy": "Deccan Heritage Atlas",
     "people": [
       {
-        "name": "Nizam VII Mir Osman Ali Khan",
-        "role": "patron; lake named for him"
+        "name": "Sir M. Visvesvaraya",
+        "role": "Mastermind & Chief Consulting Engineer; surveyed flood basin and designed the Musi dam & twin reservoir system"
       },
       {
-        "name": "M. Visvesvaraya",
-        "role": "eminent engineer who surveyed the post-flood works"
+        "name": "Nizam VII Mir Osman Ali Khan",
+        "role": "Patron; requested Sir Visvesvaraya's engineering services following the 1908 disaster (dam named in his honour)"
       }
     ],
     "events": [
       {
         "year": 1908,
-        "description": "Great Musi Flood prompts design of reservoir system"
+        "description": "Great Musi Flood devastates Hyderabad; Nizam requests Sir M. Visvesvaraya's engineering intervention"
+      },
+      {
+        "year": 1909,
+        "description": "Sir M. Visvesvaraya submits landmark flood protection report recommending twin flood-control dams on the Musi and Esa"
       },
       {
         "year": 1920,
-        "description": "Osman Sagar reservoir completed; villages in the valley displaced"
+        "description": "Osman Sagar dam and reservoir completed at Gandipet following Visvesvaraya's engineering plans"
       },
       {
         "year": 2000,

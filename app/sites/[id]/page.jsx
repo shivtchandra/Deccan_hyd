@@ -488,8 +488,9 @@ export default async function SitePage({ params }) {
             { label: "Status", value: statusLabel(site.status) },
             { label: "Access", value: site.access || "Public" },
             { label: "Area", value: site.area },
-          ].map(({ label, value }, i) => (
-            <div key={i} style={{ flex: "1 1 140px", padding: "14px 18px", borderRight: i < 3 ? "1px solid var(--line)" : "none" }}>
+            ...(site.architect ? [{ label: "Architect / Engineer", value: site.architect }] : []),
+          ].map(({ label, value }, i, arr) => (
+            <div key={i} style={{ flex: "1 1 140px", padding: "14px 18px", borderRight: i < arr.length - 1 ? "1px solid var(--line)" : "none" }}>
               <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: "0.08em", color: "var(--muted)", textTransform: "uppercase", marginBottom: 4 }}>{label}</div>
               <div style={{ fontSize: 14.5, fontWeight: 600, color: "var(--ink)" }}>{value}</div>
             </div>
@@ -497,11 +498,38 @@ export default async function SitePage({ params }) {
         </div>
 
         {/* ── Summary lead ── */}
-        <div style={{ borderLeft: `3.5px solid ${color}`, paddingLeft: 20, margin: "0 0 36px" }}>
+        <div style={{ borderLeft: `3.5px solid ${color}`, paddingLeft: 20, margin: "0 0 32px" }}>
           <p style={{ fontFamily: "Fraunces, serif", fontSize: "clamp(19px, 2.5vw, 22px)", lineHeight: 1.6, color: "var(--ink)", fontWeight: 500, margin: 0, letterSpacing: "-0.01em" }}>
             {site.summary}
           </p>
         </div>
+
+        {/* ── Historical Fact / Curator's Note Callout ── */}
+        {site.curatorNote && (
+          <div style={{
+            background: "linear-gradient(135deg, rgba(194,96,58,0.09) 0%, rgba(217,119,6,0.08) 100%)",
+            border: "1.5px solid var(--accent, #c2603a)",
+            borderRadius: 14,
+            padding: "18px 22px",
+            marginBottom: 36,
+            boxShadow: "0 2px 8px rgba(43,33,25,0.04)"
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+              <span style={{ fontSize: 20 }}>💡</span>
+              <span style={{ fontSize: 11.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--accent-deep, #92400e)" }}>
+                Key Historical Fact
+              </span>
+            </div>
+            <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "var(--ink)", fontWeight: 500 }}>
+              {site.curatorNote}
+            </p>
+            {site.curatedBy && (
+              <div style={{ marginTop: 10, fontSize: 11.5, color: "var(--muted)", fontWeight: 600 }}>
+                — Curated record by {site.curatedBy}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* ── Full Story ── */}
         {site.story && (
