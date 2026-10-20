@@ -19,6 +19,7 @@ const GEO = {
   kalamkari:             { from: [16.19, 81.14], label: "Machilipatnam", to: [51.5, -0.13] },
   "khairatabad-ganesh":  { from: [17.412, 78.460], label: "Khairatabad" },
   "ganesh-chaturthi-hyd": { from: [18.52, 73.85], label: "Pune" },
+  bathukamma:            { from: [18.468, 78.868], label: "Vemulawada / Telangana" },
 };
 
 const ROUTE_WAYPOINTS = {
@@ -101,6 +102,13 @@ const ROUTE_WAYPOINTS = {
   // Lacquer Bangles Qutb Shahi Foundation
   "lacquer-bangles": [
     [17.361, 78.474],
+    [17.385, 78.487],
+  ],
+  // Bathukamma Floral Journey: Vemulawada Chalukyas -> Kakatiya Warangal -> Hyderabad Lakes
+  bathukamma: [
+    [18.468, 78.868],
+    [17.968, 79.594],
+    [17.725, 79.160],
     [17.385, 78.487],
   ],
 };

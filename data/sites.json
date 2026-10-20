@@ -4692,5 +4692,95 @@
     "addedBy": "karthik-collection",
     "verifiedAt": "2026-09-25",
     "needsReview": false
+  },
+  {
+    "id": "bathukamma-ghat",
+    "name": "Bathukamma Ghat (Tank Bund)",
+    "altNames": [
+      "Saddula Bathukamma Ghat",
+      "Bathukamma Immersion Point",
+      "Telangana Floral Festival Grounds",
+      "Hussain Sagar Bathukamma"
+    ],
+    "lat": 17.4192,
+    "lng": 78.4725,
+    "era": "post-independence",
+    "yearBuilt": "10th c. origin (Ghat formalized 2014)",
+    "startYear": 1950,
+    "type": "temple",
+    "status": "state-protected",
+    "access": "open",
+    "area": "Tank Bund",
+    "summary": "The shoreline steps of Hussain Sagar where tens of thousands of women gather on Saddula Bathukamma at dusk to float pyramidal stacks of wild Deccan flowers into the lake. Built on an ancient agrarian tradition of tank maintenance and women's solidarity, the site marks the civic climax of Telangana's nine-day floral festival.",
+    "story": "Long before Tank Bund became a paved causeway flanked by concrete statues, the communities living across the granitic Deccan scrub marked the withdrawal of the southwest monsoon through a ritual that belonged entirely to women. Bathukamma—literally 'Come alive, Mother'—begins on the new moon of Mahalaya Amavasya (Engili Pula Bathukamma) and builds over nine consecutive evenings, each named after the specific dry grain or sweet offering prepared at home, from parched rice and lentils to the neem-berry shaped dough of Vepakayalu, culminating on Saddula Bathukamma.\n\nThe architecture of a Bathukamma is precise. Men and children trek out into the dry wasteland and fallow fields outside the settlements to gather wild, uncultivated flora before noon: sulphur-yellow Thangedu (Cassia auriculata), the velvety pale-pink and silver heads of Gunugu (Celosia argentea), Gummadi (deep orange pumpkin blossoms), Katla, and wild marigold. The women arrange these in tight, concentric upward tiers inside a brass taambalam or woven bamboo basket lined with pumpkin leaves. At the summit sits Gauramma, a conical lump of raw turmeric paste adorned with red kumkum. The entire pyramid is engineered so that when released onto water, the trapped air between stems and leaves keeps the mound upright, floating like an illuminated raft.\n\nHistorically, this practice was deeply tied to the chain-tank irrigation systems engineered across the Deccan under the Kakatiya dynasty between the 11th and 14th centuries. When the monsoon ended and village tanks (cheruvulu) were brim-full, thousands of floral pyramids were immersed into the drinking and irrigation reserves. Both Thangedu and Gunugu possess natural antibacterial, astringent, and clarifying properties; their mass decomposition helped neutralize waterborne pathogens and settle monsoon silt before the dry winter months.\n\nIn oral folklore, the songs tell different tales. One tradition traces back to the 10th-century Vemulawada Chalukyas, feudatories of the Rashtrakutas, where women consoled Goddess Gauri with flowers after a catastrophic Chola raid. Another, more domestic narrative reflects the brutal realities of feudal agrarian life: a young bride who dies of exhaustion or cruelty in her in-laws' house (atthorillu) is resurrected through the collective grief and floral offerings of her maternal village. The songs—unhurried, hypnotic call-and-response couplets ending with the rhythmic cadence 'Uyyalo'—are sung in unison as women move counter-clockwise in widening circles, clapping down and up with bent knees.\n\nWhile rural families still immerse their flowers in local village tanks and stepwells, Tank Bund emerged over the last half-century as Hyderabad's monumental gathering ground. During the 1990s and 2000s, at the height of the Telangana statehood movement, the festival took on overt political significance. Women reclaimed the colonial-era causeway—built originally in 1562 by Husain Shah Wali under the Qutb Shahis—transforming Tank Bund and Necklace Road into a massive cultural arena that asserted regional identity against coastal Andhra political dominance. Following Telangana statehood in 2014, the ghat was formalized with permanent stone steps, lighting arrays, and floating rescue boats, drawing over 100,000 women each autumn.",
+    "people": [
+      {
+        "name": "Telangana Village Women & Oral Balladeers",
+        "role": "Custodians of over 150 ancestral folk couplets (Uyyalo paatalu) passed orally across generations without written notation"
+      },
+      {
+        "name": "Vemulawada Chalukyas & Kakatiya Tank Builders",
+        "role": "10th–14th century Deccan dynasties whose engineering of chain-link cheruvulu (tanks) gave the festival its ecological and hydrological foundation"
+      },
+      {
+        "name": "Husain Shah Wali",
+        "role": "16th-century Qutb Shahi engineer and minister whose earthen dam across the Musi tributary valley created the lake that hosts the modern civic immersion"
+      }
+    ],
+    "events": [
+      {
+        "year": 950,
+        "description": "Vemulawada Chalukya reign: earliest oral traditions link floral offerings to consoling Goddess Gauri after regional conflicts"
+      },
+      {
+        "year": 1213,
+        "description": "Kakatiya era: mass expansion of lake reservoirs (Ramappa, Pakhal, Laknavaram) integrates floral water-purification with seasonal tank stewardship"
+      },
+      {
+        "year": 1562,
+        "description": "Husain Shah Wali dams the stream between Hyderabad and Secunderabad, creating the 6-km reservoir of Hussain Sagar"
+      },
+      {
+        "year": 2000,
+        "description": "Telangana statehood movement reclaims Tank Bund; Bathukamma singing circles become acts of cultural and linguistic self-assertion"
+      },
+      {
+        "year": 2014,
+        "description": "Government of Telangana officially designates Bathukamma the State Festival; permanent ghat infrastructure and festival pavilions built along Tank Bund"
+      },
+      {
+        "year": 2016,
+        "description": "Historic gathering of over 9,200 women simultaneously performing circular Bathukamma dances on the lakefront, entering the Guinness Book of Records"
+      }
+    ],
+    "connections": [
+      "husain-sagar",
+      "buddha-statue-hussain-sagar",
+      "khairatabad-ganesh",
+      "saidani-ma-tomb"
+    ],
+    "sources": [
+      {
+        "label": "Telangana Tourism — Bathukamma Festival",
+        "url": "https://www.telanganatourism.gov.in/"
+      },
+      {
+        "label": "Wikipedia: Bathukamma",
+        "url": "https://en.wikipedia.org/wiki/Bathukamma"
+      }
+    ],
+    "wikidata": "Q4869106",
+    "wikipedia": "https://en.wikipedia.org/wiki/Bathukamma",
+    "addedBy": "seed",
+    "verifiedAt": "2026-10-20",
+    "needsReview": false,
+    "photos": [
+      {
+        "url": "/photos/bathukamma-ghat.jpg",
+        "credit": "Field Documentation",
+        "licence": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org"
+      }
+    ]
   }
 ]

@@ -30,6 +30,9 @@ import EraTransition from "./components/EraTransition.jsx";
 // import CharminarExperience from "./components/charminar/CharminarExperience.jsx";
 // import ReelPlayer from "./components/reel/ReelPlayer.jsx"; // reel not shipped yet
 import { ERA_NARRATIVES } from "../lib/eraNarratives.js";
+import OriginsMap from "./components/OriginsMap.jsx";
+import OriginsChapter from "./components/OriginsChapter.jsx";
+import { ORIGINS_BY_ID } from "../lib/culturalOrigins.js";
 
 const initialHeritageState = {
   selectedPeriodId: null,
@@ -222,6 +225,14 @@ export default function Page() {
   const [selectedAreaId, setSelectedAreaId] = useState(null);
   const [explorersData, setExplorersData] = useState(null);
   const [showReel, setShowReel] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(typeof window !== "undefined" && window.innerWidth >= 769);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Central Heritage State using reducer with initial URL state
   const [heritageState, dispatch] = useReducer(heritageReducer, null, getInitialHeritageState);
@@ -771,7 +782,10 @@ export default function Page() {
             activeTab={exploreSubTab}
             onTabChange={setExploreSubTab}
             selectedOriginId={selectedOriginId}
-            onSelectOrigin={(id) => setSelectedOriginId(id)}
+            onSelectOrigin={(id) => {
+              setSelectedOriginId(id);
+              setOriginChapterOpen(true);
+            }}
             selectedAreaId={selectedAreaId}
             onSelectArea={(area) => setSelectedAreaId(area?.id || null)}
             tab={tab}
@@ -929,7 +943,17 @@ export default function Page() {
           </div>
         )}
 
-        {loading ? (
+        {tab === "explore" && exploreSubTab === "origins" ? (
+          <OriginsMap
+            selectedId={selectedOriginId}
+            onSelectId={setSelectedOriginId}
+            onDetailChange={setOriginChapterOpen}
+            onSelect={(id) => {
+              setSelectedOriginId(id);
+              setOriginChapterOpen(true);
+            }}
+          />
+        ) : loading ? (
           <div className="loading">Loading Hyderabad’s heritage…</div>
         ) : (
           <MapCanvas
@@ -1399,6 +1423,20 @@ export default function Page() {
       </div>
 
 
+
+      {/* Desktop Origins Chapter Modal (Mobile is handled inside LeaderboardPanel) */}
+      {isDesktop && originChapterOpen && selectedOriginId && ORIGINS_BY_ID[selectedOriginId] && (
+        <OriginsChapter
+          item={ORIGINS_BY_ID[selectedOriginId]}
+          onClose={() => {
+            setOriginChapterOpen(false);
+            setSelectedOriginId(null);
+          }}
+          onNavigate={(newItem) => {
+            setSelectedOriginId(newItem.id);
+          }}
+        />
+      )}
 
       {/* Era Transport Transition Overlay */}
       {eraTransition && (

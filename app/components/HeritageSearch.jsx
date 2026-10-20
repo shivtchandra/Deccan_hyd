@@ -53,8 +53,28 @@ export default function HeritageSearch({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <button onClick={onClose} style={{ color: "var(--cream-dim)", fontSize: 13 }}>
-            ESC
+          <button
+            onClick={onClose}
+            className="pressable-sm"
+            style={{
+              background: "var(--cream)",
+              border: "1px solid var(--line)",
+              borderRadius: "6px",
+              padding: "4px 8px",
+              color: "var(--ink-soft)",
+              fontSize: "11.5px",
+              fontWeight: 700,
+              fontFamily: "inherit",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+            }}
+            title="Press Escape or click to close"
+            aria-label="Close search modal"
+          >
+            <span>ESC</span>
+            <span style={{ fontSize: 12, lineHeight: 1, opacity: 0.7 }}>✕</span>
           </button>
         </div>
 
